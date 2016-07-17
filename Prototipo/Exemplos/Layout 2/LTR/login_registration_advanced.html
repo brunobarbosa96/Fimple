@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
+	<title>Fimple</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -31,10 +31,10 @@
 
 </head>
 
-<body>
+<body class="bg-slate-800">
 
 	<!-- Main navbar -->
-	<div class="navbar navbar-inverse">
+	<!--<div class="navbar navbar-inverse">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="index.html"><img src="assets/images/logo_light.png" alt=""></a>
 
@@ -65,9 +65,9 @@
 				</li>
 			</ul>
 		</div>
-	</div>
+	</div>-->
 	<!-- /main navbar -->
-
+	
 
 	<!-- Page container -->
 	<div class="page-container login-container">
@@ -89,11 +89,11 @@
 									<div class="panel-body">
 										<div class="text-center">
 											<div class="icon-object border-success text-success"><i class="icon-plus3"></i></div>
-											<h5 class="content-group-lg">Create account <small class="display-block">All fields are required</small></h5>
+											<h5 class="content-group-lg">Criar Conta <small class="display-block">Todos os campos são necessários</small></h5>
 										</div>
 
 										<div class="form-group has-feedback">
-											<input type="text" class="form-control" placeholder="Choose username">
+											<input type="text" class="form-control" placeholder="Escolha um nome de usuário" validation="O campo “nome de usuario” é obrigatório!">
 											<div class="form-control-feedback">
 												<i class="icon-user-plus text-muted"></i>
 											</div>
@@ -102,7 +102,7 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group has-feedback">
-													<input type="text" class="form-control" placeholder="First name">
+													<input type="text" class="form-control" placeholder="Nome" validation="O campo “Nome” é obrigatório!">
 													<div class="form-control-feedback">
 														<i class="icon-user-check text-muted"></i>
 													</div>
@@ -111,7 +111,7 @@
 
 											<div class="col-md-6">
 												<div class="form-group has-feedback">
-													<input type="text" class="form-control" placeholder="Second name">
+													<input type="text" class="form-control" placeholder="Sobrenome" validation="O campo “Sobrenome” é obrigatório!">
 													<div class="form-control-feedback">
 														<i class="icon-user-check text-muted"></i>
 													</div>
@@ -122,7 +122,7 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group has-feedback">
-													<input type="password" class="form-control" placeholder="Create password">
+													<input type="password" class="form-control" placeholder="Senha" validation="O campo “Senha” é obrigatório!">
 													<div class="form-control-feedback">
 														<i class="icon-user-lock text-muted"></i>
 													</div>
@@ -131,7 +131,7 @@
 
 											<div class="col-md-6">
 												<div class="form-group has-feedback">
-													<input type="password" class="form-control" placeholder="Repeat password">
+													<input type="password" class="form-control" placeholder="Repetir senha" validation="O campo “Repetir senha” é obrigatório!">
 													<div class="form-control-feedback">
 														<i class="icon-user-lock text-muted"></i>
 													</div>
@@ -142,7 +142,7 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group has-feedback">
-													<input type="email" class="form-control" placeholder="Your email">
+													<input type="email" class="form-control" placeholder="Email" validation="O campo “Email” é obrigatório!">
 													<div class="form-control-feedback">
 														<i class="icon-mention text-muted"></i>
 													</div>
@@ -151,7 +151,7 @@
 
 											<div class="col-md-6">
 												<div class="form-group has-feedback">
-													<input type="email" class="form-control" placeholder="Repeat email">
+													<input type="email" class="form-control" placeholder="Repetir Email" validation="O campo “Repetir Email” é obrigatório!">
 													<div class="form-control-feedback">
 														<i class="icon-mention text-muted"></i>
 													</div>
@@ -160,31 +160,18 @@
 										</div>
 
 										<div class="form-group">
-											<div class="checkbox">
-												<label>
-													<input type="checkbox" class="styled" checked="checked">
-													Send me <a href="#">test account settings</a>
-												</label>
-											</div>
-
-											<div class="checkbox">
-												<label>
-													<input type="checkbox" class="styled" checked="checked">
-													Subscribe to monthly newsletter
-												</label>
-											</div>
 
 											<div class="checkbox">
 												<label>
 													<input type="checkbox" class="styled">
-													Accept <a href="#">terms of service</a>
+													Aceito <a href="https://www.google.com/intl/pt-BR/policies/terms/">Termos de uso e políticas do sistema Fimple</a>
 												</label>
 											</div>
 										</div>
 
 										<div class="text-right">
-											<button type="submit" class="btn btn-link"><i class="icon-arrow-left13 position-left"></i> Back to login form</button>
-											<button type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10"><b><i class="icon-plus3"></i></b> Create account</button>
+											<button type="submit" class="btn btn-link"><i class="icon-arrow-left13 position-left"></i> Voltar para tela de login</button>
+											<button type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10"><b><i class="icon-plus3"></i></b> Criar conta</button>
 										</div>
 									</div>
 								</div>
@@ -196,7 +183,7 @@
 
 					<!-- Footer -->
 					<div class="footer text-muted">
-						&copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+						&copy;Size 2016. <a href="#">Fimple</a> by <a href="http://www.fimple.com.br/" target="_blank">Team Fimple</a>
 					</div>
 					<!-- /footer -->
 
@@ -211,6 +198,9 @@
 
 	</div>
 	<!-- /page container -->
-
+	
 </body>
 </html>
+<script>
+	
+</script>
