@@ -5368,8 +5368,8 @@ a.thumbnail.active {
 .media-left img:not(.media-preview),
 .media-right img:not(.media-preview),
 .thumbnail .media img:not(.media-preview) {
-  width: 40px;
-  height: 40px;
+  width: 100px;
+  height: 100px;
   max-width: none;
 }
 .media-badge {
