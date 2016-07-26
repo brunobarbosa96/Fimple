@@ -1,0 +1,22 @@
+{
+  "name": "login",
+  "version": "1.0.0",
+  "description": "api de login",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://brunobarbosa96@bitbucket.org/brunobarbosa96/sru.git"
+  },
+  "author": "Bruno Barbosa",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/brunobarbosa96/sru#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-load": "^1.1.15",
+    "mssql": "^3.3.0"
+  }
+}
