@@ -1,15 +1,20 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     load = require('express-load'),
-    ports = require('../config/ports');
+    connection = require('../config/connection.js')(),
+    port = require('../config/ports.js');
 
 app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-load('../config').then('controllers').then('routes').into(app);
+app.config = {
+    connection: connection
+};
 
-app.listen(ports.login, () => {
-   console.log("Server up on port " + ports.login); 
+load('Routes').into(app);
+
+app.listen(port.login, () => {
+   console.log("Server up on port " + port.login); 
 });

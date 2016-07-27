@@ -1,7 +1,7 @@
 var sql = require('../Login/node_modules/mssql'),
     config = require('./sqlConfiguration');
    
-module.exports = (app) => {
+module.exports = () => {
 
     var connection = {};
 
