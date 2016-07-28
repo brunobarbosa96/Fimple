@@ -5,7 +5,7 @@ module.exports = (app) => {
         postLogin: (req, res) => {
             repository.postLogin(req, res, (err, row) => {
                 if (!row[0].length)
-                    res.status(403).json({"Não autorizado": "Login e/ou senhá inválido(s)."})
+                    res.status(401).json({"Não autorizado": "Login e/ou senha inválido(s)."})
                 if (err)
                     res.status(500).json({ "message": err });
                 else

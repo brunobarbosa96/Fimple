@@ -1,5 +1,5 @@
 CREATE PROCEDURE [dbo].[SP_Login]
-	@Login varchar(50),
+	@Usuario varchar(50),
 	@Senha varchar(128)
 AS
 	BEGIN 
@@ -22,10 +22,8 @@ AS
 		   Email,
 		   DataNascimento
 		FROM [dbo].[Usuario]
-		WHERE (Email LIKE @Login OR CAST(Rgm AS varchar(10)) = @Login)
-			AND Senha = @Senha
+		WHERE (Email LIKE @Usuario OR CAST(Rgm AS varchar(10)) = @Usuario)
+			AND Senha = @Usuario
 
 	END
 GO
-
-
