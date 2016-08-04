@@ -1,6 +1,4 @@
-﻿@{ Layout = "../Shared/_Layout.cshtml";}
-
-@using (Ajax.BeginForm("Post", "Login", null, new AjaxOptions
+﻿@using (Ajax.BeginForm("Post", "Login", null, new AjaxOptions
 {
     OnSuccess = "formLogin_Success(data)",
     OnFailure = "formLogin_Failure(xhr)"
@@ -13,14 +11,14 @@
         </div>
 
         <div class="form-group has-feedback has-feedback-left">
-            <input type="text" class="form-control" placeholder="Usuario" maxlength="50">
+            <input type="text" class="form-control" name="Email" placeholder="Usuario" maxlength="50">
             <div class="form-control-feedback">
                 <i class="icon-user text-muted"></i>
             </div>
         </div>
 
         <div class="form-group has-feedback has-feedback-left">
-            <input type="password" class="form-control" placeholder="Senha" maxlength="8">
+            <input type="password" class="form-control" name="Senha" placeholder="Senha" maxlength="8">
             <div class="form-control-feedback"><i class="icon-lock2 text-muted"></i></div>
         </div>
 
@@ -34,8 +32,15 @@
     </div>
 }
 
+<div id="divContent"></div>
 <script>
-    
 
+    function formLogin_Success(data) {
+        $("#divContent").html(data);
+    }
+
+    function formLogin_Failure(xhr) {
+        $("body").html(xhr.responseText);
+    }
 
 </script>

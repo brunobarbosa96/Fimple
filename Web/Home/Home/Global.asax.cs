@@ -9,7 +9,7 @@ namespace Home
     {
         protected void Application_Start()
         {
-            //DependencyResolver.SetResolver(SimpleInjector.Registratio);
+            DependencyResolver.SetResolver(SimpleInjectorContainer.RegisterServices());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
