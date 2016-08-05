@@ -2210,7 +2210,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>11869</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:3003/Home/</IISUrl>
+          <IISUrl>http://localhost:3003/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
