@@ -9,7 +9,7 @@ module.exports = (app) => {
                 if (err)
                     res.status(500).json({ "message": err });
                 else
-                    res.status(200).json(row[0]);
+                    res.status(200).json(row[0][0]);
             });
         }
     };

@@ -1,4 +1,4 @@
-﻿using Home.Application.Interfaces.Login;
+﻿using Commom.Request;
 using Home.Application.Login;
 using SimpleInjector;
 
@@ -10,6 +10,7 @@ namespace Home
         {
             var container = new Container();
 
+            container.Register<IRequest, Request>();
             container.Register<ILoginApp, LoginApp>();
 
             container.Verify();

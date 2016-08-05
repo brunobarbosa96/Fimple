@@ -1,9 +1,7 @@
-﻿using Home.Application.Interfaces.Login;
-using Home.ViewModels.Entity;
+﻿using Home.Application.Login;
+using Home.Models.Entity;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
@@ -32,9 +30,9 @@ namespace Home.Controllers.Login
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest, 
                         response.Content.ReadAsStringAsync().Result);
 
-                var model = JsonConvert.DeserializeObject<IEnumerable<Usuario>>(response.Content.ReadAsStringAsync().Result);
+                var model = JsonConvert.DeserializeObject<Usuario>(response.Content.ReadAsStringAsync().Result);
 
-                return View("_DadosLogin", model.FirstOrDefault());
+                return View("_DadosLogin", model);
             }
             catch (Exception ex)
             {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Home.ViewModels.Entity
+namespace Home.Models.Entity
 {
     public class Usuario
     {
