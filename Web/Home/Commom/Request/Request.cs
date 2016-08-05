@@ -15,11 +15,11 @@ namespace Commom.Request
             _httpClient = new HttpClient();
         }
 
-        public HttpResponseMessage Get(string uri, string route)
+        public HttpResponseMessage Get(string uri, string parameters = "")
         {
             try
             {
-                return _httpClient.GetAsync($"{uri}{route}").Result;
+                return _httpClient.GetAsync($"{uri}{parameters}").Result;
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace Commom.Request
             }
         }
 
-        public HttpResponseMessage Delete(string uri, string parameters)
+        public HttpResponseMessage Delete(string uri, string parameters = "")
         {
             try
             {
