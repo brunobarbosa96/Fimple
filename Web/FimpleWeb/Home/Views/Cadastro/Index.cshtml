@@ -20,7 +20,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group has-feedback">
-                                                <input type="text" class="form-control" name="nomeUsuario" placeholder="Nome de usuário ou Apelido" validation="O campo “nome de usuario” é obrigatório!">
+                                                <input type="text" class="form-control" name="apelido" placeholder="Nome de usuário ou Apelido" validation="O campo “nome de usuario” é obrigatório!">
                                                 <div class="form-control-feedback">
                                                     <i class="icon-user-plus text-muted"></i>
                                                 </div>
@@ -139,12 +139,10 @@
         var email = $("#email").val();
         var rpEmail = $("#rpEmail").val();
 
-        if (senha != rpSenha) {
-            alert("As senhas não são iguais! Verifique!!!");
+        
+        if ($("#senha").val() && $("#rpSenha").val() && $("#senha").val() != $("#rpSenha").val()) {
+            alert("As senhas inseridas são diferentes! Verifique!");
             return false;
-        } 
-        if(senha == rpSenha){
-            alert("Emails iguais!");
         }
 
         //if (email != rpEmail) {
