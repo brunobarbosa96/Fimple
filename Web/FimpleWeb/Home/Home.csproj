@@ -143,6 +143,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SimpleInjectorContainer.cs" />
+    <Compile Include="Controllers\Cadastro\CadastroController.cs" />
     <Compile Include="Controllers\Login\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2191,6 +2192,9 @@
       <Project>{6a6993a0-6c84-4c15-996b-5f2468fd1b61}</Project>
       <Name>Commom</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Views\Cadastro\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
