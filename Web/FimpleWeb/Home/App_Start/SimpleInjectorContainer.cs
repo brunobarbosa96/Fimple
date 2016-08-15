@@ -1,4 +1,5 @@
 ﻿using Commom.Request;
+using Home.Application.Cadastro;
 using Home.Application.Login;
 using SimpleInjector;
 
@@ -12,6 +13,7 @@ namespace Home
 
             container.Register<IRequest, Request>();
             container.Register<ILoginApp, LoginApp>();
+            container.Register<ICadastroApp, CadastroApp>();
 
             container.Verify();
             return container;

@@ -1,0 +1,155 @@
+﻿<div class="page-container login-container">
+    <div class="page-content">
+        <div class="content-wrapper">
+            <div class="content">
+                @using (Ajax.BeginForm("Post", "Cadastro", null, new AjaxOptions
+                {
+                    OnSuccess = "onSuccess(data)",
+                    OnFailure = "onFailure(xhr)"
+                }, new { id = "formCadastro" }))
+                {
+                    <div class="row">
+                        <div class="col-lg-6 col-lg-offset-3">
+                            <div class="panel registration-form">
+                                <div class="panel-body">
+                                    <div class="text-center">
+                                        <div class="icon-object border-success text-success"><i class="icon-plus3"></i></div>
+                                        <h5 class="content-group-lg">Criar Conta <small class="display-block">Todos os campos são necessários</small></h5>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback">
+                                                <input type="text" class="form-control" name="apelido" placeholder="Nome de usuário ou Apelido" validation="O campo “nome de usuario” é obrigatório!">
+                                                <div class="form-control-feedback">
+                                                    <i class="icon-user-plus text-muted"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback">
+                                                <input type="text" class="form-control" name="rgm" placeholder="RGM" validation="O campo “RGM” é obrigatório!">
+                                                <div class="form-control-feedback">
+                                                    <i class="icon-unicode text-muted"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback">
+                                                <input type="text" class="form-control" name="nome" placeholder="Nome" validation="O campo “Nome” é obrigatório!">
+                                                <div class="form-control-feedback">
+                                                    <i class="icon-user-check text-muted"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback">
+                                                <input type="text" class="form-control" name="sobrenome" placeholder="Sobrenome" validation="O campo “Sobrenome” é obrigatório!">
+                                                <div class="form-control-feedback">
+                                                    <i class="icon-user-check text-muted"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback">
+                                                <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" validation="O campo “Senha” é obrigatório!">
+                                                <div class="form-control-feedback">
+                                                    <i class="icon-user-lock text-muted"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback">
+                                                <input type="password" class="form-control" name="rpSenha" id="rpSenha" placeholder="Repetir senha" validation="O campo “Repetir senha” é obrigatório!">
+                                                <div class="form-control-feedback">
+                                                    <i class="icon-user-lock text-muted"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback">
+                                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" validation="O campo “Email” é obrigatório!">
+                                                <div class="form-control-feedback">
+                                                    <i class="icon-mention text-muted"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback">
+                                                <input type="email" class="form-control" name="rpEmail" id="rpEmail" placeholder="Repetir Email" validation="O campo “Repetir Email” é obrigatório!">
+                                                <div class="form-control-feedback">
+                                                    <i class="icon-mention text-muted"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback">
+                                                <input type="date" class="form-control" name="dataNascimento" placeholder="Data de Nascimento" validation="O campo “Data de Nascimento” é obrigatório!">
+                                                <div class="form-control-feedback">
+                                                    <i class="icon-calendar text-muted"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" class="styled">
+                                                Aceito <a href="https://www.google.com/intl/pt-BR/policies/terms/">Termos de uso e políticas do sistema Fimple</a>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-link"><i class="icon-arrow-left13 position-left"></i> Voltar para tela de login</button>
+                                        <button type="submit" id="btnCriarConta" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10"><b><i class="icon-plus3"></i></b> Criar conta</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $("document").ready(function() {
+        validarEmail("#email");
+        validarEmail("#rpEmail");
+
+    });
+    
+    $("#btnCriarConta").click(function () {
+        var senha = $("#senha").val();
+        var rpSenha = $("#rpSenha").val();
+        var email = $("#email").val();
+        var rpEmail = $("#rpEmail").val();
+
+        
+        if ($("#senha").val() && $("#rpSenha").val() && $("#senha").val() != $("#rpSenha").val()) {
+            alert("As senhas inseridas são diferentes! Verifique!");
+            return false;
+        }
+
+        //if (email != rpEmail) {
+        //    alert("");
+        //}
+    });
+
+</script>
+
+

@@ -137,16 +137,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Cadastro\CadastroApp.cs" />
+    <Compile Include="Application\Cadastro\ICadastroApp.cs" />
     <Compile Include="Application\Login\ILoginApp.cs" />
     <Compile Include="Application\Login\LoginApp.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SimpleInjectorContainer.cs" />
+    <Compile Include="Controllers\Cadastro\CadastroController.cs" />
     <Compile Include="Controllers\Login\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entity\Cadastro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Entity\Usuario.cs" />
   </ItemGroup>
@@ -2194,6 +2198,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Fimple Web.pubxml" />
+    <None Include="Views\Cadastro\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
