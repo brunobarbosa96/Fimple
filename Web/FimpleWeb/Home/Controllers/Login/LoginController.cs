@@ -31,7 +31,7 @@ namespace Home.Controllers.Login
                         response.Content.ReadAsStringAsync().Result);
 
                 var model = JsonConvert.DeserializeObject<Usuario>(response.Content.ReadAsStringAsync().Result);
-
+                
                 return View("_DadosLogin", model);
             }
             catch (Exception ex)

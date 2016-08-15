@@ -1,8 +1,10 @@
-﻿namespace Commom.Config
+﻿using System.Diagnostics;
+
+namespace Commom.Config
 {
     public static class UriWebApi
     {
-        public static string Consulta => "http://localhost:3000/api/consulta/";
-        public static string Login => "http://localhost:5000/api/login/";
+        private static string Server => Debugger.IsAttached ? "http://localhost" : "http://www.fimple.com.br";
+        public static string Login => $"{Server}:5000/api/login/";
     }
 }
