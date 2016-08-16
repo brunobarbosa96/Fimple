@@ -1,9 +1,10 @@
-﻿using System.Net.Http;
+﻿using Home.Models.Entity;
+using System.Net.Http;
 
 namespace Home.Application.Cadastro
 {
     public interface ICadastroApp 
     {
-        HttpResponseMessage Post(Models.Entity.Cadastro cadastro);
+        HttpResponseMessage Post(Usuario usuario);
     }
 }

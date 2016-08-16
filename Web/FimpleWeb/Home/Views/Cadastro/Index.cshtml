@@ -94,6 +94,15 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group has-feedback">
+                                                <input type="email" class="form-control" name="curso" id="curso" placeholder="Curso" validation="O campo “Curso” é obrigatório!">
+                                                <div class="form-control-feedback">
+                                                    <i class="icon-mention text-muted"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback">
                                                 <input type="date" class="form-control" name="dataNascimento" placeholder="Data de Nascimento" validation="O campo “Data de Nascimento” é obrigatório!">
                                                 <div class="form-control-feedback">
                                                     <i class="icon-calendar text-muted"></i>
@@ -126,28 +135,12 @@
     </div>
 </div>
 <script>
-
-    $("document").ready(function() {
-        validarEmail("#email");
-        validarEmail("#rpEmail");
-
-    });
     
     $("#btnCriarConta").click(function () {
-        var senha = $("#senha").val();
-        var rpSenha = $("#rpSenha").val();
-        var email = $("#email").val();
-        var rpEmail = $("#rpEmail").val();
-
-        
         if ($("#senha").val() && $("#rpSenha").val() && $("#senha").val() != $("#rpSenha").val()) {
             alert("As senhas inseridas são diferentes! Verifique!");
             return false;
         }
-
-        //if (email != rpEmail) {
-        //    alert("");
-        //}
     });
 
 </script>
