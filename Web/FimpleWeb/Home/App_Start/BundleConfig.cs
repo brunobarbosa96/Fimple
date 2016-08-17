@@ -19,6 +19,8 @@ namespace Home
                       "~/assets/css/minified/core.min.css",
                       "~/assets/css/minified/components.min.css",
                       "~/assets/css/minified/colors.min.css"));
+
+            BundleTable.EnableOptimizations = false;
         }
     }
 }
