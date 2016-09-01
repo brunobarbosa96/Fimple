@@ -26,12 +26,12 @@ namespace Home.Controllers.Login
             try
             {
                 var response = _loginApp.Post(usuario);
-                    if(!response.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, 
+                if (!response.IsSuccessStatusCode)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
                         response.Content.ReadAsStringAsync().Result);
 
                 var model = JsonConvert.DeserializeObject<Usuario>(response.Content.ReadAsStringAsync().Result);
-                
+
                 return View("_DadosLogin", model);
             }
             catch (Exception ex)
