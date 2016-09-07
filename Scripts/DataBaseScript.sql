@@ -8,102 +8,168 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-
--- USUARIO
-CREATE TABLE [dbo].[Usuario] (
-    [IdUsuario]      INT            IDENTITY (1, 1) NOT NULL,
-    [Senha]          NVARCHAR (128) NOT NULL,
-    [Rgm]            INT            NOT NULL,
-    [Nome]           VARCHAR (50)   NOT NULL,
-    [Sobrenome]      VARCHAR (50)   NOT NULL,
-    [Apelido]        VARCHAR (50)   NULL,
-    [Email]          VARCHAR (50)   NOT NULL,
-    [DataNascimento] DATETIME       NOT NULL,
-    PRIMARY KEY CLUSTERED ([IdUsuario] ASC)
+CREATE TABLE [dbo].[Entidade] (
+    [Id]   INT          IDENTITY (1, 1) NOT NULL,
+    [Nome] VARCHAR (50) NOT NULL,
+    [Cep]  INT          NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
--- CURSO
+CREATE TABLE [dbo].[Categoria] (
+    [Id]         INT          IDENTITY (1, 1) NOT NULL,
+    [IdEntidade] INT          NOT NULL,
+    [Nome]       VARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Categoria_Entidade] FOREIGN KEY ([IdEntidade]) REFERENCES [dbo].[Entidade] ([Id])
+);
+
 CREATE TABLE [dbo].[Curso] (
-    [IdCurso]     INT          IDENTITY (1, 1) NOT NULL,
-    [IdTipoCurso] INT          DEFAULT ((1)) NOT NULL,
+    [Id]          INT          IDENTITY (1, 1) NOT NULL,
+    [IdCategoria] INT          NOT NULL,
     [Nome]        VARCHAR (50) NOT NULL,
-    PRIMARY KEY CLUSTERED ([IdCurso] ASC),
-    CONSTRAINT [FK_Curso_TipoCurso] FOREIGN KEY ([IdTipoCurso]) REFERENCES [dbo].[TipoCurso] ([IdTipoCurso])
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Curso_Categoria] FOREIGN KEY ([IdCategoria]) REFERENCES [dbo].[Categoria] ([Id])
 );
 
--- USUARIO CURSO
-CREATE TABLE [dbo].[UsuarioCurso] (
-    [IdUsuarioCurso] INT      IDENTITY (1, 1) NOT NULL,
-    [IdUsuario]      INT      NOT NULL,
-    [IdCurso]        INT      NOT NULL,
-    [DataInicio]     DATETIME NOT NULL,
-    PRIMARY KEY CLUSTERED ([IdUsuarioCurso] ASC),
-    CONSTRAINT [FK_UsuarioCurso_Curso] FOREIGN KEY ([IdCurso]) REFERENCES [dbo].[Curso] ([IdCurso]),
-    CONSTRAINT [FK_UsuarioCurso_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [dbo].[Usuario] ([IdUsuario])
+CREATE TABLE [dbo].[Usuario] (
+    [Id]               INT            IDENTITY (1, 1) NOT NULL,
+    [IdCurso]          INT            NOT NULL,
+    [Senha]            NVARCHAR (128) NOT NULL,
+    [Rgm]              INT            NOT NULL,
+    [Nome]             VARCHAR (50)   NOT NULL,
+    [Sobrenome]        VARCHAR (50)   NOT NULL,
+    [Apelido]          VARCHAR (50)   NULL,
+    [Email]            VARCHAR (50)   NOT NULL,
+    [DataNascimento]   DATETIME       NOT NULL,
+    [Cep]              INT            NULL,
+    [DataCadastro]     DATETIME       NOT NULL,
+    [DataUltimoAcesso] DATETIME       NOT NULL,
+    [DataInicioCurso]  DATETIME       NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Usuario_Curso] FOREIGN KEY ([IdCurso]) REFERENCES [dbo].[Curso] ([Id])
 );
 
--- CONVERSA
+CREATE TABLE [dbo].[Notificacao] (
+    [Id]                     INT      IDENTITY (1, 1) NOT NULL,
+    [IdUsuario]              INT      NULL,
+    [IdEvento]               INT      NULL,
+    [IdComentarioEvento]     INT      NULL,
+    [IdPublicacao]           INT      NULL,
+    [IdComentarioPublicacao] INT      NULL,
+    [IdCurso]                INT      NULL,
+    [IdEntidade]             INT      NULL,
+    [IdCategoria]            INT      NULL,
+    [DataCadastro]           DATETIME NOT NULL,
+    [DataVisualizacao]       DATETIME NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Notificacao_Evento] FOREIGN KEY ([IdEvento]) REFERENCES [dbo].[Evento] ([Id]),
+    CONSTRAINT [FK_Notificacao_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [dbo].[Usuario] ([Id]),
+    CONSTRAINT [FK_Notificacao_ComentarioEvento] FOREIGN KEY ([IdComentarioEvento]) REFERENCES [dbo].[ComentarioEvento] ([Id]),
+    CONSTRAINT [FK_Notificacao_Publicacao] FOREIGN KEY ([IdPublicacao]) REFERENCES [dbo].[Publicacao] ([Id]),
+    CONSTRAINT [FK_Notificacao_ComentarioPublicacao] FOREIGN KEY ([IdComentarioPublicacao]) REFERENCES [dbo].[ComentarioPublicacao] ([Id]),
+    CONSTRAINT [FK_Notificacao_Entidade] FOREIGN KEY ([IdEntidade]) REFERENCES [dbo].[Entidade] ([Id]),
+    CONSTRAINT [FK_Notificacao_Curso] FOREIGN KEY ([IdCurso]) REFERENCES [dbo].[Curso] ([Id]),
+    CONSTRAINT [FK_Notificacao_Categoria] FOREIGN KEY ([IdCategoria]) REFERENCES [dbo].[Categoria] ([Id])
+);
+
+CREATE TABLE [dbo].[Publicacao] (
+    [Id]          INT          IDENTITY (1, 1) NOT NULL,
+    [IdUsuario]   INT          NOT NULL,
+    [IdEntidade]  INT          NULL,
+    [IdCategoria] INT          NULL,
+    [IdCurso]     INT          NULL,
+    [Titulo]      VARCHAR (50) NOT NULL,
+    [Conteudo]    TEXT         NOT NULL,
+    [Ativa]       BIT          NOT NULL,
+    [Data]        DATETIME     NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Publicacao_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [dbo].[Usuario] ([Id]),
+    CONSTRAINT [FK_Publicacao_Entidade] FOREIGN KEY ([Id]) REFERENCES [dbo].[Entidade] ([Id]),
+    CONSTRAINT [FK_Publicacao_Categoria] FOREIGN KEY ([IdCategoria]) REFERENCES [dbo].[Categoria] ([Id]),
+    CONSTRAINT [FK_Publicacao_Curso] FOREIGN KEY ([IdCurso]) REFERENCES [dbo].[Curso] ([Id])
+);
+
+CREATE TABLE [dbo].[ComentarioPublicacao] (
+    [Id]           INT           IDENTITY (1, 1) NOT NULL,
+    [IdPublicacao] INT           NOT NULL,
+    [IdUsuario]    INT           NOT NULL,
+    [Comentario]   VARCHAR (100) NOT NULL,
+    [Data]         DATETIME      NOT NULL,
+    [Ativo]        BIT           NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_ComentarioPublicacao_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [dbo].[Usuario] ([Id]),
+    CONSTRAINT [FK_ComentarioPublicacao_Publicacao] FOREIGN KEY ([IdPublicacao]) REFERENCES [dbo].[Publicacao] ([Id])
+);
+
+CREATE TABLE [dbo].[VisualizacaoPublicacao] (
+    [IdPublicacao] INT      NOT NULL,
+    [IdUsuario]    INT      NOT NULL,
+    [Data]         DATETIME NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdPublicacao] ASC, [IdUsuario] ASC),
+    CONSTRAINT [FK_VisualizacaoPublicacao_Publicacao] FOREIGN KEY ([IdPublicacao]) REFERENCES [dbo].[Publicacao] ([Id]),
+    CONSTRAINT [FK_VisualizacaoPublicacao_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [dbo].[Usuario] ([Id])
+);
+
+CREATE TABLE [dbo].[Evento] (
+    [Id]           INT            IDENTITY (1, 1) NOT NULL,
+    [IdUsuario]    INT            NOT NULL,
+    [Descricao]    VARCHAR (150)  NOT NULL,
+    [Local]        VARBINARY (50) NOT NULL,
+    [Data]         DATETIME       NOT NULL,
+    [DataCadastro] DATETIME       NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Evento_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [dbo].[Usuario] ([Id])
+);
+
+CREATE TABLE [dbo].[ComentarioEvento] (
+    [Id]         INT           IDENTITY (1, 1) NOT NULL,
+    [IdEvento]   INT           NOT NULL,
+    [IdUsuario]  INT           NOT NULL,
+    [Comentario] VARCHAR (100) NOT NULL,
+    [Data]       DATETIME      NOT NULL,
+    [Ativo]      BIT           NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_ComentarioEvento_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [dbo].[Usuario] ([Id]),
+    CONSTRAINT [FK_ComentarioEvento_Evento] FOREIGN KEY ([IdEvento]) REFERENCES [dbo].[Evento] ([Id])
+);
+
+CREATE TABLE [dbo].[EventoUsuarios] (
+    [IdEvento]  INT NOT NULL,
+    [IdUsuario] INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdEvento] ASC, [IdUsuario] ASC),
+    CONSTRAINT [FK_EventoUsuarios_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [dbo].[Usuario] ([Id]),
+    CONSTRAINT [FK_EventoUsuarios_Evento] FOREIGN KEY ([IdEvento]) REFERENCES [dbo].[Evento] ([Id])
+);
+
 CREATE TABLE [dbo].[Conversa] (
-    [IdConversa]         INT      IDENTITY (1, 1) NOT NULL,
+    [Id]                 INT      IDENTITY (1, 1) NOT NULL,
     [IdUsuarioRemetente] INT      NOT NULL,
     [IdUsuarioDestino]   INT      NOT NULL,
-    [Ativa]              BIT      DEFAULT ((1)) NOT NULL,
-    [DataCriacao]        DATETIME NOT NULL,
-    PRIMARY KEY CLUSTERED ([IdConversa] ASC),
-    CONSTRAINT [FK_Conversa_UsuarioRemetente] FOREIGN KEY ([IdUsuarioRemetente]) REFERENCES [dbo].[Usuario] ([IdUsuario]),
-    CONSTRAINT [FK_Conversa_UsuarioDestino] FOREIGN KEY ([IdUsuarioDestino]) REFERENCES [dbo].[Usuario] ([IdUsuario])
+    [Data]               DATETIME NOT NULL,
+    [Ativo]              BIT      NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Conversa_Usuario1] FOREIGN KEY ([IdUsuarioRemetente]) REFERENCES [dbo].[Usuario] ([Id]),
+    CONSTRAINT [FK_Conversa_Usuario2] FOREIGN KEY ([IdUsuarioDestino]) REFERENCES [dbo].[Usuario] ([Id])
 );
 
-
--- MENSAGEM
 CREATE TABLE [dbo].[Mensagem] (
-    [IdMensagem]      INT      IDENTITY (1, 1) NOT NULL,
-    [IdConversa]      INT      NOT NULL,
-    [Mensagem]        TEXT     NOT NULL,
-    [DataEnvio]       DATETIME NOT NULL,
-    [DataRecebimento] DATETIME NULL,
-    PRIMARY KEY CLUSTERED ([IdMensagem] ASC),
-    CONSTRAINT [FK_Mensagem_Conversa] FOREIGN KEY ([IdConversa]) REFERENCES [dbo].[Conversa] ([IdConversa])
+    [Id]              INT          IDENTITY (1, 1) NOT NULL,
+    [IdConversa]      INT          NOT NULL,
+    [IdUsuarioEnvio]  INT          NOT NULL,
+    [Mensagem]        VARCHAR (50) NOT NULL,
+    [DataEnvio]       DATETIME     NOT NULL,
+    [DataRecebimento] DATETIME     NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Mensagem_Conversa] FOREIGN KEY ([IdConversa]) REFERENCES [dbo].[Conversa] ([Id]),
+    CONSTRAINT [FK_Mensagem_Usuario] FOREIGN KEY ([IdUsuarioEnvio]) REFERENCES [dbo].[Usuario] ([Id])
 );
 
--- NOTIFICACAO
-CREATE TABLE [dbo].[Notificacao] (
-    [IdNotificacao]         INT          IDENTITY (1, 1) NOT NULL,
-    [IdUsuarioNotificacao]  INT          NOT NULL,
-    [Notificacao]           VARCHAR (50) NOT NULL,
-    [DataNotificacao]       DATETIME     NOT NULL,
-    [DataUsuarioNotificado] DATETIME     NULL,
-    PRIMARY KEY CLUSTERED ([IdNotificacao] ASC),
-    CONSTRAINT [FK_Notificacao_Usuario] FOREIGN KEY ([IdUsuarioNotificacao]) REFERENCES [dbo].[Usuario] ([IdUsuario])
-);
-
--- PUBLICACAO
-CREATE TABLE [dbo].[Publicacao] (
-    [IdPublicacao]     INT          IDENTITY (1, 1) NOT NULL,
-    [IdCurso]          INT          NULL,
-    [IdTipoPublicacao] INT          NOT NULL,
-    [IdUsuarioCriacao] INT          NOT NULL,
-    [Titulo]           VARCHAR (50) NOT NULL,
-    [Conteudo]         TEXT         NOT NULL,
-    [Ativa]            BIT          DEFAULT ((1)) NOT NULL,
-    PRIMARY KEY CLUSTERED ([IdPublicacao] ASC),
-    CONSTRAINT [FK_Publicacao_TipoPublicacao] FOREIGN KEY ([IdTipoPublicacao]) REFERENCES [dbo].[TipoPublicacao] ([IdTipoPublicacao]),
-    CONSTRAINT [FK_Publicacao_Curso] FOREIGN KEY ([IdCurso]) REFERENCES [dbo].[Curso] ([IdCurso]),
-    CONSTRAINT [FK_Publicacao_Usuario] FOREIGN KEY ([IdUsuarioCriacao]) REFERENCES [dbo].[Usuario] ([IdUsuario])
-);
-
--- TIPO CURSO
-CREATE TABLE [dbo].[TipoCurso] (
-    [IdTipoCurso]   INT          IDENTITY (1, 1) NOT NULL,
-    [NomeTipoCurso] VARCHAR (20) NOT NULL,
-    PRIMARY KEY CLUSTERED ([IdTipoCurso] ASC)
-);
-
--- TIPO PUBLICACAO
-CREATE TABLE [dbo].[TipoPublicacao] (
-    [IdTipoPublicacao]   INT          IDENTITY (1, 1) NOT NULL,
-    [NomeTipoPublicacao] VARCHAR (20) NOT NULL,
-    PRIMARY KEY CLUSTERED ([IdTipoPublicacao] ASC)
+CREATE TABLE [dbo].[UsuarioBloqueado] (
+    [IdUsuarioBloqueado] INT NOT NULL,
+    [IdUsuarioBloqueou]  INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdUsuarioBloqueado] ASC, [IdUsuarioBloqueou] ASC),
+    CONSTRAINT [FK_UsuarioBloqueado_Usuario1] FOREIGN KEY ([IdUsuarioBloqueado]) REFERENCES [dbo].[Usuario] ([Id]),
+    CONSTRAINT [FK_UsuarioBloqueado_Usuario2] FOREIGN KEY ([IdUsuarioBloqueou]) REFERENCES [dbo].[Usuario] ([Id])
 );
 
 
