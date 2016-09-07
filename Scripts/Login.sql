@@ -1,6 +1,7 @@
 ALTER PROCEDURE [dbo].[SP_Login]
 	@Email varchar(50),
 	@Senha varchar(128)
+
 AS
 	BEGIN 
 	
@@ -15,13 +16,14 @@ AS
 		
 	**/
 
-	SELECT Rgm,
+	SELECT Id,
+		   Rgm,
 		   Nome,
 		   Sobrenome,
 		   Apelido,
 		   Email,
 		   DataNascimento
-		FROM [dbo].[Usuario]
+		FROM [dbo].[Usuario] WITH(NOLOCK)
 		WHERE (Email LIKE @Email OR CAST(Rgm AS varchar(10)) = @Email)
 			AND Senha = @Senha
 
