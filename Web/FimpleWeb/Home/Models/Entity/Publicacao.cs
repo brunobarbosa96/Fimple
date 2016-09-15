@@ -15,5 +15,6 @@ namespace Home.Models.Entity
         public Categoria Categoria { get; set; }
         public Curso Curso { get; set; }
         public IEnumerable<Comentario> Comantarios { get; set; }
+        public IEnumerable<UsuarioPublicacao> VisualizacaoPublicacao { get; set; }
     }
 }

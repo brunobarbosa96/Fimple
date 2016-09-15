@@ -15,6 +15,5 @@ namespace Home.Models.Entity
         public string Curso { get; set; }
         public DateTime DataNascimento { get; set; }
         public IEnumerable<Usuario> UsuariosBloqueados { get; set; }
-        public IEnumerable<UsuarioPublicacao> VisualizacaoPublicacao { get; set; }
     }
 }
