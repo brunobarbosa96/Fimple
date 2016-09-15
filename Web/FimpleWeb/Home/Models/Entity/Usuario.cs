@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Home.Models.Entity
 {
@@ -13,5 +14,7 @@ namespace Home.Models.Entity
         public string Email { get; set; }
         public string Curso { get; set; }
         public DateTime DataNascimento { get; set; }
+        public IEnumerable<Usuario> UsuariosBloqueados { get; set; }
+        public IEnumerable<UsuarioPublicacao> VisualizacaoPublicacao { get; set; }
     }
 }

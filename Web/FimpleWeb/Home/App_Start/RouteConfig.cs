@@ -14,6 +14,12 @@ namespace Home
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Login", action = "Login", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Login", action = "Post", id = UrlParameter.Optional }
+            );
         }
     }
 }
