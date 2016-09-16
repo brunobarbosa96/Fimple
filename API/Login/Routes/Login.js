@@ -1,6 +1,6 @@
 module.exports = (app) => {
    
-    var controller = require('../Login/LoginController')(app);
-    app.post('/api/login', controller.postLogin);
+    var controller = require('../Publicacao/PublicacaoController')(app);
+    app.post('/api/timeLine', controller.postPublicacao);
 
 };

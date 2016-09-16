@@ -7,7 +7,7 @@ var express = require('express'),
 app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.config = {
     connection: connection
@@ -15,6 +15,6 @@ app.config = {
 
 load('Routes').into(app);
 
-app.listen(port.login, () => {
-   console.log("Server up on port " + port.login); 
+app.listen(port.timeLine, () => {
+    console.log("Server up on port " + port.timeLine);
 });
