@@ -2,10 +2,7 @@ IF EXISTS (SELECT * FROM sys.objects WHERE name like 'SP_SelecionaPublicacoes')
 DROP PROCEDURE [dbo].[SP_SelecionaPublicacoes]
 GO
 CREATE PROCEDURE [dbo].[SP_SelecionaPublicacoes]
-	@IdUsuario		int,
-	@Recentes		bit,
-	@IdPublicacao	int = NULL
-	
+
 AS
 	BEGIN 
 	
@@ -18,62 +15,25 @@ AS
 		Paramtros: 
 					@IdUsuario = Id do Usuario logado
 					@IdPublicacao = Id da primeira ou ultima publicação já carregada
-					@ListarUltimos = 0 - Mais antigos (Se for a primeira vez passar 0)
+					@Recentes = 0 - Mais antigos (Se for a primeira vez passar 0)
 									 1 - Mais recentes									 
 		Exemplo: 
-				  EXEC [dbo].[SP_SelecionaPublicacoes] 1, 1, 1
+				  EXEC [dbo].[SP_SelecionaPublicacoes] 
 		
 	**/
 
-		DECLARE @IdCurso		int,
-				@IdCategoria	int,
-				@IdEntidade		int
 
-		SELECT @IdCurso = cu.Id,
-			   @IdCategoria = ca.Id,
-			   @IdEntidade = en.Id
-			FROM [dbo].[Usuario] us WITH(NOLOCK)
-				INNER JOIN [dbo].[Curso] cu WITH(NOLOCK)
-					ON cu.Id = us.IdCurso
-				INNER JOIN [dbo].[Categoria] ca WITH(NOLOCK)
-					ON ca.Id = cu.IdCategoria
-				INNER JOIN [dbo].[Entidade] en WITH(NOLOCK)
-					ON en.Id = ca.IdEntidade
-			WHERE us.Id = @IdUsuario
-
-		IF @IdPublicacao IS NULL OR @Recentes = 0
-			SELECT TOP 30
-					p.Id,
-					p.IdUsuario,
-					u.Nome,
-					p.Titulo,
-					p.Conteudo,
-					p.Data
-				FROM [dbo].[Publicacao] p WITH(NOLOCK)
-					INNER JOIN [dbo].[Usuario] u WITH(NOLOCK)
-						ON u.Id = p.IdUsuario
-				WHERE p.Ativa = 1
-					AND (p.IdCurso = @IdCurso
-							OR p.IdCategoria = @IdCategoria
-							OR p.IdEntidade = @IdEntidade)
-					AND (@IdPublicacao IS NULL OR p.Id < @IdPublicacao)
-				ORDER BY p.Id DESC
-		ELSE 
-			SELECT p.Id,
-				   p.IdUsuario,
-				   u.Nome,
-				   p.Titulo,
-				   p.Conteudo,
-				   p.Data
-				FROM [dbo].[Publicacao] p WITH(NOLOCK)
-					INNER JOIN [dbo].[Usuario] u WITH(NOLOCK)
-						ON u.Id = p.IdUsuario
-				WHERE p.Ativa = 1
-					AND (p.IdCurso = @IdCurso
-							OR p.IdCategoria = @IdCategoria
-							OR p.IdEntidade = @IdEntidade)
-					AND (@IdPublicacao IS NOT NULL AND p.Id > @IdPublicacao)
-				ORDER BY p.Id DESC
+	SELECT  p.Id,
+			p.IdUsuario,
+			u.Nome,
+			p.Titulo,
+			p.Conteudo,
+			p.Data
+		FROM [dbo].[Publicacao] p WITH(NOLOCK)
+			INNER JOIN [dbo].[Usuario] u WITH(NOLOCK)
+				ON u.Id = p.IdUsuario
+		WHERE p.Ativa = 1
+		ORDER BY p.Data DESC
 
 	END
 GO
