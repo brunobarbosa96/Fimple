@@ -1,5 +1,4 @@
-IF EXISTS (SELECT * FROM sys.objects WHERE name like 'SP_SelecionaPublicacoes') 
-DROP PROCEDURE [dbo].[SP_SelecionaPublicacoes]
+IF EXISTS (SELECT * FROM sys.objects WHERE name like 'SP_SelecionaPublicacoes') DROP PROCEDURE [dbo].[SP_SelecionaPublicacoes]
 GO
 CREATE PROCEDURE [dbo].[SP_SelecionaPublicacoes]
 
@@ -12,11 +11,6 @@ AS
 		Autor: Bruno Barbosa
 		Data: 01/09/2016
 		Objetivo: Lista publicações para determinado usuário
-		Paramtros: 
-					@IdUsuario = Id do Usuario logado
-					@IdPublicacao = Id da primeira ou ultima publicação já carregada
-					@Recentes = 0 - Mais antigos (Se for a primeira vez passar 0)
-									 1 - Mais recentes									 
 		Exemplo: 
 				  EXEC [dbo].[SP_SelecionaPublicacoes] 
 		
@@ -39,8 +33,7 @@ AS
 GO
 
 
-IF EXISTS (SELECT * FROM sys.objects WHERE name like 'SP_InserePublicacao') 
-DROP PROCEDURE [dbo].[SP_InserePublicacao]
+IF EXISTS (SELECT * FROM sys.objects WHERE name like 'SP_InserePublicacao') DROP PROCEDURE [dbo].[SP_InserePublicacao]
 GO
 CREATE PROCEDURE [dbo].[SP_InserePublicacao]
 	@IdUsuario		int,
@@ -71,8 +64,7 @@ AS
 GO
 
 
-IF EXISTS (SELECT * FROM sys.objects WHERE name like 'SP_AtualizaPublicacao') 
-DROP PROCEDURE [dbo].[SP_AtualizaPublicacao]
+IF EXISTS (SELECT * FROM sys.objects WHERE name like 'SP_AtualizaPublicacao') DROP PROCEDURE [dbo].[SP_AtualizaPublicacao]
 GO
 CREATE PROCEDURE [dbo].[SP_AtualizaPublicacao]
 	@IdPublicacao	int,
@@ -110,8 +102,7 @@ AS
 GO
 
 
-IF EXISTS (SELECT * FROM sys.objects WHERE name like 'SP_DeletaPublicacao') 
-DROP PROCEDURE [dbo].[SP_DeletaPublicacao]
+IF EXISTS (SELECT * FROM sys.objects WHERE name like 'SP_DeletaPublicacao') DROP PROCEDURE [dbo].[SP_DeletaPublicacao]
 GO
 CREATE PROCEDURE [dbo].[SP_DeletaPublicacao]
 	@Id	int
