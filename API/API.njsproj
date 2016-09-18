@@ -19,15 +19,13 @@
     <Compile Include="config\connection.js" />
     <Compile Include="config\ports.js" />
     <Compile Include="config\sqlConfiguration.js" />
-    <Content Include="Exemplo\package.json" />
-    <Compile Include="Exemplo\app.js" />
     <Content Include="Login\package.json" />
     <Compile Include="Login\app.js" />
     <Content Include="TimeLine\package.json" />
+    <Compile Include="Login\Routes\Usuario.js" />
+    <Compile Include="Login\Usuario\UsuarioController.js" />
+    <Compile Include="Login\Usuario\UsuarioRepository.js" />
     <Compile Include="TimeLine\app.js" />
-    <Compile Include="Exemplo\Exemplo\ExemploController.js" />
-    <Compile Include="Exemplo\Exemplo\ExemploRepository.js" />
-    <Compile Include="Exemplo\Routes\Exemplo.js" />
     <Compile Include="Login\Login\LoginController.js" />
     <Compile Include="Login\Login\LoginRepository.js" />
     <Compile Include="Login\Routes\Login.js" />
@@ -37,12 +35,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="config" />
-    <Folder Include="Exemplo" />
-    <Folder Include="Exemplo\Exemplo" />
-    <Folder Include="Exemplo\Routes" />
-    <Folder Include="Login" />
-    <Folder Include="Login\Login" />
-    <Folder Include="Login\Routes" />
+    <Folder Include="Login\" />
+    <Folder Include="Login\Login\" />
+    <Folder Include="Login\Usuario\" />
+    <Folder Include="Login\Routes\" />
     <Folder Include="TimeLine" />
     <Folder Include="TimeLine\Publicacao" />
     <Folder Include="TimeLine\Routes" />

@@ -51,7 +51,7 @@ AS
 		Data: 17/09/2016
 		Objetivo: Lista todos os Usuarios do sistema
 		Exemplo: 
-				  EXEC [dbo].[SP_SelecionaUsuario] 
+				  EXEC [dbo].[SP_SelecionaUsuario]  2 
 		
 	**/
 
