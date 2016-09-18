@@ -1,7 +1,7 @@
 module.exports = (app) => {
 
     var repository = {
-        postLogin: (req, res, callback) => {
+        post: (req, res, callback) => {
             app.config.connection.execute('SP_Login', {
                 Email: req.body.Email,
                 Senha: req.body.Senha
