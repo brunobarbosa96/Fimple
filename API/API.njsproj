@@ -23,6 +23,8 @@
     <Compile Include="Login\app.js" />
     <Content Include="TimeLine\package.json" />
     <Compile Include="Login\Routes\Usuario.js" />
+    <Compile Include="Login\Usuario\UsuarioBloqueado\UsuarioBloqueadoController.js" />
+    <Compile Include="Login\Usuario\UsuarioBloqueado\UsuarioBloqueadoRepository.js" />
     <Compile Include="Login\Usuario\UsuarioController.js" />
     <Compile Include="Login\Usuario\UsuarioRepository.js" />
     <Compile Include="TimeLine\app.js" />
@@ -37,6 +39,7 @@
     <Folder Include="config" />
     <Folder Include="Login\" />
     <Folder Include="Login\Login\" />
+    <Folder Include="Login\Usuario\UsuarioBloqueado\" />
     <Folder Include="Login\Usuario\" />
     <Folder Include="Login\Routes\" />
     <Folder Include="TimeLine" />
