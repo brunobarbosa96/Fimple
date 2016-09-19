@@ -9,10 +9,9 @@
     //usuario bloqueado
 
     var controllerBloqueado = require('../Usuario/UsuarioBloqueado/UsuarioBloqueadoController')(app);
-    console.log("rota");
     console.log(controllerBloqueado);
     app.get('/api/usuario/bloqueado/:Id', controllerBloqueado.getAll);
     app.post('/api/usuario/bloqueado/', controllerBloqueado.post);
-    app.delete('api/usuario/bloqueado/:IdUsuarioBloqueado/:IdUsuarioBloqueou', controllerBloqueado.delete);
+    app.delete('/api/usuario/bloqueado/', controllerBloqueado.delete);
 
 };

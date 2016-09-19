@@ -25,7 +25,6 @@
         },
 
         delete: (req, res) => {
-            console.log('controller');
             repository.delete(req, res, (err, row) => {
                 if (err)
                     res.status(500).json({ "message:": "Erro ao deletar usuário" });

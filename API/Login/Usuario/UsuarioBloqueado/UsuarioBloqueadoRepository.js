@@ -26,10 +26,9 @@
         },
 
         delete: (req, res, callback) => {
-            console.log("repository");
             app.config.connection.execute('SP_DeletaUsuarioBloqueado', {
-                IdUsuarioBloqueado: req.params.IdUsuarioBloqueado,
-                IdUsuarioBloqueou: req.params.IdUsuarioBloqueou
+                IdUsuarioBloqueado: req.query.IdUsuarioBloqueado,
+                IdUsuarioBloqueou: req.query.IdUsuarioBloqueou
             }, (err, row) => {
                 return err
                     ? callback(err, null)
