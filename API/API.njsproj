@@ -23,6 +23,8 @@
     <Compile Include="Login\app.js" />
     <Content Include="TimeLine\package.json" />
     <Compile Include="Login\Routes\Usuario.js" />
+    <Compile Include="Login\Usuario\UsuarioBloqueado\UsuarioBloqueadoController.js" />
+    <Compile Include="Login\Usuario\UsuarioBloqueado\UsuarioBloqueadoRepository.js" />
     <Compile Include="Login\Usuario\UsuarioController.js" />
     <Compile Include="Login\Usuario\UsuarioRepository.js" />
     <Compile Include="TimeLine\app.js" />
@@ -37,11 +39,19 @@
     <Folder Include="config" />
     <Folder Include="Login\" />
     <Folder Include="Login\Login\" />
+    <Folder Include="Login\Usuario\UsuarioBloqueado\" />
     <Folder Include="Login\Usuario\" />
     <Folder Include="Login\Routes\" />
     <Folder Include="TimeLine" />
     <Folder Include="TimeLine\Publicacao" />
     <Folder Include="TimeLine\Routes" />
+    <Folder Include="typings\" />
+    <Folder Include="typings\globals\" />
+    <Folder Include="typings\globals\node\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
+    <TypeScriptCompile Include="typings\index.d.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
