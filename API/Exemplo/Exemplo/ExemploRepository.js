@@ -1,14 +1,17 @@
 module.exports = (app) => {
-
+    var fimple = app.model;
+    console.log(fimple);
     var repository = {
-        postLogin: (req, res, callback) => {
-            app.config.connection.execute('SP_Login', {Email: req.body.Email, Senha: req.body.Senha}, (err, row) => {
-                if (err)
-                    return callback(err, null);
-                else
-                    return callback(null, row);
+
+        getAll: (req, res, callback) => {
+
+            fimple.Entidade.findAll().then((objs) => {
+                return callback(null, objs);
+            }).catch((err) => {
+                return callback(err, null);
             });
         }
+
     };
 
     return repository;

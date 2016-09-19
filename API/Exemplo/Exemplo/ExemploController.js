@@ -1,15 +1,17 @@
 module.exports = (app) => {
 
-    var repository = require('./LoginRepository')(app);
+    var repository = require('./ExemploRepository')(app);
     var controller = {
-        postLogin: (req, res) => {
-            repository.postLogin(req, res, (err, row) => {
+
+        getAll: (req, res) => {
+
+            repository.getAll(req, res, (err, row) => {
                 if (!row[0].length)
-                    res.status(401).json({"Não autorizado": "Login e/ou senha inválido(s)."})
+                    res.status(204).json({ "message": "Nenhum registro encontrado." });
                 if (err)
                     res.status(500).json({ "message": err });
                 else
-                    res.status(200).json(row[0][0]);
+                    res.status(200).json(row[0]);
             });
         }
     };
