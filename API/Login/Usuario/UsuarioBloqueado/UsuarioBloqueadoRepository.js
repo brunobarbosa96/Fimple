@@ -14,10 +14,10 @@
                 });
         },
 
-        get: (req, res, callback) => {
-
-            app.config.connection.execute('', {
-                Id: req.params.Id
+        post: (req, res, callback) => {
+            app.config.connection.execute('SP_InsereUsuarioBloqueado', {
+                IdUsuarioBloqueado: req.body.IdUsuarioBloqueado,
+                IdUsuarioBloqueou: req.body.IdUsuarioBloqueou
             }, (err, row) => {
                 return err
                     ? callback(err, null)
@@ -25,23 +25,16 @@
             });
         },
 
-        post: (req, res, callback) => {
-            app.config.connection.execute('', {
-                IdCurso: req.body.IdCurso,
-                Senha: req.body.Senha,
-                Rgm: req.body.Rgm,
-                Nome: req.body.Nome,
-                Sobrenome: req.body.Sobrenome,
-                Apelido: req.body.Apelido,
-                Email: req.body.Email,
-                DataNascimento: req.body.DataNascimento,
-                Cep: req.body.Cep,
-                DataInicioCurso: req.body.DataInicioCurso
+        delete: (req, res, callback) => {
+            console.log("repository");
+            app.config.connection.execute('SP_DeletaUsuarioBloqueado', {
+                IdUsuarioBloqueado: req.params.IdUsuarioBloqueado,
+                IdUsuarioBloqueou: req.params.IdUsuarioBloqueou
             }, (err, row) => {
                 return err
                     ? callback(err, null)
-                    : callback(null, row);
-            });
+                    : callback(null, row);  
+                });
         }
     };
 
