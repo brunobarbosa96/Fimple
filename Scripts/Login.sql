@@ -12,7 +12,7 @@ AS
 		Data: 25/07/2016
 		Objetivo: Verificar se login é valido e retornar dados do usuário
 		Exemplo: 
-				  EXEC [dbo].[SP_Login] 'brunobarbosa96@hotmail.com', '14012103'
+				  EXEC [dbo].[SP_Login] '14012103', '123'
 		
 	**/
 

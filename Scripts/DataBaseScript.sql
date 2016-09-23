@@ -84,7 +84,7 @@ CREATE TABLE [dbo].[Publicacao] (
     [Data]        DATETIME     NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Publicacao_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [dbo].[Usuario] ([Id]),
-    CONSTRAINT [FK_Publicacao_Entidade] FOREIGN KEY ([Id]) REFERENCES [dbo].[Entidade] ([Id]),
+    CONSTRAINT [FK_Publicacao_Entidade] FOREIGN KEY ([IdEntidade]) REFERENCES [dbo].[Entidade] ([Id]),
     CONSTRAINT [FK_Publicacao_Categoria] FOREIGN KEY ([IdCategoria]) REFERENCES [dbo].[Categoria] ([Id]),
     CONSTRAINT [FK_Publicacao_Curso] FOREIGN KEY ([IdCurso]) REFERENCES [dbo].[Curso] ([Id])
 );

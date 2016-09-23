@@ -13,18 +13,19 @@ module.exports = () => {
         });
     };
 
-    connection.execute = (procedure, parameters, callback) => {
+    connection.execute = (procedure, param1, param2) => {
         connection.connect((err) => {
             if(err)
-                callback(err, null);
+                param2 ? param2(err, null) : param1(err, null);
             else {
                 var request = new sql.Request();
-                for (var key in parameters)
-                    request.input(key, parameters[key])
+                if (param2)
+                    for (var key in param1)
+                        request.input(key, param1[key]);
                 request.execute(procedure).then((resultset) => {
-                    callback(null, resultset);
+                    param2 ? param2(null, resultset) : param1(null, resultset);
                 }).catch((err) => {
-                    callback(err, null);
+                    param2 ? param2(err, null) : param1(err, null);
                 });        
             }
         });

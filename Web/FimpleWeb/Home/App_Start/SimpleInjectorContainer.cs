@@ -12,6 +12,7 @@ namespace Home
             var container = new Container();
 
             container.Register<IRequest, Request>();
+
             container.Register<ILoginApp, LoginApp>();
             container.Register<ICadastroApp, CadastroApp>();
 
