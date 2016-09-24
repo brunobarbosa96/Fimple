@@ -1,0 +1,44 @@
+﻿@{ Layout = null; }
+@using (Ajax.BeginForm("Post", "Login", null, new AjaxOptions
+{
+    OnSuccess = "formLogin_Success(data)",
+    OnFailure = "formLogin_Failure(xhr)"
+}, new { id = "formLogin", @class = "login-form" }))
+{
+    <h3 class="form-title">Entrar</h3>
+    <div class="alert alert-danger display-hide">
+        <button class="close" data-close="alert"></button>
+        <span>Insira seu usuario e senha.</span>
+    </div>
+    <div class="form-group">
+        <label name="Email" class="control-label visible-ie8 visible-ie9">Email ou Rgm</label>
+        <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Email ou Rgm" name="Usuario" />
+    </div>
+    <div class="form-group">
+        <label class="control-label visible-ie8 visible-ie9">Senha</label>
+        <input name="Senha" class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Senha" name="Senha" />
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-success uppercase">Entrar</button>
+        <label class="rememberme check pull-right">
+            <input type="checkbox" name="lembrar" value="1" />Lembrar
+        </label>
+    </div>
+    <div class="create-account" id="criarConta">
+        <p><a href="javascript:void(0)" class="uppercase">CRIAR UMA CONTA</a></p>
+    </div>
+}
+
+<script>
+
+    $("#criarConta").click(getUsuario);
+
+    function formLogin_Success(data) {
+        $("#divContent").html(data);
+    }
+
+    function formLogin_Failure(xhr) {
+        $("body").html(xhr.responseText);
+    }
+
+</script>

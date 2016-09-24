@@ -1,8 +1,8 @@
 ﻿using System.Net.Http;
 
-namespace Home.Application.Login
+namespace Home.Application.Usuario
 {
-    public interface ILoginApp
+    public interface IUsuarioApp 
     {
         HttpResponseMessage Post(Models.Entity.Usuario usuario);
     }

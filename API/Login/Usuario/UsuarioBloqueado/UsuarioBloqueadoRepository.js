@@ -3,8 +3,7 @@
     var repository = {
 
         getAll: (req, res, callback) => {
-            app.config.connection.execute('SP_SelecionaUsuariosBloqueados',
-            {
+            app.config.connection.execute('SP_SelecionaUsuariosBloqueados', {
                 IdUsuarioBloqueou: req.params.Id
             },
                 (err, row) => {

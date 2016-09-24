@@ -28,9 +28,10 @@ module.exports = (app) => {
         },
 
         post: (req, res) => {
+            console.log(req.body);
             repository.post(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao inserir usuário" });
+                    res.status(500).json({ "message:": "Erro ao inserir usuário", "erro:": err });
                 else
                     res.status(200).json(row[0]);
             });
@@ -39,7 +40,7 @@ module.exports = (app) => {
         put: (req, res) => {
             repository.put(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao atualizar usuário" });
+                    res.status(500).json({ "message:": "Erro ao atualizar usuário", "erro:": err });
                 else
                     res.status(200).json(row[0]);
             });

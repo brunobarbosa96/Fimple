@@ -12,8 +12,9 @@ namespace Home.Models.Entity
         public string Sobrenome { get; set; }
         public string Apelido { get; set; }
         public string Email { get; set; }
-        public string Curso { get; set; }
         public DateTime DataNascimento { get; set; }
+        public DateTime DataInicioCurso { get; set; }
+        public Curso Curso { get; set; }
         public IEnumerable<Usuario> UsuariosBloqueados { get; set; }
     }
 }

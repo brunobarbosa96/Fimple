@@ -7,18 +7,19 @@ namespace Home
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/assets/js").Include(
-                        "~/assets/js/plugins/loaders/pace.min.js",
+                        "~/assets/js/demo.js",
+                        "~/assets/js/metronic.js",
                         "~/assets/js/core/libraries/jquery.min.js",
-                        "~/assets/js/core/libraries/bootstrap.min.js",
-                        "~/assets/js/plugins/loaders/blockui.min.js",
-                        "~/assets/js/core/app.js"));
+                        "~/assets/js/layout.js",
+                        "~/assets/js/login.js"));
 
             bundles.Add(new StyleBundle("~/assets/css").Include(
-                      "~/assets/css/icons/icomoon/styles.css",
-                      "~/assets/css/minified/bootstrap.min.css",
-                      "~/assets/css/minified/core.min.css",
-                      "~/assets/css/minified/components.min.css",
-                      "~/assets/css/minified/colors.min.css"));
+                      "~/assets/css/components-md.css",
+                      "~/assets/css/custom.css",
+                      "~/assets/css/darkblue.css",
+                      "~/assets/css/layout.css",
+                      "~/assets/css/login.css",
+                      "~/assets/css/plugins-md.css"));
 
             BundleTable.EnableOptimizations = false;
         }

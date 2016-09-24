@@ -2,20 +2,20 @@
 using Commom.Request;
 using System.Net.Http;
 
-namespace Home.Application.Login
+namespace Home.Application.Usuario
 {
-    public class LoginApp : ILoginApp
+    public class UsuarioApp : IUsuarioApp
     {
         private readonly IRequest _request;
 
-        public LoginApp(IRequest request)
+        public UsuarioApp(IRequest request)
         {
             _request = request;
         }
 
         public HttpResponseMessage Post(Models.Entity.Usuario usuario)
         {
-            return _request.Post(UriWebApi.Login, usuario);
+            return _request.Post(UriWebApi.Usuario, usuario);
         }
     }
 }

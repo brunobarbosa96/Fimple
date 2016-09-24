@@ -1,5 +1,4 @@
 ﻿using Home.Application.Login;
-using Home.Models.Entity;
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -16,12 +15,17 @@ namespace Home.Controllers.Login
             _loginApp = loginApp;
         }
 
-        public ActionResult Login()
+        public ActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
-        public ActionResult Post(Usuario usuario)
+        public ActionResult GetDados()
+        {
+            return View("_Dados");
+        }
+
+        public ActionResult Post(Models.Entity.Usuario usuario)
         {
             try
             {
@@ -30,9 +34,9 @@ namespace Home.Controllers.Login
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
                         response.Content.ReadAsStringAsync().Result);
 
-                var model = JsonConvert.DeserializeObject<Usuario>(response.Content.ReadAsStringAsync().Result);
+                var model = JsonConvert.DeserializeObject<Models.Entity.Usuario>(response.Content.ReadAsStringAsync().Result);
 
-                return View("_DadosLogin", model);
+                return View("_Dados", model);
             }
             catch (Exception ex)
             {

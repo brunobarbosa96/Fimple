@@ -23,8 +23,9 @@ module.exports = (app) => {
         },
 
         post: (req, res, callback) => {
+
             app.config.connection.execute('SP_InsereUsuario', {
-                IdCurso: req.body.IdCurso,
+                IdCurso: req.body.Curso.Id,
                 Senha: req.body.Senha,
                 Rgm: req.body.Rgm,
                 Nome: req.body.Nome,
