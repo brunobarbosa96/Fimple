@@ -7,23 +7,22 @@ module.exports = (app) => {
                 (err, row) => {
                     return err
                         ? callback(err, null)
-                        : callback(null, row);
+                        : callback(null, row[0]);
                 });
         },
 
         get: (req, res, callback) => {
-        
             app.config.connection.execute('SP_SelecionaUsuario', {
                 Id: req.params.Id
             }, (err, row) => {
+
                 return err
                     ? callback(err, null)
-                    : callback(null, row);
+                    : callback(null, row[0]);
             });
         },
 
         post: (req, res, callback) => {
-
             app.config.connection.execute('SP_InsereUsuario', {
                 IdCurso: req.body.Curso.Id,
                 Senha: req.body.Senha,
@@ -38,7 +37,7 @@ module.exports = (app) => {
             }, (err, row) => {
                 return err
                     ? callback(err, null)
-                    : callback(null, row);
+                    : callback(null, row[0]);
             });
         },
 
@@ -58,7 +57,7 @@ module.exports = (app) => {
             }, (err, row) => {
                 return err
                     ? callback(err, null)
-                    : callback(null, row);
+                    : callback(null, row[0]);
             });
         }
 

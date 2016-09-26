@@ -1,10 +1,10 @@
 ﻿@model Home.Models.Entity.Usuario
-@{ Layout = null;}
+@{ Layout = null; }
 
 @using (Ajax.BeginForm("Post", "Usuario", null, new AjaxOptions
 {
-    OnSuccess = "formUsuarioSuccess(data)",
-    OnFailure = "formUsuarioFailure(xhr)"
+    OnSuccess = "setData(data)",
+    OnFailure = "setErrorLogin(xhr)"
 }, new { id = "formUsuario" }))
 {
     <h3>Cadastrar</h3>
@@ -77,7 +77,7 @@
 
     $("#btnCadastrar").click(function () {
         if ($("#Senha").val() != $("#NovaSenha").val())
-            return;
+            return false;
     });
 
     $("#btnVoltar").click(getLogin);

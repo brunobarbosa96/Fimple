@@ -7,7 +7,6 @@
     app.put('/api/usuario/', controller.put);
 
     //usuario bloqueado
-
     var controllerBloqueado = require('../Usuario/UsuarioBloqueado/UsuarioBloqueadoController')(app);
     app.get('/api/usuario/bloqueado/:Id', controllerBloqueado.getAll);
     app.post('/api/usuario/bloqueado/', controllerBloqueado.post);

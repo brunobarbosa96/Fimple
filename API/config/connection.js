@@ -1,10 +1,10 @@
-var sql = require('../Login/node_modules/mssql'),
+var sql = require('mssql'),
     config = require('./sqlConfiguration');
    
 module.exports = () => {
 
     var connection = {};
-
+    
     connection.connect = (callback) => {
         sql.connect(config).then(() => {
             callback(null);
@@ -24,8 +24,8 @@ module.exports = () => {
                         request.input(key, param1[key]);
                 request.execute(procedure).then((resultset) => {
                     param2 ? param2(null, resultset) : param1(null, resultset);
-                }).catch((err) => {
-                    param2 ? param2(err, null) : param1(err, null);
+                }).catch((error) => {
+                    param2 ? param2(error, null) : param1(error, null);
                 });        
             }
         });

@@ -11,7 +11,7 @@
                 if (err)
                     res.status(500).json({ "message": err });
                 else
-                    res.status(200).json(row[0]);
+                    res.status(200).json(row);
             });
         },
 
@@ -20,7 +20,7 @@
                 if (err)
                     res.status(500).json({ "message:": "Erro ao inserir usuário" });
                 else
-                    res.status(200).json(row[0]);
+                    res.status(200).json(row);
             });
         },
 
@@ -29,7 +29,7 @@
                 if (err)
                     res.status(500).json({ "message:": "Erro ao deletar usuário" });
                 else
-                    res.status(200).json(row[0]);
+                    res.status(200).json(row);
             });
         }
 

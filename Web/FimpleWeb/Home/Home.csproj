@@ -145,6 +145,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SimpleInjectorContainer.cs" />
+    <Compile Include="Controllers\TimeLine\TimeLineController.cs" />
     <Compile Include="Controllers\Usuario\UsuarioController.cs" />
     <Compile Include="Controllers\Login\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -170,12 +171,34 @@
     <Content Include="assets\css\layout.css" />
     <Content Include="assets\css\login.css" />
     <Content Include="assets\css\plugins-md.css" />
+    <Content Include="assets\css\timeline.css" />
     <Content Include="assets\icon\favicon.ico" />
-    <Content Include="assets\js\demo.js" />
+    <Content Include="assets\img\placeholder.jpg" />
+    <Content Include="assets\img\remove-icon-small.png" />
+    <Content Include="assets\img\search_icon_light.png" />
+    <Content Include="assets\img\sidebar-menu-arrow-reverse.png" />
+    <Content Include="assets\img\sidebar-menu-arrow-right.png" />
+    <Content Include="assets\img\sidebar-menu-arrow.png" />
+    <Content Include="assets\img\sidebar_arrow_icon_light.png" />
+    <Content Include="assets\img\sidebar_arrow_icon_light_rtl.png" />
+    <Content Include="assets\img\sidebar_inline_toggler_icon_blue.jpg" />
+    <Content Include="assets\img\sidebar_inline_toggler_icon_darkblue.jpg" />
+    <Content Include="assets\img\sidebar_inline_toggler_icon_default.jpg" />
+    <Content Include="assets\img\sidebar_inline_toggler_icon_grey.jpg" />
+    <Content Include="assets\img\sidebar_inline_toggler_icon_light.jpg" />
+    <Content Include="assets\img\sidebar_inline_toggler_icon_light2.jpg" />
+    <Content Include="assets\img\sidebar_toggler_icon_blue.png" />
+    <Content Include="assets\img\sidebar_toggler_icon_darkblue.png" />
+    <Content Include="assets\img\sidebar_toggler_icon_default.png" />
+    <Content Include="assets\img\sidebar_toggler_icon_grey.png" />
+    <Content Include="assets\img\sidebar_toggler_icon_light.png" />
+    <Content Include="assets\img\sidebar_toggler_icon_light2.png" />
     <Content Include="assets\js\layout.js" />
     <Content Include="assets\js\login.js" />
     <Content Include="assets\js\metronic.js" />
-    <Content Include="assets\image\logo-big.png" />
+    <Content Include="assets\img\logo-big.png" />
+    <Content Include="assets\js\quick-sidebar.js" />
+    <Content Include="assets\js\timeline.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -198,6 +221,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\TimeLine\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\_ViewStart.cshtml" />

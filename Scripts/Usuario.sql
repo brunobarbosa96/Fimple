@@ -108,6 +108,8 @@ AS
 		INSERT INTO [dbo].[Usuario] (IdCurso, Senha, Rgm, Nome, Sobrenome, Apelido, Email, DataNascimento, Cep, DataCadastro, DataUltimoAcesso, DataInicioCurso)
 			VALUES(@IdCurso, @Senha, @Rgm, @Nome, @Sobrenome, @Apelido, @Email, @DataNascimento, @Cep, GETDATE(), GETDATE(),  @DataInicioCurso)
 
+		SELECT SCOPE_IDENTITY() AS Id
+
 	END
 GO
 
