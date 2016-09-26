@@ -49,28 +49,6 @@ CREATE TABLE [dbo].[Usuario] (
     CONSTRAINT [FK_Usuario_Curso] FOREIGN KEY ([IdCurso]) REFERENCES [dbo].[Curso] ([Id])
 );
 
-CREATE TABLE [dbo].[Notificacao] (
-    [Id]                     INT      IDENTITY (1, 1) NOT NULL,
-    [IdUsuario]              INT      NULL,
-    [IdEvento]               INT      NULL,
-    [IdComentarioEvento]     INT      NULL,
-    [IdPublicacao]           INT      NULL,
-    [IdComentarioPublicacao] INT      NULL,
-    [IdCurso]                INT      NULL,
-    [IdEntidade]             INT      NULL,
-    [IdCategoria]            INT      NULL,
-    [DataCadastro]           DATETIME NOT NULL,
-    [DataVisualizacao]       DATETIME NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_Notificacao_Evento] FOREIGN KEY ([IdEvento]) REFERENCES [dbo].[Evento] ([Id]),
-    CONSTRAINT [FK_Notificacao_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [dbo].[Usuario] ([Id]),
-    CONSTRAINT [FK_Notificacao_ComentarioEvento] FOREIGN KEY ([IdComentarioEvento]) REFERENCES [dbo].[ComentarioEvento] ([Id]),
-    CONSTRAINT [FK_Notificacao_Publicacao] FOREIGN KEY ([IdPublicacao]) REFERENCES [dbo].[Publicacao] ([Id]),
-    CONSTRAINT [FK_Notificacao_ComentarioPublicacao] FOREIGN KEY ([IdComentarioPublicacao]) REFERENCES [dbo].[ComentarioPublicacao] ([Id]),
-    CONSTRAINT [FK_Notificacao_Entidade] FOREIGN KEY ([IdEntidade]) REFERENCES [dbo].[Entidade] ([Id]),
-    CONSTRAINT [FK_Notificacao_Curso] FOREIGN KEY ([IdCurso]) REFERENCES [dbo].[Curso] ([Id]),
-    CONSTRAINT [FK_Notificacao_Categoria] FOREIGN KEY ([IdCategoria]) REFERENCES [dbo].[Categoria] ([Id])
-);
 
 CREATE TABLE [dbo].[Publicacao] (
     [Id]          INT          IDENTITY (1, 1) NOT NULL,
@@ -174,3 +152,25 @@ CREATE TABLE [dbo].[UsuarioBloqueado] (
 
 
 
+CREATE TABLE [dbo].[Notificacao] (
+    [Id]                     INT      IDENTITY (1, 1) NOT NULL,
+    [IdUsuario]              INT      NULL,
+    [IdEvento]               INT      NULL,
+    [IdComentarioEvento]     INT      NULL,
+    [IdPublicacao]           INT      NULL,
+    [IdComentarioPublicacao] INT      NULL,
+    [IdCurso]                INT      NULL,
+    [IdEntidade]             INT      NULL,
+    [IdCategoria]            INT      NULL,
+    [DataCadastro]           DATETIME NOT NULL,
+    [DataVisualizacao]       DATETIME NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Notificacao_Evento] FOREIGN KEY ([IdEvento]) REFERENCES [dbo].[Evento] ([Id]),
+    CONSTRAINT [FK_Notificacao_Usuario] FOREIGN KEY ([IdUsuario]) REFERENCES [dbo].[Usuario] ([Id]),
+    CONSTRAINT [FK_Notificacao_ComentarioEvento] FOREIGN KEY ([IdComentarioEvento]) REFERENCES [dbo].[ComentarioEvento] ([Id]),
+    CONSTRAINT [FK_Notificacao_Publicacao] FOREIGN KEY ([IdPublicacao]) REFERENCES [dbo].[Publicacao] ([Id]),
+    CONSTRAINT [FK_Notificacao_ComentarioPublicacao] FOREIGN KEY ([IdComentarioPublicacao]) REFERENCES [dbo].[ComentarioPublicacao] ([Id]),
+    CONSTRAINT [FK_Notificacao_Entidade] FOREIGN KEY ([IdEntidade]) REFERENCES [dbo].[Entidade] ([Id]),
+    CONSTRAINT [FK_Notificacao_Curso] FOREIGN KEY ([IdCurso]) REFERENCES [dbo].[Curso] ([Id]),
+    CONSTRAINT [FK_Notificacao_Categoria] FOREIGN KEY ([IdCategoria]) REFERENCES [dbo].[Categoria] ([Id])
+);
