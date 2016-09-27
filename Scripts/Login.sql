@@ -12,11 +12,12 @@ AS
 		Data: 25/07/2016
 		Objetivo: Verificar se login é valido e retornar dados do usuário
 		Exemplo: 
-				  EXEC [dbo].[SP_Login] '14012103', '123'
+				  EXEC [dbo].[SP_Login] 'teste@teste.com', '123'
 		
 	**/
 
-	SELECT Id,
+	SELECT TOP 1 
+		   Id,
 		   Rgm,
 		   Nome,
 		   Sobrenome,

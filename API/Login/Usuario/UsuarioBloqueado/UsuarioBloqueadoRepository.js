@@ -9,7 +9,7 @@
                 (err, row) => {
                     return err
                         ? callback(err, null)
-                        : callback(null, row);
+                        : callback(null, row[0]);
                 });
         },
 
@@ -20,7 +20,7 @@
             }, (err, row) => {
                 return err
                     ? callback(err, null)
-                    : callback(null, row);
+                    : callback(null, row[0]);
             });
         },
 
@@ -31,7 +31,7 @@
             }, (err, row) => {
                 return err
                     ? callback(err, null)
-                    : callback(null, row);  
+                    : callback(null, row[0]);  
                 });
         }
     };

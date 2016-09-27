@@ -9,7 +9,7 @@ module.exports = (app) => {
                 if (err)
                     return callback(err, null);
                 else
-                    return callback(null, row);
+                    return callback(null, row[0]);
             });
         }
     };

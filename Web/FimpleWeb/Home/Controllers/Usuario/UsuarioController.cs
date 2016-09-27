@@ -15,29 +15,30 @@ namespace Home.Controllers.Usuario
             _usuarioApp = usuarioApp;
         }
 
-        public ActionResult GetDados()
+        public ActionResult GetDados(Models.Entity.Usuario usuario)
         {
-            return View("_Dados", new Models.Entity.Usuario());
+            return View("_Dados", usuario);
         }
 
         public ActionResult Post(Models.Entity.Usuario usuario)
         {
             try
             {
-                var retorno = _usuarioApp.Post(usuario);
-                if (!retorno.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, retorno.Content.ReadAsStringAsync().Result);
+                var response = _usuarioApp.Post(usuario);
+                if (!response.IsSuccessStatusCode)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, response.Content.ReadAsStringAsync().Result);
 
-                var model = JsonConvert.DeserializeObject<Models.Entity.Usuario>(retorno.Content.ReadAsStringAsync().Result);
+                var id = JsonConvert.DeserializeObject<Models.Entity.Usuario>(response.Content.ReadAsStringAsync().Result).Id;
 
-                return RedirectToAction("Index", "Login", model);
+                var responseUsuario = _usuarioApp.Get(id);
+                var model = JsonConvert.DeserializeObject<Models.Entity.Usuario>(responseUsuario.Content.ReadAsStringAsync().Result);
+
+                return RedirectToAction("Post", "Login", model);
             }
             catch (Exception ex)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
             }
-
-
         }
     }
 }

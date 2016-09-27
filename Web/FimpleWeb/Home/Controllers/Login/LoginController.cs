@@ -1,4 +1,5 @@
-﻿using Home.Application.Login;
+﻿using Commom.Entity;
+using Home.Application.Login;
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -36,7 +37,20 @@ namespace Home.Controllers.Login
 
                 var model = JsonConvert.DeserializeObject<Models.Entity.Usuario>(response.Content.ReadAsStringAsync().Result);
 
-                return View("_Dados", model);
+                if (model.Id == default(int))
+                    return new HttpStatusCodeResult(HttpStatusCode.NoContent, "Usuario Não encontrato");
+
+                UsuarioLogado.Id = model.Id;
+                UsuarioLogado.Senha = model.Senha;
+                UsuarioLogado.Rgm = model.Rgm;
+                UsuarioLogado.Nome = model.Nome;
+                UsuarioLogado.Sobrenome = model.Sobrenome;
+                UsuarioLogado.Apelido = model.Apelido;
+                UsuarioLogado.Email = model.Email;
+                UsuarioLogado.DataNascimento = model.DataNascimento;
+                UsuarioLogado.DataInicioCurso = model.DataInicioCurso;
+
+                return RedirectToAction("Index", "TimeLine");
             }
             catch (Exception ex)
             {

@@ -1,6 +1,5 @@
 module.exports = (app) => {
     var fimple = app.model;
-    console.log(fimple);
     var repository = {
 
         getAll: (req, res, callback) => {

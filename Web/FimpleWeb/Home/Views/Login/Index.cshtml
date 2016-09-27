@@ -1,4 +1,6 @@
-﻿<div id="divErrorLogin"></div>
+﻿@{ Layout = "../Shared/_LayoutLogin.cshtml"; }
+
+<div id="divErrorLogin"></div>
 <div id="divDados"></div>
 <script>
 
@@ -34,7 +36,7 @@
         $.get(url.Usuario)
             .success(setData)
             .error(setErrorLogin);
-    }
+    }   
 
     function setData(data) {
         Metronic.init(); // init metronic core components

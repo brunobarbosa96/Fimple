@@ -1,8 +1,7 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     load = require('express-load'),
-    connection = require('../config/connection.js')(),
-    port = require('../config/ports.js');
+    connection = require('../config/connection.js')();
 
 app = express();
 
@@ -15,6 +14,6 @@ app.config = {
 
 load('Routes').into(app);
 
-app.listen(port.timeLine, () => {
-    console.log("Server up on port " + port.timeLine);
+app.listen(5001, () => {
+    console.log("Server up on port 5001");
 });
