@@ -174,3 +174,12 @@ CREATE TABLE [dbo].[Notificacao] (
     CONSTRAINT [FK_Notificacao_Curso] FOREIGN KEY ([IdCurso]) REFERENCES [dbo].[Curso] ([Id]),
     CONSTRAINT [FK_Notificacao_Categoria] FOREIGN KEY ([IdCategoria]) REFERENCES [dbo].[Categoria] ([Id])
 );
+
+
+CREATE TABLE [dbo].[Mapa] (
+    [Id]         INT            IDENTITY (1, 1) NOT NULL,
+    [NumeroSala] INT            NOT NULL,
+    [CorBloco]   VARBINARY (50) NOT NULL,
+    [Descricao]  VARBINARY (50) NOT NULL,
+    [IdEntidade] INT            NOT NULL
+);
