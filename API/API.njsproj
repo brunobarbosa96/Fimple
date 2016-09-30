@@ -16,8 +16,8 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Compile Include="config\config.js" />
     <Compile Include="config\connection.js" />
-    <Compile Include="config\ports.js" />
     <Compile Include="config\sqlConfiguration.js" />
     <Content Include="Exemplo\node_modules\.bin\mssql" />
     <Content Include="Exemplo\node_modules\.bin\mssql.cmd" />
@@ -829,6 +829,7 @@
     <Compile Include="Exemplo\config\sqlConfiguration.js" />
     <Compile Include="Exemplo\Exemplo\ExemploController.js" />
     <Compile Include="Exemplo\Exemplo\ExemploRepository.js" />
+    <Compile Include="Exemplo\models\Usuario.js" />
     <Compile Include="Exemplo\node_modules\body-parser\index.js" />
     <Compile Include="Exemplo\node_modules\body-parser\lib\read.js" />
     <Compile Include="Exemplo\node_modules\body-parser\lib\types\json.js" />
@@ -3814,6 +3815,7 @@
     <Folder Include="Exemplo\" />
     <Folder Include="Exemplo\config\" />
     <Folder Include="Exemplo\Exemplo\" />
+    <Folder Include="Exemplo\models\" />
     <Folder Include="Exemplo\node_modules\" />
     <Folder Include="Exemplo\node_modules\.bin\" />
     <Folder Include="Exemplo\node_modules\body-parser\" />

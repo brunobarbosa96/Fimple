@@ -4,7 +4,6 @@ module.exports = (app) => {
     var controller = {
 
         getAll: (req, res) => {
-
             repository.getAll(req, res, (err, row) => {
                 if (!row.length)
                     res.status(204).json({ "message": "Nenhum registro encontrado." });

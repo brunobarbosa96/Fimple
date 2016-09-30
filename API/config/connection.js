@@ -15,6 +15,7 @@ module.exports = () => {
 
     connection.execute = (procedure, param1, param2) => {
         connection.connect((err) => {
+            console.log(err);
             if(err)
                 param2 ? param2(err, null) : param1(err, null);
             else {

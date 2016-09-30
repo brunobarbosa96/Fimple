@@ -1,17 +1,18 @@
 module.exports = (app) => {
-    var fimple = app.model;
-    var repository = {
+    console.log(app.models);
 
-        getAll: (req, res, callback) => {
+    //var usuario = app.models.Usuario;
 
-            fimple.Entidade.findAll().then((objs) => {
-                return callback(null, objs);
-            }).catch((err) => {
-                return callback(err, null);
-            });
-        }
+    //var repository = {
 
-    };
+    //    getAll: (req, res, callback) => {
+    //        usuario.find().exec((err, row) => {
+    //            return err
+    //                ? callback(err, null)
+    //                : callback(null, row);
+    //        });
+    //    }
+    //};
 
-    return repository;
+    //return repository;
 };

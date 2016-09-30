@@ -6,19 +6,9 @@ module.exports = {
 }; 
 
 
-//var edge = require('edge');
-//var params = {
-//    connectionString: "Server=YourServer;Database=YourDB;Integrated Security=True",
-//    source: "SELECT TOP 20 * FROM SampleData"
-//};
-//var getData = edge.func('sql', params);
-
-//getData(null, function (error, result) {
-//    if (error) { console.log(error); return; }
-//    if (result) {
-//        console.log(result);
-//    }
-//    else {
-//        console.log("No results");
-//    }
-//});
+//module.exports = {
+//    user: 'Admin',
+//    password: 'Fimple@2016',
+//    server: '127.0.0.1',
+//    database: 'Fimple'
+//}; 
