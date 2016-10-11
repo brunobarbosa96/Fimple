@@ -829,7 +829,7 @@
     <Compile Include="Exemplo\config\sqlConfiguration.js" />
     <Compile Include="Exemplo\Exemplo\ExemploController.js" />
     <Compile Include="Exemplo\Exemplo\ExemploRepository.js" />
-    <Compile Include="Exemplo\models\Usuario.js" />
+    <Compile Include="Exemplo\models\models.js" />
     <Compile Include="Exemplo\node_modules\body-parser\index.js" />
     <Compile Include="Exemplo\node_modules\body-parser\lib\read.js" />
     <Compile Include="Exemplo\node_modules\body-parser\lib\types\json.js" />

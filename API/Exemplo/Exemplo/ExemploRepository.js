@@ -1,18 +1,18 @@
 module.exports = (app) => {
-    console.log(app.models);
 
-    //var usuario = app.models.Usuario;
+    var usuario = app.models.usuario;
+    
+    var repository = {
 
-    //var repository = {
+        getAll: (req, res, callback) => {
+            usuario.find().exec((err, row) => {
+                console.log(res.json(row));
+                return err
+                    ? callback(err, null)
+                    : callback(null, row);
+            });
+        }
+    };
 
-    //    getAll: (req, res, callback) => {
-    //        usuario.find().exec((err, row) => {
-    //            return err
-    //                ? callback(err, null)
-    //                : callback(null, row);
-    //        });
-    //    }
-    //};
-
-    //return repository;
+    return repository;
 };

@@ -1,29 +1,28 @@
 var express = require('express'),
+    _ = require('lodash'),
     bodyParser = require('body-parser'),
     load = require('express-load'),
-    Waterline = require('waterline'),
-    config = require('../config/config.js');
+    methodOverride = require('method-override'),
+    config = require('../config/config.js')(),
+    orm = require('./models/models.js')();
 
 app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride());
 
-load('Routes').then('models').into(app);
 
-var orm = new Waterline();
+orm.initialize(config, function (err, models) {
+    if (err) throw err;
 
-var collection = Waterline.Collection.extend(app.models);
-orm.loadCollection(collection);
+    app.models = models.collections;
+    app.connections = models.connections;
 
-orm.initialize(config, (err, data) => {
-    if (err)
-        console.log("Erro ao instanciar ORM: " + err);
-    else {
-        app.models = data.collections;
-    }
-});
+    load('Routes').into(app);
 
-app.listen(2828, () => {
-    console.log("Server up on port " + 2828);
+    // Start Server
+    app.listen(2828, () => {
+        console.log("Server up on port " + 2828);
+    });
 });
