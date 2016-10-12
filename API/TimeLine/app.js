@@ -1,19 +1,26 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     load = require('express-load'),
-    connection = require('../config/connection.js')();
+    methodOverride = require('method-override'),
+    config = require('../config/config.js')(),
+    orm = require('../models/models.js')();
 
 app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride());
 
-app.config = {
-    connection: connection
-};
+orm.initialize(config, function (err, models) {
+    if (err) throw err;
 
-load('Routes').into(app);
+    app.models = models.collections;
+    app.connections = models.connections;
 
-app.listen(5001, () => {
-    console.log("Server up on port 5001");
+    load('Routes').into(app);
+
+    // Start Server
+    app.listen(5001, () => {
+        console.log("Server up on port 5001");
+    });
 });

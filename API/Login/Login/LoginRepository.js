@@ -1,15 +1,15 @@
 module.exports = (app) => {
-
+    var usuario = app.models.usuario;
     var repository = {
         post: (req, res, callback) => {
-            app.config.connection.execute('SP_Login', {
-                Email: req.body.Email,
-                Senha: req.body.Senha
-            }, (err, row) => {
-                if (err)
-                    return callback(err, null);
-                else
-                    return callback(null, row[0]);
+            usuario.findOne({
+                Senha: req.body.Senha,
+                or: [
+                    { Email: req.body.Email },
+                    { Rgm: +req.body.Email ? +req.body.Email : "" }
+                ]
+            }).exec((err, row) => {
+                return callback(err, row);
             });
         }
     };

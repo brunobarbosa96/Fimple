@@ -1,8 +1,8 @@
-﻿var diskAdapter = require('../Exemplo/node_modules/sails-disk'),
-    sqlAdapter = require('../Exemplo/node_modules/sails-sqlserver');
+﻿var diskAdapter = require('../Login/node_modules/sails-disk'),
+    sqlAdapter = require('../Login/node_modules/sails-sqlserver');
 
 module.exports = () => {
-
+    
     var config = {
 
         // Setup Adapters
@@ -21,7 +21,7 @@ module.exports = () => {
             },
 
             myLocalSql: {
-                adapter: 'default',
+                adapter: 'sql',
                 database: 'Fimple',
                 host: '189.90.130.120',
                 port: 1433,

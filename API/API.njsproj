@@ -17,8 +17,6 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
     <Compile Include="config\config.js" />
-    <Compile Include="config\connection.js" />
-    <Compile Include="config\sqlConfiguration.js" />
     <Content Include="Exemplo\node_modules\.bin\mssql" />
     <Content Include="Exemplo\node_modules\.bin\mssql.cmd" />
     <Content Include="Exemplo\node_modules\body-parser\HISTORY.md" />
@@ -3802,6 +3800,7 @@
     <Compile Include="Login\Usuario\UsuarioBloqueado\UsuarioBloqueadoRepository.js" />
     <Compile Include="Login\Usuario\UsuarioController.js" />
     <Compile Include="Login\Usuario\UsuarioRepository.js" />
+    <Compile Include="models\models.js" />
     <Compile Include="TimeLine\app.js" />
     <Compile Include="Login\Login\LoginController.js" />
     <Compile Include="Login\Login\LoginRepository.js" />
@@ -4251,6 +4250,7 @@
     <Folder Include="Login\Usuario\UsuarioBloqueado\" />
     <Folder Include="Login\Usuario\" />
     <Folder Include="Login\Routes\" />
+    <Folder Include="models\" />
     <Folder Include="TimeLine" />
     <Folder Include="TimeLine\Publicacao" />
     <Folder Include="TimeLine\Routes" />

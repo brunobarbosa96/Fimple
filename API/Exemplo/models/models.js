@@ -6,7 +6,7 @@ module.exports = () => {
 
     orm.loadCollection(Waterline.Collection.extend({
         identity: 'usuario',
-        connection: 'myLocalDisk',
+        connection: 'myLocalSql',
         attributes: {
             Id: { type: 'integer', primaryKey: true, required: true },
             IdCurso: { type: 'integer', required: true, unique: true },

@@ -1,29 +1,25 @@
 module.exports = (app) => {
 
+    var usuario = app.models.usuario;
     var repository = {
 
         getAll: (req, res, callback) => {
-            app.config.connection.execute('SP_SelecionaUsuarios',
-                (err, row) => {
-                    return err
-                        ? callback(err, null)
-                        : callback(null, row[0]);
+            usuario.find()
+                .exec((err, row) => {
+                    return callback(err, row);
                 });
         },
 
         get: (req, res, callback) => {
-            app.config.connection.execute('SP_SelecionaUsuario', {
+            usuario.findOne({
                 Id: req.params.Id
-            }, (err, row) => {
-
-                return err
-                    ? callback(err, null)
-                    : callback(null, row[0]);
+            }).exec((err, row) => {
+                return callback(err, row);
             });
         },
 
         post: (req, res, callback) => {
-            app.config.connection.execute('SP_InsereUsuario', {
+            usuario.create({
                 IdCurso: req.body.Curso.Id,
                 Senha: req.body.Senha,
                 Rgm: req.body.Rgm,
@@ -34,15 +30,13 @@ module.exports = (app) => {
                 DataNascimento: req.body.DataNascimento,
                 Cep: req.body.Cep,
                 DataInicioCurso: req.body.DataInicioCurso
-            }, (err, row) => {
-                return err
-                    ? callback(err, null)
-                    : callback(null, row[0]);
+            }).exec((err, row) => {
+                return callback(err, row);
             });
         },
 
         put: (req, res, callback) => {
-            app.config.connection.execute('SP_AtualizaUsuario', {
+            usuario.update({
                 Id: req.body.Id,
                 IdCurso: req.body.IdCurso,
                 Senha: req.body.Senha,
@@ -54,10 +48,8 @@ module.exports = (app) => {
                 DataNascimento: req.body.DataNascimento,
                 Cep: req.body.Cep,
                 DataInicioCurso: req.body.DataInicioCurso
-            }, (err, row) => {
-                return err
-                    ? callback(err, null)
-                    : callback(null, row[0]);
+            }).exec((err, row) => {
+                return callback(err, row);
             });
         }
 
