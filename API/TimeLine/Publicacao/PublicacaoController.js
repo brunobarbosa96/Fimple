@@ -11,7 +11,7 @@ module.exports = (app) => {
                 if (err)
                     res.status(500).json({ "message": err });
                 else
-                    res.status(200).json(row[0]);
+                    res.status(200).json(row);
             });
         },
 
@@ -20,7 +20,7 @@ module.exports = (app) => {
                 if (err)
                     res.status(500).json({ "message:": "Erro ao inserir publicação" });
                 else
-                    res.status(200).json(row[0]);
+                    res.status(200).json(row);
             });
         },
 
@@ -29,7 +29,7 @@ module.exports = (app) => {
                 if (err)
                     res.status(500).json({ "message:": "Erro ao atualizar publicação" });
                 else
-                    res.status(200).json(row[0]);
+                    res.status(200).json(row);
             });
         },
 
@@ -38,7 +38,7 @@ module.exports = (app) => {
                 if (err)
                     res.status(500).json({ "message:": "Erro ao excluir publicação" });
                 else
-                    res.status(200).json(row[0]);
+                    res.status(200).json(row);
             });
         }
     };

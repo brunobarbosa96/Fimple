@@ -1,54 +1,46 @@
 module.exports = (app) => {
 
+    var publicacao = app.models.publicacao;
     var repository = {
 
         get: (req, res, callback) => {
-            app.config.connection.execute('SP_SelecionaPublicacoes',
-                (err, row) => {
-                    return err
-                        ? callback(err, null)
-                        : callback(null, row);
+            publicacao.find()
+                .exec((err, row) => {
+                    return callback(err, row);
                 });
         },
 
         post: (req, res, callback) => {
-            app.config.connection.execute('SP_InserePublicacao', {
+            publicacao.create({
                 IdUsuario: req.body.IdUsuario,
                 Titulo: req.body.Titulo,
                 Conteudo: req.body.Conteudo,
                 IdEntidade: req.body.IdEntidade,
                 IdCategoria: req.body.IdCategoria,
                 IdCurso: req.body.IdCurso
-            }, (err, row) => {
-                return err
-                    ? callback(err, null)
-                    : callback(null, row);
+            }).exec((err, row) => {
+                return callback(err, row);
             });
         },
 
         put: (req, res, callback) => {
-            app.config.connection.execute('SP_AtualizaPublicacao', {
-                IdPublicacao: req.body.IdPublicacao,
+            publicacao.update({ Id: req.body.IdPublicacao }, {
                 IdUsuario: req.body.IdUsuario,
                 Titulo: req.body.Titulo,
                 Conteudo: req.body.Conteudo,
                 IdEntidade: req.body.IdEntidade,
                 IdCategoria: req.body.IdCategoria,
                 IdCurso: req.body.IdCurso
-            }, (err, row) => {
-                return err
-                    ? callback(err, null)
-                    : callback(null, row);
+            }).exec((err, row) => {
+                return callback(err, row);
             });
         },
 
         delete: (req, res, callback) => {
-            app.config.connection.execute('SP_DeletaPublicacao', {
-                Id: req.params.Id
-            }, (err, row) => {
-                return err
-                    ? callback(err, null)
-                    : callback(null, row);
+            publicacao.update({ Id: req.params.Id }, {
+                Ativa: 0
+            }).exec((err, row) => {
+                return callback(err, row);
             });
         }
 

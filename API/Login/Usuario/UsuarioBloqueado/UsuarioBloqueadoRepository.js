@@ -1,15 +1,14 @@
 ﻿module.exports = (app) => {
 
+    var usuario = app.models.usuario;
+    var usuarioBloqueado = app.models.usuariobloqueado;
+    var curso = app.models.curso;
     var repository = {
 
         getAll: (req, res, callback) => {
-            app.config.connection.execute('SP_SelecionaUsuariosBloqueados', {
-                IdUsuarioBloqueou: req.params.Id
-            },
-                (err, row) => {
-                    return err
-                        ? callback(err, null)
-                        : callback(null, row[0]);
+            usuarioBloqueado.find({ IdUsuarioBloqueou: req.params.Id})
+                .exec((err, row) => {
+                    callback(err, row);
                 });
         },
 
@@ -31,8 +30,8 @@
             }, (err, row) => {
                 return err
                     ? callback(err, null)
-                    : callback(null, row[0]);  
-                });
+                    : callback(null, row[0]);
+            });
         }
     };
 

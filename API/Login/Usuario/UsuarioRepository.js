@@ -8,7 +8,7 @@ module.exports = (app) => {
                 .exec((err, row) => {
                     return callback(err, row);
                 });
-        },
+        },  
 
         get: (req, res, callback) => {
             usuario.findOne({
@@ -29,16 +29,17 @@ module.exports = (app) => {
                 Email: req.body.Email,
                 DataNascimento: req.body.DataNascimento,
                 Cep: req.body.Cep,
-                DataInicioCurso: req.body.DataInicioCurso
+                DataInicioCurso: req.body.DataInicioCurso,
+                DataCadastro: new Date(),
+                DataUltimoAcesso: new Date()
             }).exec((err, row) => {
                 return callback(err, row);
             });
         },
 
         put: (req, res, callback) => {
-            usuario.update({
-                Id: req.body.Id,
-                IdCurso: req.body.IdCurso,
+            usuario.update({ Id: req.body.Id }, {
+                IdCurso: req.body.Curso.Id,
                 Senha: req.body.Senha,
                 Rgm: req.body.Rgm,
                 Nome: req.body.Nome,
@@ -47,7 +48,8 @@ module.exports = (app) => {
                 Email: req.body.Email,
                 DataNascimento: req.body.DataNascimento,
                 Cep: req.body.Cep,
-                DataInicioCurso: req.body.DataInicioCurso
+                DataInicioCurso: req.body.DataInicioCurso,
+                DataUltimoAcesso: new Date()
             }).exec((err, row) => {
                 return callback(err, row);
             });
