@@ -7,9 +7,9 @@ module.exports = (app) => {
 
             repository.get(req, res, (err, row) => {
                 if (!row[0].length)
-                    res.status(204).json({ "message": "Nenhum registro encontrado." });
+                    res.status(204).json({ "message": "Nenhum registro encontrado" });
                 if (err)
-                    res.status(500).json({ "message": err });
+                    res.status(500).json({ "message": "Erro ao buscar publicações", "exception": err  });
                 else
                     res.status(200).json(row);
             });
@@ -18,7 +18,7 @@ module.exports = (app) => {
         post: (req, res) => {
             repository.post(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao inserir publicação" });
+                    res.status(500).json({ "message:": "Erro ao inserir publicação", "exception": err  });
                 else
                     res.status(200).json(row);
             });
@@ -27,7 +27,7 @@ module.exports = (app) => {
         put: (req, res) => {
             repository.put(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao atualizar publicação" });
+                    res.status(500).json({ "message:": "Erro ao atualizar publicação", "exception": err  });
                 else
                     res.status(200).json(row);
             });
@@ -36,7 +36,7 @@ module.exports = (app) => {
         delete: (req, res) => {
             repository.delete(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao excluir publicação" });
+                    res.status(500).json({ "message:": "Erro ao excluir publicação", "exception": err  });
                 else
                     res.status(200).json(row);
             });

@@ -28,7 +28,6 @@ module.exports = () => {
         }
     }));
 
-
     orm.loadCollection(Waterline.Collection.extend({
         identity: 'curso',
         connection: 'myLocalSql',
@@ -36,7 +35,7 @@ module.exports = () => {
         autoUpdatedAt: false,
         attributes: {
             Id: { type: 'integer', primaryKey: true },
-            IdCategoria: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'categoria', on: 'Id'},
+            IdCategoria: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'categoria', on: 'Id' },
             Nome: { type: 'string', required: true }
         }
     }));
@@ -59,7 +58,12 @@ module.exports = () => {
             Cep: { type: 'integer' },
             DataCadastro: { type: 'date' },
             DataUltimoAcesso: { type: 'date' },
-            DataInicioCurso: { type: 'date', required: true }
+            DataInicioCurso: { type: 'date', required: true },
+
+            UsuarioBloqueado: {
+                collection: 'usuarioBloqueado',
+                via: 'owner'
+            }
         }
     }));
 
@@ -204,7 +208,11 @@ module.exports = () => {
         autoUpdatedAt: false,
         attributes: {
             IdUsuarioBloqueado: { type: 'integer', primaryKey: true, required: true, foreignKey: true, references: 'usuario', on: 'Id' },
-            IdUsuarioBloqueou: { type: 'integer', primaryKey: true, required: true, foreignKey: true, references: 'usuario', on: 'Id' }
+            IdUsuarioBloqueou: { type: 'integer', primaryKey: true, required: true, foreignKey: true, references: 'usuario', on: 'Id' },
+
+            owner: {
+                model: 'usuario'
+            }
         }
     }));
 
