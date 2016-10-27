@@ -7,47 +7,82 @@ module.exports = () => {
     orm.loadCollection(Waterline.Collection.extend({
         identity: 'entidade',
         connection: 'myLocalSql',
-        autoCreatedAt: false,
-        autoUpdatedAt: false,
         attributes: {
-            Id: { type: 'integer', primaryKey: true },
+            Id: { type: 'integer', primaryKey: true, autoIncrement: true },
             Nome: { type: 'string', required: true },
-            Cep: { type: 'integer' }
+            Cep: { type: 'integer' },
+            Categorias: {
+                collection: 'categoria',
+                via: 'Entidade'
+            },
+            Comentarios: {
+                collection: 'notificacao',
+                via: 'Entidade'
+            },
+            Publicacoes: {
+                collection: 'publicacao',
+                via: 'Entidade'
+            },
         }
     }));
 
     orm.loadCollection(Waterline.Collection.extend({
         identity: 'categoria',
         connection: 'myLocalSql',
-        autoCreatedAt: false,
-        autoUpdatedAt: false,
         attributes: {
-            Id: { type: 'integer', primaryKey: true },
-            IdEntidade: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'entidade', on: 'Id' },
-            Nome: { type: 'string', required: true }
+            Id: { type: 'integer', primaryKey: true, autoIncrement: true },
+            Nome: { type: 'string', required: true },
+            Entidade: {
+                model: 'entidade'
+            },
+            Cursos: {
+                collection: 'curso',
+                via: 'Categoria'
+            },
+            Comentarios: {
+                collection: 'notificacao',
+                via: 'Categoria'
+            },
+            Publicacoes: {
+                collection: 'publicacao',
+                via: 'Categoria'
+            }
         }
     }));
 
     orm.loadCollection(Waterline.Collection.extend({
         identity: 'curso',
         connection: 'myLocalSql',
-        autoCreatedAt: false,
-        autoUpdatedAt: false,
         attributes: {
-            Id: { type: 'integer', primaryKey: true },
-            IdCategoria: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'categoria', on: 'Id' },
-            Nome: { type: 'string', required: true }
+            Id: { type: 'integer', primaryKey: true, autoIncrement: true },
+            Nome: { type: 'string', required: true },
+            Categoria: {
+                model: 'categoria'
+            },
+            Usuarios: {
+                collection: 'usuario',
+                via: 'Curso'
+            },
+            Comentarios: {
+                collection: 'notificacao',
+                via: 'Curso'
+            },
+            Publicacoes: {
+                collection: 'publicacao',
+                via: 'Curso'
+            },
+            Eventos: {
+                collection: 'evento',
+                via: 'Curso'
+            }
         }
     }));
 
     orm.loadCollection(Waterline.Collection.extend({
         identity: 'usuario',
         connection: 'myLocalSql',
-        autoCreatedAt: false,
-        autoUpdatedAt: false,
         attributes: {
-            Id: { type: 'integer', primaryKey: true },
-            IdCurso: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'curso', on: 'Id' },
+            Id: { type: 'integer', primaryKey: true, autoIncrement: true },
             Senha: { type: 'string', required: true },
             Rgm: { type: 'integer', required: true },
             Nome: { type: 'string', required: true },
@@ -55,162 +90,205 @@ module.exports = () => {
             Apelido: { type: 'string' },
             Email: { type: 'string', required: true },
             DataNascimento: { type: 'date', required: true },
-            Cep: { type: 'integer' },
-            DataCadastro: { type: 'date' },
-            DataUltimoAcesso: { type: 'date' },
             DataInicioCurso: { type: 'date', required: true },
-
-            UsuarioBloqueado: {
-                collection: 'usuarioBloqueado',
-                via: 'owner'
+            Cep: { type: 'integer' },
+            DataUltimoAcesso: { type: 'date' },
+            Curso: {
+                model: 'curso'
+            },
+            Evento: {
+                model: 'evento'
+            },
+            UsuariosBloqueados: {
+                collection: 'usuario',
+                via: 'Id'
+            },
+            Notificacoes: {
+                collection: 'notificacao',
+                via: 'Usuario'
+            },
+            Comentarios: {
+                collection: 'comentario',
+                via: 'Usuario'
+            },
+            Publicacoes: {
+                collection: 'publicacao',
+                via: 'Usuario'
+            },
+            EventoParticipacao: {
+                model: 'evento'
+            },
+            Eventos: {
+                collection: 'evento',
+                via: 'Usuario'
+            },
+            ConversasRemetente: {
+                collection: 'conversa',
+                via: 'Remetente'
+            },
+            ConversasDestino: {
+                collection: 'conversa',
+                via: 'Destino'
+            },
+            Mensagens: {
+                collection: 'mensagem',
+                via: 'UsuarioEnvio'
             }
-        }
+}
     }));
 
     orm.loadCollection(Waterline.Collection.extend({
         identity: 'notificacao',
         connection: 'myLocalSql',
-        autoCreatedAt: false,
-        autoUpdatedAt: false,
         attributes: {
-            Id: { type: 'integer', primaryKey: true },
-            IdUsuario: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'usuario', on: 'Id' },
-            IdEvento: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'evento', on: 'Id' },
-            IdComentarioEvento: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'comentarioEvento', on: 'Id' },
-            IdPublicacao: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'publicacao', on: 'Id' },
-            IdComentarioPublicacao: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'comentarioPublicacao', on: 'Id' },
-            IdCurso: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'curso', on: 'Id' },
-            IdCategoria: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'categoria', on: 'Id' },
-            DataCadastro: { type: 'date', required: true },
-            DataVisualizacao: { type: 'date', required: true }
+            Id: { type: 'integer', primaryKey: true, autoIncrement: true },
+            DataVisualizacao: { type: 'date', required: true },
+            Usuario: {
+                model: 'usuario'
+            },
+            Evento: {
+                model: 'evento'
+            },
+            Publicacao: {
+                model: 'publicacao'
+            },
+            ComentariosEvento: {
+                collection: 'comentario',
+                via: 'NotificacaoEvento'
+            },
+            ComentariosPublicacao: {
+                collection: 'comentario',
+                via: 'NotificacaoPublicacao'
+            },
+            Curso: {
+                model: 'curso'
+            },
+            Entidade: {
+                model: 'entidade'
+            },
+            Categoria: {
+                model: 'categoria'
+            }
         }
     }));
 
     orm.loadCollection(Waterline.Collection.extend({
         identity: 'publicacao',
         connection: 'myLocalSql',
-        autoCreatedAt: false,
-        autoUpdatedAt: false,
         attributes: {
-            Id: { type: 'integer', primaryKey: true },
-            IdUsuario: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'usuario', on: 'Id' },
-            IdEntidade: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'entidade', on: 'Id' },
-            IdCategoria: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'categoria', on: 'Id' },
-            IdCurso: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'curso', on: 'Id' },
+            Id: { type: 'integer', primaryKey: true, autoIncrement: true },
             Titulo: { type: 'string', required: true },
             Conteudo: { type: 'string', required: true },
             Ativa: { type: 'boolean', required: true },
-            Data: { type: 'date', required: true }
-        }
-    }));
-
-    orm.loadCollection(Waterline.Collection.extend({
-        identity: 'comentarioPublicacao',
-        connection: 'myLocalSql',
-        autoCreatedAt: false,
-        autoUpdatedAt: false,
-        attributes: {
-            Id: { type: 'integer', primaryKey: true },
-            IdPublicacao: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'publicacao', on: 'Id' },
-            IdUsuario: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'usuario', on: 'Id' },
-            Comentario: { type: 'string', required: true },
             Data: { type: 'date', required: true },
-            Ativo: { type: 'boolean', required: true }
+            Usuario: {
+                model: 'usuario'
+            },
+            Entidade: {
+              model: 'entidade'  
+            },
+            Categoria: {
+              model: 'categoria'  
+            },
+            Curso: {
+                model: 'curso'
+            },
+            Notificacoes: {
+                collection: 'notificacao',
+                via: 'Publicacao'
+            },
+
         }
     }));
 
     orm.loadCollection(Waterline.Collection.extend({
-        identity: 'visualizacaoPublicacao',
+        identity: 'comentario',
         connection: 'myLocalSql',
-        autoCreatedAt: false,
-        autoUpdatedAt: false,
         attributes: {
-            IdPublicacao: { type: 'integer', primaryKey: true, required: true, foreignKey: true, references: 'publicacao', on: 'Id' },
-            IdUsuario: { type: 'integer', primaryKey: true, required: true, foreignKey: true, references: 'usuario', on: 'Id' },
-            Data: { type: 'date', required: true }
+            Id: { type: 'integer', primaryKey: true, autoIncrement: true },
+            Conteudo: { type: 'string', required: true },
+            Data: { type: 'date', required: true },
+            Ativo: { type: 'boolean', required: true },
+            Usuario: {
+                model: 'usuario'
+            },
+            NotificacaoEvento: {
+                model: 'notificacao'
+            },
+            NotificacaoPublicacao: {
+                model: 'notificacao'
+            },
+            Evento: {
+                model: 'evento'
+            }
         }
     }));
 
     orm.loadCollection(Waterline.Collection.extend({
         identity: 'evento',
         connection: 'myLocalSql',
-        autoCreatedAt: false,
-        autoUpdatedAt: false,
         attributes: {
-            Id: { type: 'integer', primaryKey: true },
-            IdUsuario: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'usuario', on: 'Id' },
+            Id: { type: 'integer', primaryKey: true, autoIncrement: true },
             Descricao: { type: 'string', required: true },
             Local: { type: 'string', required: true },
             Data: { type: 'date', required: true },
-            DataCadastro: { type: 'date', required: true }
-        }
-    }));
-
-    orm.loadCollection(Waterline.Collection.extend({
-        identity: 'comentarioEvento',
-        connection: 'myLocalSql',
-        autoCreatedAt: false,
-        autoUpdatedAt: false,
-        attributes: {
-            Id: { type: 'integer', primaryKey: true },
-            IdEvento: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'evento', on: 'Id' },
-            IdUsuario: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'usuario', on: 'Id' },
-            Comentario: { type: 'string', required: true },
-            Data: { type: 'date', required: true },
-            Ativo: { type: 'boolean', required: true }
-        }
-    }));
-
-    orm.loadCollection(Waterline.Collection.extend({
-        identity: 'eventoUsuarios',
-        connection: 'myLocalSql',
-        autoCreatedAt: false,
-        autoUpdatedAt: false,
-        attributes: {
-            IdEvento: { type: 'integer', primaryKey: true, required: true, foreignKey: true, references: 'evento', on: 'Id' },
-            IdUsuario: { type: 'integer', primaryKey: true, required: true, foreignKey: true, references: 'usuario', on: 'Id' }
+            Usuario: {
+              model: 'usuario'  
+            },
+            Curso: {
+                model: 'curso'
+            },
+            Participantes: {
+                collection: 'usuario',
+                via: 'Evento'
+            },
+            Comentarios: {
+                collection: 'comentario',
+              via : 'Evento'
+            },
+            Notificacoes: {
+                collection: 'notificacao',
+                via: 'Evento'
+            }
         }
     }));
 
     orm.loadCollection(Waterline.Collection.extend({
         identity: 'conversa',
         connection: 'myLocalSql',
-        autoCreatedAt: false,
-        autoUpdatedAt: false,
         attributes: {
-            Id: { type: 'integer', primaryKey: true },
-            IdUsuarioRemetente: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'usuario', on: 'Id' },
-            IdUsuarioDestino: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'usuario', on: 'Id' },
+            Id: { type: 'integer', primaryKey: true, autoIncrement: true },
             Data: { type: 'date', required: true },
-            Ativo: { type: 'boolean', required: true }
+            Ativo: { type: 'boolean', required: true },
+            Remetente: {
+                model: 'usuario'
+            },
+            Destino: {
+                model: 'usuario'
+            },
+            Mensagem: {
+                collection: 'mensagem',
+                via: 'Conversa'
+            }
         }
     }));
 
     orm.loadCollection(Waterline.Collection.extend({
         identity: 'mensagem',
         connection: 'myLocalSql',
-        autoCreatedAt: false,
-        autoUpdatedAt: false,
         attributes: {
-            Id: { type: 'integer', primaryKey: true },
+            Id: { type: 'integer', primaryKey: true, autoIncrement: true },
+            Conteudo: { type: 'string', required: true },
+            DataEnvio: { type: 'date', required: true },
+            DataRecebimento: { type: 'date', required: true },
+
             IdConversa: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'conversa', on: 'Id' },
             IdUsuarioEnvio: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'usuario', on: 'Id' },
-            Mensagem: { type: 'string', required: true },
-            DataEnvio: { type: 'date', required: true },
-            DataRecebimento: { type: 'date', required: true }
-        }
-    }));
 
-    orm.loadCollection(Waterline.Collection.extend({
-        identity: 'usuarioBloqueado',
-        connection: 'myLocalSql',
-        autoCreatedAt: false,
-        autoUpdatedAt: false,
-        attributes: {
-            IdUsuarioBloqueado: { type: 'integer', primaryKey: true, required: true, foreignKey: true, references: 'usuario', on: 'Id' },
-            IdUsuarioBloqueou: { type: 'integer', primaryKey: true, required: true, foreignKey: true, references: 'usuario', on: 'Id' },
-
-            owner: {
+            Conversa: {
+                model: 'conversa'
+            },
+            UsuarioEnvio: {
                 model: 'usuario'
             }
         }

@@ -1,8 +1,8 @@
 ﻿var diskAdapter = require('../Login/node_modules/sails-disk'),
-    sqlAdapter = require('../Login/node_modules/sails-sqlserver');
+    postgresAdapter = require('../Login/node_modules/sails-postgresql');
 
 module.exports = () => {
-    
+
     var config = {
 
         // Setup Adapters
@@ -10,7 +10,7 @@ module.exports = () => {
         adapters: {
             'default': diskAdapter,
             disk: diskAdapter,
-            sql: sqlAdapter
+            postgres: postgresAdapter
         },
 
         // Build Connections Config
@@ -21,18 +21,18 @@ module.exports = () => {
             },
 
             myLocalSql: {
-                adapter: 'sql',
+                adapter: 'postgres',
                 database: 'Fimple',
-                host: '189.90.130.120',
-                port: 1433,
+                host: 'localhost',
                 user: 'Admin',
-                persistent: true,
-                password: 'Fimple@2016'
+                password: 'Fimple@2016',
+                port: 5432,
+                ssl: false
             }
         },
 
         defaults: {
-            migrate: 'safe'
+            migrate: 'alter'
         }
 
     };

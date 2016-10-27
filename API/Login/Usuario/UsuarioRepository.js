@@ -8,7 +8,7 @@ module.exports = (app) => {
                 .exec((err, row) => {
                     return callback(err, row);
                 });
-        },  
+        },
 
         get: (req, res, callback) => {
             usuario.findOne({
