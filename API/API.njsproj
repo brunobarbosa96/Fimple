@@ -824,6 +824,7 @@
     <Content Include="Login\package.json" />
     <Compile Include="Exemplo\app.js" />
     <Compile Include="Exemplo\config\model.js" />
+    <Compile Include="Exemplo\config\populaBase.js" />
     <Compile Include="Exemplo\config\sqlConfiguration.js" />
     <Compile Include="Exemplo\Exemplo\ExemploController.js" />
     <Compile Include="Exemplo\Exemplo\ExemploRepository.js" />

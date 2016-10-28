@@ -1,45 +1,67 @@
 ﻿module.exports = (app) => {
 
     var usuario = app.models.usuario;
-    var usuarioBloqueado = app.models.usuariobloqueado;
     var repository = {
 
         getAll: (req, res, callback) => {
-
-            var usuariosBloqueados;
-            usuarioBloqueado.find({ IdUsuarioBloqueou: req.params.Id })
+            usuario.find({ Id: req.params.Id })
+                .populate("UsuariosBloqueados")
                 .exec((err, row) => {
-                    if (err)
-                        return callback(err, null);
-
-                    usuariosBloqueados = row.map((usuarioBloqueado) => usuarioBloqueado.IdUsuarioBloqueado)
-                    usuario.find({ Id: usuariosBloqueados })
-                        .exec((err, row) => {
-                            return callback(err, row);
-                        });
+                    return callback(err, row);
                 });
-
         },
 
         post: (req, res, callback) => {
-            usuarioBloqueado.create({
-                IdUsuarioBloqueado: req.body.IdUsuarioBloqueado,
-                IdUsuarioBloqueou: req.body.IdUsuarioBloqueou
-            }).exec((err, row) => {
-                return callback(err, row);
-            });
+            usuario.findOne({ Id: req.body.IdUsuarioBloqueou })
+                .populate("UsuariosBloqueados")
+                .exec((error, user) => {
+                    if (error)
+                        return callback(error, null);
+
+                    try {
+                        var usuariosBloqueados = [];
+
+                        if (user)
+                            usuariosBloqueados = user.UsuariosBloqueados.map((u) => u.Id);
+                        usuariosBloqueados.push(+req.body.IdUsuarioBloqueado);
+
+                        usuario.update({ Id: req.body.IdUsuarioBloqueou }, {
+                            UsuariosBloqueados: usuariosBloqueados
+                        }).exec((err, row) => {
+                            return callback(err, row);
+                        });
+                    } catch (erro) {
+                        return callback("Erro ao inserir usuarios bloqueados " + erro);
+                    }
+                });
         },
 
         delete: (req, res, callback) => {
-            console.log(req.query);
-            usuarioBloqueado.destroy()
-                .where({
-                    IdUsuarioBloqueou: req.query.IdUsuarioBloqueou,
-                    IdUsuarioBloqueado: req.query.IdUsuarioBloqueado
-                })
-                .exec((err, row) => {
-                    return callback(err, row);
-                })
+            usuario.findOne({ Id: req.query.IdUsuarioBloqueou })
+                .populate("UsuariosBloqueados")
+                .exec((err, user) => {
+                    if (err)
+                        return callback(err, null);
+
+                    try {
+                        var usuariosBloqueados = [];
+
+                        if (user)
+                            usuariosBloqueados = user.UsuariosBloqueados.map((u) => u.Id);
+
+                        for (var i in usuariosBloqueados)
+                            if (usuariosBloqueados[i] == req.query.IdUsuarioBloqueado)
+                                usuariosBloqueados.splice(i, 1);
+
+                        usuario.update({ Id: req.query.IdUsuarioBloqueou }, {
+                            UsuariosBloqueados: usuariosBloqueados
+                        }).exec((err, row) => {
+                            return callback(err, row);
+                        });
+                    } catch (error) {
+                        return callback("Erro ao inserir usuarios bloqueados " + error);
+                    }
+                });
         }
     };
 

@@ -11,16 +11,15 @@ module.exports = (app) => {
         },
 
         get: (req, res, callback) => {
-            usuario.findOne({
-                Id: req.params.Id
-            }).exec((err, row) => {
+            usuario.findOne({ Id: req.params.Id })
+                .populate("Curso")
+                .exec((err, row) => {
                 return callback(err, row);
             });
         },
 
         post: (req, res, callback) => {
             usuario.create({
-                IdCurso: req.body.Curso.Id,
                 Senha: req.body.Senha,
                 Rgm: req.body.Rgm,
                 Nome: req.body.Nome,
@@ -30,8 +29,8 @@ module.exports = (app) => {
                 DataNascimento: req.body.DataNascimento,
                 Cep: req.body.Cep,
                 DataInicioCurso: req.body.DataInicioCurso,
-                DataCadastro: new Date(),
-                DataUltimoAcesso: new Date()
+                DataUltimoAcesso: new Date(),
+                Curso: req.body.Curso.Id
             }).exec((err, row) => {
                 return callback(err, row);
             });
@@ -39,7 +38,6 @@ module.exports = (app) => {
 
         put: (req, res, callback) => {
             usuario.update({ Id: req.body.Id }, {
-                IdCurso: req.body.Curso.Id,
                 Senha: req.body.Senha,
                 Rgm: req.body.Rgm,
                 Nome: req.body.Nome,
@@ -49,7 +47,8 @@ module.exports = (app) => {
                 DataNascimento: req.body.DataNascimento,
                 Cep: req.body.Cep,
                 DataInicioCurso: req.body.DataInicioCurso,
-                DataUltimoAcesso: new Date()
+                DataUltimoAcesso: new Date(),
+                Curso: req.body.Curso.Id
             }).exec((err, row) => {
                 return callback(err, row);
             });
