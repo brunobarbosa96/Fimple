@@ -44,7 +44,7 @@ namespace Home.Controllers.Login
             return View("_Dados");
         }
 
-        public ActionResult Entrar(Models.Entity.Usuario usuario, bool lembrar)
+        public ActionResult Entrar(Models.Entity.Usuario usuario, bool? lembrar)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace Home.Controllers.Login
                     return new HttpStatusCodeResult(HttpStatusCode.NoContent, "Usuario Não encontrato");
 
                 // Verificando se a opção de lembrar senha está habilitada
-                if (lembrar)
+                if (lembrar.HasValue && (bool)lembrar)
                 {
                     // Serializando dados do usuário
                     var json = JsonConvert.SerializeObject(usuario);

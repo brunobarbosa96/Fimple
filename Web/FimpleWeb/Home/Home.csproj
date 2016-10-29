@@ -157,6 +157,7 @@
     <Compile Include="Infra\ModelBinder.cs" />
     <Compile Include="Infra\Request\IRequest.cs" />
     <Compile Include="Infra\Request\Request.cs" />
+    <Compile Include="Infra\Security\Security.cs" />
     <Compile Include="Models\Entity\Categoria.cs" />
     <Compile Include="Models\Entity\Comentario.cs" />
     <Compile Include="Models\Entity\Conversa.cs" />
