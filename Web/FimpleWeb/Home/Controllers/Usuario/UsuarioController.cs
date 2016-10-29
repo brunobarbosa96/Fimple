@@ -1,4 +1,5 @@
 ﻿using Home.Application.Usuario;
+using Home.Infra;
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -6,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Home.Controllers.Usuario
 {
-    public class UsuarioController : Controller
+    public class UsuarioController : BaseController
     {
         private readonly IUsuarioApp _usuarioApp;
 

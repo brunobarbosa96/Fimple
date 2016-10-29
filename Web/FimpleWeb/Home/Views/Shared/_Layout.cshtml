@@ -1,5 +1,4 @@
-﻿@using Commom.Entity
-@model Home.Models.Entity.Usuario
+﻿@model Home.Models.Entity.Usuario
 <!DOCTYPE html>
 
 <html lang="pt-br">
@@ -48,7 +47,7 @@
                     <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                             <i class="icon-bell"></i>
-                            <span class="badge badge-warning">7 @*QUANTIDADE NOTIFICAÇÕES*@</span>
+                            <span class="badge badge-warning">1 @*QUANTIDADE NOTIFICAÇÕES*@</span>
                         </a>
                         @* -- NOTIFICAÇÕES -- *@
                         <ul class="dropdown-menu">
@@ -70,72 +69,6 @@
                                             </span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <span class="time">14 hrs</span>
-                                            <span class="details">
-                                                <span class="label label-sm label-icon label-info">
-                                                    <i class="fa fa-bullhorn"></i>
-                                                </span>
-                                                Fulano Comentou a sua postagem.
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <span class="time">14 hrs</span>
-                                            <span class="details">
-                                                <span class="label label-sm label-icon label-info">
-                                                    <i class="fa fa-bullhorn"></i>
-                                                </span>
-                                                Fulano Comentou a sua postagem.
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <span class="time">14 hrs</span>
-                                            <span class="details">
-                                                <span class="label label-sm label-icon label-info">
-                                                    <i class="fa fa-bullhorn"></i>
-                                                </span>
-                                                Fulano Comentou a sua postagem.
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <span class="time">14 hrs</span>
-                                            <span class="details">
-                                                <span class="label label-sm label-icon label-info">
-                                                    <i class="fa fa-bullhorn"></i>
-                                                </span>
-                                                Fulano Comentou a sua postagem.
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <span class="time">14 hrs</span>
-                                            <span class="details">
-                                                <span class="label label-sm label-icon label-info">
-                                                    <i class="fa fa-bullhorn"></i>
-                                                </span>
-                                                Fulano Comentou a sua postagem.
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <span class="time">14 hrs</span>
-                                            <span class="details">
-                                                <span class="label label-sm label-icon label-info">
-                                                    <i class="fa fa-bullhorn"></i>
-                                                </span>
-                                                Fulano Comentou a sua postagem.
-                                            </span>
-                                        </a>
-                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -143,7 +76,7 @@
                     <li class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                             <img alt="" class="img-circle" src="~/assets/img/placeholder.jpg" />
-                            <span class="username username-hide-on-mobile">@UsuarioLogado.NomeUsuario</span>
+                            <span class="username username-hide-on-mobile">@ViewBag.NomeUsuario</span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
@@ -151,7 +84,7 @@
                                 <a href="javascript:void(0)"><i class="icon-user"></i> Meu Perfil</a>
                             </li>
                             <li>
-                                <a href="/"><i class="icon-key"></i> Sair</a>
+                                <a href="@Url.Action("Sair", "Login")"><i class="icon-key"></i> Sair</a>
                             </li>
                         </ul>
                     </li>
@@ -165,18 +98,17 @@
             </div>
         </div>
     </div>
-    <div class="clearfix">
-    </div>
+    <div class="clearfix"></div>
+    <div>@Html.ValidationSummary()</div>
     <div id="divContent">@RenderBody()</div>
 
     <script>
 
         $(document).ready(function () {
-            // initiate layout and plugins
-            Metronic.init(); // init metronic core components
-            Layout.init(); // init current layout
-            QuickSidebar.init(); // init quick sidebar
-            Timeline.init(); // init timeline page
+            Metronic.init();
+            Layout.init();
+            QuickSidebar.init();
+            Timeline.init();
         });
 
     </script>

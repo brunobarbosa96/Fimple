@@ -1,7 +1,7 @@
 ﻿@model Home.Models.Entity.Usuario
 @{ Layout = null; }
 
-@using (Ajax.BeginForm("Post", "Login", null, new AjaxOptions
+@using (Ajax.BeginForm("Entrar", "Login", null, new AjaxOptions
 {
     OnSuccess = "setData(data)",
     OnFailure = "setErrorLogin(xhr)"

@@ -1,6 +1,6 @@
-﻿using Commom.Config;
-using Commom.Request;
-using System.Net.Http;
+﻿using System.Net.Http;
+using IRequest = Home.Infra.Request.IRequest;
+using UriWebApi = Home.Infra.Config.UriWebApi;
 
 namespace Home.Application.Login
 {

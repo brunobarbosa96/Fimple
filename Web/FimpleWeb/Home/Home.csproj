@@ -151,6 +151,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infra\BaseController.cs" />
+    <Compile Include="Infra\Config\UriWebApi.cs" />
+    <Compile Include="Infra\Helpers\Menu.cs" />
+    <Compile Include="Infra\ModelBinder.cs" />
+    <Compile Include="Infra\Request\IRequest.cs" />
+    <Compile Include="Infra\Request\Request.cs" />
     <Compile Include="Models\Entity\Categoria.cs" />
     <Compile Include="Models\Entity\Comentario.cs" />
     <Compile Include="Models\Entity\Conversa.cs" />
@@ -193,6 +199,7 @@
     <Content Include="assets\img\sidebar_toggler_icon_grey.png" />
     <Content Include="assets\img\sidebar_toggler_icon_light.png" />
     <Content Include="assets\img\sidebar_toggler_icon_light2.png" />
+    <Content Include="assets\js\jquery.validate.min.js" />
     <Content Include="assets\js\layout.js" />
     <Content Include="assets\js\login.js" />
     <Content Include="assets\js\metronic.js" />
@@ -201,6 +208,7 @@
     <Content Include="assets\js\timeline.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="assets\js\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -229,12 +237,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Login\_Dados.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Commom\Commom.csproj">
-      <Project>{6a6993a0-6c84-4c15-996b-5f2468fd1b61}</Project>
-      <Name>Commom</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Fimple Web.pubxml" />

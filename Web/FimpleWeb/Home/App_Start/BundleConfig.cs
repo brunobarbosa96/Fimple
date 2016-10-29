@@ -12,7 +12,9 @@ namespace Home
                         "~/assets/js/layout.js",
                         "~/assets/js/login.js",
                         "~/assets/js/quick-sidebar.js",
-                        "~/assets/js/timeline.js"));
+                        "~/assets/js/timeline.js",
+                        "~/assets/js/jquery.validate.min.js",
+                        "~/assets/js/jquery.validate.unobtrusive.min.js"));
 
             bundles.Add(new StyleBundle("~/assets/css").Include(
                       "~/assets/css/components-md.css",

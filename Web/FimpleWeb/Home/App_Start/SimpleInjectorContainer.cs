@@ -1,7 +1,8 @@
-﻿using Commom.Request;
-using Home.Application.Login;
+﻿using Home.Application.Login;
 using Home.Application.Usuario;
 using SimpleInjector;
+using IRequest = Home.Infra.Request.IRequest;
+using Request = Home.Infra.Request.Request;
 
 namespace Home
 {
