@@ -1,5 +1,5 @@
 {
-  "name": "Fimple API",
+  "name": "fimple",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -21,6 +21,7 @@
     "method-override": "^2.3.6",
     "sails-disk": "^0.10.10",
     "sails-postgresql": "^0.11.4",
+    "sails-sqlserver": "^0.10.8",
     "waterline": "^0.12.2"
   }
 }
