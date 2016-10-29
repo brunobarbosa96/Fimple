@@ -2,7 +2,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     load = require('express-load'),
     methodOverride = require('method-override'),
-    config = require('../config/config.js')(),
+    config = require('./config/config.js')(),
     orm = require('./models/models.js')();
 
 app = express();
@@ -20,7 +20,7 @@ orm.initialize(config, function (err, models) {
     load('Routes').into(app);
 
     // Start Server
-    app.listen(2828, () => {
-        console.log("Server up on port " + 2828);
+    app.listen(5000, () => {
+        console.log("Server up on port 5000");
     });
 });

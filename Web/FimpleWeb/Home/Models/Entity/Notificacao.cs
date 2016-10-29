@@ -5,7 +5,6 @@ namespace Home.Models.Entity
     public class Notificacao
     {
         public int Id { get; set; }
-        public DateTime DataCadastro { get; set; }
         public DateTime? DataVisualizacao { get; set; }
         public Usuario Usuario { get; set; }
         public Evento Evento { get; set; }

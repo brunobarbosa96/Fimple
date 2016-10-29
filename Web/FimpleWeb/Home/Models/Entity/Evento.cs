@@ -9,7 +9,6 @@ namespace Home.Models.Entity
         public string Descricao { get; set; }
         public string Local { get; set; }
         public DateTime Data { get; set; }
-        public DateTime DataCadastro { get; set; }
         public Usuario Usuario { get; set; }
         public IEnumerable<Usuario> Participantes { get; set; }
         public IEnumerable<Comentario> Comantarios { get; set; }
