@@ -1,7 +1,7 @@
 {
-  "name": "login",
+  "name": "Fimple API",
   "version": "1.0.0",
-  "description": "api de login",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

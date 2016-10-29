@@ -2,8 +2,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     load = require('express-load'),
     methodOverride = require('method-override'),
-    config = require('../config/config.js')(),
-    orm = require('../models/models.js')();
+    config = require('./config/config.js')(),
+    orm = require('./models/models.js')();
 
 app = express();
 

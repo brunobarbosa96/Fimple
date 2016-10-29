@@ -1,4 +1,4 @@
-﻿var Waterline = require('../Login/node_modules/waterline');
+﻿var Waterline = require('waterline');
 
 module.exports = () => {
 

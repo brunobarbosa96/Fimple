@@ -1,5 +1,5 @@
-﻿var diskAdapter = require('../Login/node_modules/sails-disk'),
-    postgresAdapter = require('../Login/node_modules/sails-postgresql');
+﻿var diskAdapter = require('sails-disk'),
+    postgresAdapter = require('sails-postgresql');
 
 module.exports = () => {
 
