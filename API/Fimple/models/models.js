@@ -259,7 +259,7 @@ module.exports = () => {
         attributes: {
             Id: { type: 'integer', primaryKey: true, autoIncrement: true },
             Data: { type: 'date', required: true },
-            Ativo: { type: 'boolean', required: true },
+            Visualizada: { type: 'boolean', required: true },
             Remetente: {
                 model: 'usuario'
             },

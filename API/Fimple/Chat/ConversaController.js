@@ -1,6 +1,6 @@
 module.exports = (app) => {
 
-    var repository = require('./PublicacaoRepository')(app);
+    var repository = require('./ConversaRepository')(app);
     var controller = {
 
         get: (req, res) => {
@@ -19,15 +19,6 @@ module.exports = (app) => {
             repository.post(req, res, (err, row) => {
                 if (err)
                     res.status(500).json({ "message:": "Erro ao inserir publicação", "exception": err  });
-                else
-                    res.status(200).json(row);
-            });
-        },
-
-        put: (req, res) => {
-            repository.put(req, res, (err, row) => {
-                if (err)
-                    res.status(500).json({ "message:": "Erro ao atualizar publicação", "exception": err  });
                 else
                     res.status(200).json(row);
             });

@@ -15,9 +15,11 @@ var QuickSidebar = function () {
     var handleQuickSidebarChat = function () {
         var wrapper = $('.page-quick-sidebar-wrapper');
         var wrapperChat = wrapper.find('.page-quick-sidebar-chat');
+        //var chatHub = $.connection.chat;
 
         var initChatSlimScroll = function () {
             var chatUsers = wrapper.find('.page-quick-sidebar-chat-users');
+            var chatUsersHeight = wrapper.height() - wrapper.find('.nav-justified > .nav-tabs').outerHeight();
             var chatUsersHeight;
 
             chatUsersHeight = wrapper.height() - wrapper.find('.nav-justified > .nav-tabs').outerHeight();
@@ -81,6 +83,12 @@ var QuickSidebar = function () {
             message = $(message);
             chatContainer.append(message);
 
+            //chatHub.publicarMensagem = function (apelido, msg) {
+            //    var chatWin = $("#chatWindow");
+            //    chatWin.html(chatWin.html() + "<b>" + apelido + "</b>: " + msg + "<br />");
+            //};
+
+            var getLastPostPos = function () {
             var getLastPostPos = function() {
                 var height = 0;
                 chatContainer.find(".post").each(function() {
@@ -95,20 +103,9 @@ var QuickSidebar = function () {
             });
 
             input.val("");
-
-            // simulate reply
-            setTimeout(function(){
-                var time = new Date();
-                var message = preparePost('in', (time.getHours() + ':' + time.getMinutes()), "Ella Wong", 'avatar2', 'Lorem ipsum doloriam nibh...');
-                message = $(message);
-                chatContainer.append(message);
-
-                chatContainer.slimScroll({
-                    scrollTo: getLastPostPos()
-                });
-            }, 3000);
         };
 
+        //$.connection.hub.start();
         wrapperChat.find('.page-quick-sidebar-chat-user-form .btn').click(handleChatMessagePost);
         wrapperChat.find('.page-quick-sidebar-chat-user-form .form-control').keypress(function (e) {
             if (e.which == 13) {

@@ -22,7 +22,11 @@ namespace Home.Models.Entity
         public Curso Curso { get; set; }
         public IEnumerable<Usuario> UsuariosBloqueados { get; set; }
 
+        public string ConnectionId { get; set; }
+
         public byte? Lembrar { get; set; }
         public IEnumerable<Curso> ComboCurso { get; set; }
+
+
     }
 }
