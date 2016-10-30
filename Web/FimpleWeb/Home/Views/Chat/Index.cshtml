@@ -2,6 +2,7 @@
 @{ Layout = null; }
 
 @Scripts.Render("~/assets/js/SignalR")
+<script src="/signalr/hubs" type="text/javascript"></script>
 
 <input type="hidden" id="nomeUsuario" value="@Model.Usuario.Nome" />
 <div class="page-quick-sidebar-wrapper">
@@ -86,9 +87,6 @@
         var initChatSlimScroll = (function slim() {
             var chatUsers = wrapper.find('.page-quick-sidebar-chat-users');
             var chatUsersHeight = wrapper.height() - wrapper.find('.nav-justified > .nav-tabs').outerHeight();
-            var chatUsersHeight;
-
-            chatUsersHeight = wrapper.height() - wrapper.find('.nav-justified > .nav-tabs').outerHeight();
 
             // chat user list
             Metronic.destroySlimScroll(chatUsers);
@@ -186,7 +184,7 @@
                         $("#nomeUsuario").val());
                 });
             wrapperChat.find('.page-quick-sidebar-chat-user-form .form-control')
-                .keypress(function (e) {
+                .keypress((e) => {
                     if (e.which == 13) {
                         chatHub.server.enviarMensagem(wrapperChat
                             .find('.page-quick-sidebar-chat-user-form .form-control')

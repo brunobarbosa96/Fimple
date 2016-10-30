@@ -18,7 +18,8 @@ namespace Home.Infra
             var actionsIgnored = new [] { "Index", "Entrar", "GetDados" };
             var actionName = filterContext.ActionDescriptor.ActionName;
             var controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-            if (UsuarioLogado == null && controllerName != "Login" && actionsIgnored.Any(x => x == actionName))
+            if (UsuarioLogado == null && controllerName != "Login" && actionsIgnored.Any(x => x == actionName) 
+                && (controllerName != "Usuario" && actionName != "GetDados"))
             {
                 filterContext.Result = new RedirectToRouteResult(
                     new RouteValueDictionary {

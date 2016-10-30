@@ -37,7 +37,7 @@ namespace Home
                 ));
 
             bundles.Add(new ScriptBundle("~/assets/js/SignalR").Include(
-                       "~/assets/js/jquery.signalR-{version}.min.js"));
+                       "~/assets/js/jquery.signalR-{version}.js"));
 
             bundles.Add(new StyleBundle("~/assets/css").Include(
                     "~/assets/css/blog.css",
@@ -54,9 +54,6 @@ namespace Home
 
             bundles.Add(new StyleBundle("~/assets/css/externos").Include(
                     "~/assets/css/bootstrap-fileinput.css",
-                    "~/assets/css/googleOpenSans.css",
-                    "~/assets/css/font-awesome.min.css",
-                    "~/assets/css/simple-line-icons.css",
                     "~/assets/css/bootstrap.min.css",
                     "~/assets/css/uniform.css",
                     "~/assets/css/bootstrap-switch.min.css"
