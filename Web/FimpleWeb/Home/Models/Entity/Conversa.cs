@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Home.Models.Entity
 {
@@ -9,5 +10,6 @@ namespace Home.Models.Entity
         public bool Ativo { get; set; }
         public Usuario Remetente { get; set; }
         public Usuario Destino { get; set; }
+        public IEnumerable<Mensagem> Mensagens { get; set; }
     }
 }

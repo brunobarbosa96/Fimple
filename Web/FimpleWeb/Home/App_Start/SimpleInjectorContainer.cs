@@ -1,4 +1,5 @@
-﻿using Home.Application.Curso;
+﻿using Home.Application.Chat;
+using Home.Application.Curso;
 using Home.Application.Login;
 using Home.Application.Usuario;
 using SimpleInjector;
@@ -19,6 +20,7 @@ namespace Home
             container.Register<ILoginApp, LoginApp>();
             container.Register<IUsuarioApp, UsuarioApp>();
             container.Register<ICursoApp, CursoApp>();
+            container.Register<IChatApp, ChatApp>();
 
             container.Verify();
             return container;

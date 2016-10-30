@@ -1,5 +1,9 @@
-﻿@{ Layout = null; }
+﻿@model Home.Models.Dto.ChatDto
+@{ Layout = null; }
 
+@Scripts.Render("~/assets/js/SignalR")
+
+<input type="hidden" id="nomeUsuario" value="@Model.Usuario.Nome" />
 <div class="page-quick-sidebar-wrapper">
     <div class="page-quick-sidebar">
         <div class="nav-justified">
@@ -72,18 +76,35 @@
 <script>
     
     $(function () {
-        var chatHub = $.connection.chat;
-        chatHub.publicarMensagem = function (apelido, msg) {
-            var chatWin = $("#chatWindow");
-            chatWin.html(chatWin.html() + "<b>" + apelido + "</b>: " + msg + "<br />");
-        };
-        $.connection.hub.start();
-        $(document).keypress(function (e) {
-            if (e.which == 13) {
-                chatHub.enviarMensagem($("#apelido").val(), $("#mensagem").val());
-                $("#mensagem").val("");
-            }
-        });
+        
+        // div que engloba chat
+        //var wrapperChat = wrapper.find('.page-quick-sidebar-chat');
+
+        //// Declarando um proxy de referencia ao Hub
+        //var chatHub = $.connection.chat;
+
+        //// Criando a função que será chamada pelo Hub para distribuir as mensagens aos clientes.
+        //// Por convenção as chamadas aos métodos são feitas em "camelCase"
+        //chatHub.client.transmitirMensagem = function (apelido, msg) {
+
+        //    // Area do chat
+        //    var chatContainer = wrapperChat.find(".page-quick-sidebar-chat-user-messages");
+
+        //    // Publicando a mensagem no chat
+        //    chatContainer.html(chatContainer.html() + "<b>" + apelido + "</b>: " + msg + "<br />");
+        //};
+
+        //chatHub.publicarMensagem = function (apelido, msg) {
+        //    var chatWin = $("#chatWindow");
+        //    chatWin.html(chatWin.html() + "<b>" + apelido + "</b>: " + msg + "<br />");
+        //};
+        //$.connection.hub.start();
+        //$(document).keypress(function (e) {
+        //    if (e.which == 13) {
+        //        chatHub.enviarMensagem($("#apelido").val(), $("#mensagem").val());
+        //        $("#mensagem").val("");
+        //    }
+        //});
     });
 
 </script>

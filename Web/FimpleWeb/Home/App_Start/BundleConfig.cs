@@ -6,12 +6,15 @@ namespace Home
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/assets/js/jQuery").Include(
+                    "~/assets/js/jquery.min.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/assets/js/externos").Include(
-                    "~/assets/js/jquery.min.js",
-                    "~/assets/js/jquery-migrate.min.js",
-                    "~/assets/js/jquery-ui.min.js",
                     "~/assets/js/bootstrap.min.js",
                     "~/assets/js/bootstrap-hover-dropdown.min.js",
+                    "~/assets/js/jquery-migrate.min.js",
+                    "~/assets/js/jquery-ui.min.js",
                     "~/assets/js/jquery.slimscroll.min.js",
                     "~/assets/js/jquery.blockUI.min.js",
                     "~/assets/js/jquery.cookie.min.js",
