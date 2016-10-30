@@ -7,7 +7,7 @@ var QuickSidebar = function () {
     var handleQuickSidebarToggler = function () {
         // quick sidebar toggler
         $('.top-menu .dropdown-quick-sidebar-toggler a, .page-quick-sidebar-toggler').click(function (e) {
-            $('body').toggleClass('page-quick-sidebar-open');
+            $('body').toggleClass('page-quick-sidebar-open'); 
         });
     };
 
@@ -20,6 +20,9 @@ var QuickSidebar = function () {
         var initChatSlimScroll = function () {
             var chatUsers = wrapper.find('.page-quick-sidebar-chat-users');
             var chatUsersHeight = wrapper.height() - wrapper.find('.nav-justified > .nav-tabs').outerHeight();
+            var chatUsersHeight;
+
+            chatUsersHeight = wrapper.height() - wrapper.find('.nav-justified > .nav-tabs').outerHeight();
 
             // chat user list 
             Metronic.destroySlimScroll(chatUsers);
@@ -57,13 +60,13 @@ var QuickSidebar = function () {
                 return;
             }
 
-            var preparePost = function (dir, time, name, avatar, message) {
+            var preparePost = function(dir, time, name, avatar, message) {
                 var tpl = '';
-                tpl += '<div class="post ' + dir + '">';
-                tpl += '<img class="avatar" alt="" src="' + Layout.getLayoutImgPath() + avatar + '.jpg"/>';
+                tpl += '<div class="post '+ dir +'">';
+                tpl += '<img class="avatar" alt="" src="' + Layout.getLayoutImgPath() + avatar +'.jpg"/>';
                 tpl += '<div class="message">';
                 tpl += '<span class="arrow"></span>';
-                tpl += '<a href="#" class="name">' + name + '</a>&nbsp;';
+                tpl += '<a href="#" class="name">Bob Nilson</a>&nbsp;';
                 tpl += '<span class="datetime">' + time + '</span>';
                 tpl += '<span class="body">';
                 tpl += message;
@@ -76,7 +79,7 @@ var QuickSidebar = function () {
 
             // handle post
             var time = new Date();
-            var message = preparePost('out', (time.getHours() + ':' + time.getMinutes()), "Bruno Barbosa", 'avatar3', text);
+            var message = preparePost('out', (time.getHours() + ':' + time.getMinutes()), "Bob Nilson", 'avatar3', text);
             message = $(message);
             chatContainer.append(message);
 
@@ -86,13 +89,14 @@ var QuickSidebar = function () {
             //};
 
             var getLastPostPos = function () {
+            var getLastPostPos = function() {
                 var height = 0;
-                chatContainer.find(".post").each(function () {
+                chatContainer.find(".post").each(function() {
                     height = height + $(this).outerHeight();
                 });
 
                 return height;
-            };
+            };           
 
             chatContainer.slimScroll({
                 scrollTo: getLastPostPos()
