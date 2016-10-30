@@ -7,7 +7,7 @@ var QuickSidebar = function () {
     var handleQuickSidebarToggler = function () {
         // quick sidebar toggler
         $('.top-menu .dropdown-quick-sidebar-toggler a, .page-quick-sidebar-toggler').click(function (e) {
-            $('body').toggleClass('page-quick-sidebar-open'); 
+            $('body').toggleClass('page-quick-sidebar-open');
         });
     };
 
@@ -18,9 +18,8 @@ var QuickSidebar = function () {
 
         var initChatSlimScroll = function () {
             var chatUsers = wrapper.find('.page-quick-sidebar-chat-users');
-            var chatUsersHeight;
-
-            chatUsersHeight = wrapper.height() - wrapper.find('.nav-justified > .nav-tabs').outerHeight();
+            var chatUsersHeight = wrapper.height() - wrapper.find('.nav-justified > .nav-tabs').outerHeight();
+            var chatHub = $.connection.chat;
 
             // chat user list 
             Metronic.destroySlimScroll(chatUsers);
@@ -58,13 +57,13 @@ var QuickSidebar = function () {
                 return;
             }
 
-            var preparePost = function(dir, time, name, avatar, message) {
+            var preparePost = function (dir, time, name, avatar, message) {
                 var tpl = '';
-                tpl += '<div class="post '+ dir +'">';
-                tpl += '<img class="avatar" alt="" src="' + Layout.getLayoutImgPath() + avatar +'.jpg"/>';
+                tpl += '<div class="post ' + dir + '">';
+                tpl += '<img class="avatar" alt="" src="' + Layout.getLayoutImgPath() + avatar + '.jpg"/>';
                 tpl += '<div class="message">';
                 tpl += '<span class="arrow"></span>';
-                tpl += '<a href="#" class="name">Bob Nilson</a>&nbsp;';
+                tpl += '<a href="#" class="name">' + name + '</a>&nbsp;';
                 tpl += '<span class="datetime">' + time + '</span>';
                 tpl += '<span class="body">';
                 tpl += message;
@@ -77,18 +76,23 @@ var QuickSidebar = function () {
 
             // handle post
             var time = new Date();
-            var message = preparePost('out', (time.getHours() + ':' + time.getMinutes()), "Bob Nilson", 'avatar3', text);
+            var message = preparePost('out', (time.getHours() + ':' + time.getMinutes()), "Bruno Barbosa", 'avatar3', text);
             message = $(message);
             chatContainer.append(message);
 
-            var getLastPostPos = function() {
+            chatHub.publicarMensagem = function (apelido, msg) {
+                var chatWin = $("#chatWindow");
+                chatWin.html(chatWin.html() + "<b>" + apelido + "</b>: " + msg + "<br />");
+            };
+
+            var getLastPostPos = function () {
                 var height = 0;
-                chatContainer.find(".post").each(function() {
+                chatContainer.find(".post").each(function () {
                     height = height + $(this).outerHeight();
                 });
 
                 return height;
-            };           
+            };
 
             chatContainer.slimScroll({
                 scrollTo: getLastPostPos()
@@ -97,18 +101,19 @@ var QuickSidebar = function () {
             input.val("");
 
             // simulate reply
-            setTimeout(function(){
-                var time = new Date();
-                var message = preparePost('in', (time.getHours() + ':' + time.getMinutes()), "Ella Wong", 'avatar2', 'Lorem ipsum doloriam nibh...');
-                message = $(message);
-                chatContainer.append(message);
+            //setTimeout(function () {
+            //    var time = new Date();
+            //    var message = preparePost('in', (time.getHours() + ':' + time.getMinutes()), "Ella Wong", 'avatar2', 'Lorem ipsum doloriam nibh...');
+            //    message = $(message);
+            //    chatContainer.append(message);
 
-                chatContainer.slimScroll({
-                    scrollTo: getLastPostPos()
-                });
-            }, 3000);
+            //    chatContainer.slimScroll({
+            //        scrollTo: getLastPostPos()
+            //    });
+            //}, 3000);
         };
 
+        $.connection.hub.start();
         wrapperChat.find('.page-quick-sidebar-chat-user-form .btn').click(handleChatMessagePost);
         wrapperChat.find('.page-quick-sidebar-chat-user-form .form-control').keypress(function (e) {
             if (e.which == 13) {

@@ -28,10 +28,12 @@
 
     @Styles.Render("~/assets/css")
     @Scripts.Render("~/assets/js")
+    @Scripts.Render("~/assets/js/SignalR")
+    <script src="/signalr/hubs" type="text/javascript"></script>
 
 </head>
 <body class="page-md page-header-fixed page-quick-sidebar-over-content page-container-bg-solid">
-    <div id="divErrorLayout"></div>
+    <div id="divErrorLayout">@Html.ValidationSummary()</div>
     <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
         <div class="page-header-inner">
             <div class="page-logo">

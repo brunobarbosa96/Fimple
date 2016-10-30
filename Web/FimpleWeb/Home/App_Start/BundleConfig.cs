@@ -16,6 +16,9 @@ namespace Home
                         "~/assets/js/jquery.validate.min.js",
                         "~/assets/js/jquery.validate.unobtrusive.min.js"));
 
+            bundles.Add(new ScriptBundle("~/assets/js/SignalR").Include(
+                       "~/assets/js/jquery.signalR-{version}.min.js"));
+
             bundles.Add(new StyleBundle("~/assets/css").Include(
                       "~/assets/css/components-md.css",
                       "~/assets/css/custom.css",
