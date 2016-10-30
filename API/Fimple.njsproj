@@ -6,12 +6,13 @@
     <ProjectGuid>{d220cc5a-869e-4eaf-a7d7-ff28ae1be6be}</ProjectGuid>
     <ProjectHome />
     <ProjectView>ProjectFiles</ProjectView>
-    <StartupFile />
+    <StartupFile>Fimple\app.js</StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <StartWebBrowser>False</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -28,11 +29,14 @@
     <Compile Include="Exemplo\models\models.js" />
     <Compile Include="Exemplo\Routes\Exemplo.js" />
     <Compile Include="Fimple\config\config.js" />
+    <Compile Include="Fimple\Curso\CursoController.js" />
+    <Compile Include="Fimple\Curso\CursoRepository.js" />
     <Compile Include="Fimple\Login\LoginController.js" />
     <Compile Include="Fimple\Login\LoginRepository.js" />
     <Compile Include="Fimple\models\models.js" />
     <Compile Include="Fimple\Publicacao\PublicacaoController.js" />
     <Compile Include="Fimple\Publicacao\PublicacaoRepository.js" />
+    <Compile Include="Fimple\Routes\Curso.js" />
     <Compile Include="Fimple\Routes\Login.js" />
     <Compile Include="Fimple\Routes\Publicacao.js" />
     <Compile Include="Fimple\Routes\Usuario.js" />
@@ -51,6 +55,7 @@
     <Folder Include="Fimple\config" />
     <Folder Include="Fimple\Login" />
     <Folder Include="Fimple\models" />
+    <Folder Include="Fimple\Curso\" />
     <Folder Include="Fimple\Publicacao" />
     <Folder Include="Fimple\Routes" />
     <Folder Include="Fimple\Usuario" />

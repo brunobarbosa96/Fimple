@@ -11,10 +11,6 @@ namespace Home.Controllers.TimeLine
         {
             try
             {
-                // Verificando se usuário possui sessão ativa
-                if (UsuarioLogado == null)
-                    return RedirectToAction("Index", "Login");
-
                 ViewBag.NomeUsuario = UsuarioLogado.Nome;
                 return View();
             }

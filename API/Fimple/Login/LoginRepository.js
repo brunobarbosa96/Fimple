@@ -6,11 +6,12 @@ module.exports = (app) => {
                 usuario.findOne({
                     Senha: req.body.Senha,
                     or: [
-                        { Email: req.body.Email },
-                        { Rgm: +req.body.Email ? +req.body.Email : "" }
+                        { Rgm: +req.body.Email || "" },
+                        { Email: req.body.Email }
                     ]
                 }).populate("Curso")
                     .exec((err, row) => {
+                        if(row) delete row.Curso.Categoria;
                         return callback(err, row);
                     });
             } catch (ex) {

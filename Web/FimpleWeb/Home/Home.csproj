@@ -137,6 +137,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Curso\ICursoApp.cs" />
+    <Compile Include="Application\Curso\CursoApp.cs" />
     <Compile Include="Application\Usuario\UsuarioApp.cs" />
     <Compile Include="Application\Usuario\IUsuarioApp.cs" />
     <Compile Include="Application\Login\ILoginApp.cs" />
@@ -223,7 +225,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Dto\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

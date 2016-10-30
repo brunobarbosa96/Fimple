@@ -36,11 +36,11 @@
         $.get(url.Usuario)
             .success(setData)
             .error(setErrorLogin);
-    }   
+    }
 
     function setData(data) {
-        Metronic.init(); // init metronic core components
-        Layout.init(); // init current layout
+        Metronic.init();
+        Layout.init();
 
         paceOptions = {
             elements: false,

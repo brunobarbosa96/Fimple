@@ -37,7 +37,14 @@
     <div class="form-group">
         <select class="form-control" name="Curso.Id">
             <option>Curso</option>
-            <option value="44">CIÊNCIA DA COMPUTAÇÃO</option>
+            @if (Model?.ComboCurso != null && Model.ComboCurso.Any())
+            {
+                foreach (var curso in Model.ComboCurso)
+                {
+                    <option value="@curso.Id">@curso.Nome</option>
+
+                }
+            }
         </select>
     </div>
     <div class="form-group">

@@ -1,6 +1,8 @@
-﻿using Home.Application.Login;
+﻿using Home.Application.Curso;
+using Home.Application.Login;
 using Home.Application.Usuario;
 using SimpleInjector;
+using ILoginApp = Home.Application.Login.ILoginApp;
 using IRequest = Home.Infra.Request.IRequest;
 using Request = Home.Infra.Request.Request;
 
@@ -16,6 +18,7 @@ namespace Home
 
             container.Register<ILoginApp, LoginApp>();
             container.Register<IUsuarioApp, UsuarioApp>();
+            container.Register<ICursoApp, CursoApp>();
 
             container.Verify();
             return container;

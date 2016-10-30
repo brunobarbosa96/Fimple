@@ -1,5 +1,6 @@
 ﻿using Home.Application.Login;
 using Home.Infra;
+using Home.Infra.Security;
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -24,7 +25,8 @@ namespace Home.Controllers.Login
                 // Verificando se existe cookie e caso existir logar automaticamente
                 if (Request.Cookies["fimpleUser"] != null)
                 {
-
+                    var userCookie = JsonConvert.DeserializeObject<Models.Entity.Usuario>(Security.Decrypt(Request.Cookies["fimpleUser"].Value));
+                    return RedirectToAction("Entrar", "Login", userCookie);
                 }
 
                 // Verificando se usuário possui sessão ativa
@@ -44,14 +46,10 @@ namespace Home.Controllers.Login
             return View("_Dados");
         }
 
-        public ActionResult Entrar(Models.Entity.Usuario usuario, bool? lembrar)
+        public ActionResult Entrar(Models.Entity.Usuario usuario)
         {
             try
             {
-                // Validando se parâmetro de usuário é valido
-                if (!ModelState.IsValid)
-                    return View("Index");
-
                 // Requisição para validar login
                 var response = _loginApp.Post(usuario);
                 if (!response.IsSuccessStatusCode)
@@ -63,19 +61,21 @@ namespace Home.Controllers.Login
 
                 // Verificando se foi encontrado algum usuário com este login
                 if (model.Id == default(int))
-                    return new HttpStatusCodeResult(HttpStatusCode.NoContent, "Usuario Não encontrato");
+                    return new HttpStatusCodeResult(HttpStatusCode.NoContent, "Usuario Não encontrado");
 
                 // Verificando se a opção de lembrar senha está habilitada
-                if (lembrar.HasValue && (bool)lembrar)
+                if (usuario.Lembrar.HasValue)
                 {
                     // Serializando dados do usuário
-                    var json = JsonConvert.SerializeObject(usuario);
+                    var jsonEncrypt = Security.Encrypt(JsonConvert.SerializeObject(usuario));
 
                     // Criando cookie para lembrar a senha do usuário
-                    var userCookie = new HttpCookie("fimpleUser", json);
+                    var userCookie = new HttpCookie("fimpleUser", jsonEncrypt);
                     userCookie.Expires.AddDays(365);
                     HttpContext.Response.Cookies.Add(userCookie);
                 }
+                else
+                    RemoveCookie();
 
                 // Gravando Sessão para este usuário
                 UsuarioLogado = model;
@@ -96,15 +96,7 @@ namespace Home.Controllers.Login
                 UsuarioLogado = null;
 
                 // Removendo cooke caso existir
-                if (Request.Cookies["fimpleUser"] != null)
-                {
-                    var userCookie = new HttpCookie("fimpleUser")
-                    {
-                        Expires = DateTime.Now.AddDays(-1),
-                        Value = null
-                    };
-                    Response.Cookies.Add(userCookie);
-                }
+                RemoveCookie();
 
                 return RedirectToAction("Index", "Login");
             }
@@ -112,6 +104,17 @@ namespace Home.Controllers.Login
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
             }
+        }
+
+        private void RemoveCookie()
+        {
+            if (Request.Cookies["fimpleUser"] == null) return;
+            var userCookie = new HttpCookie("fimpleUser")
+            {
+                Expires = DateTime.Now.AddDays(-1),
+                Value = null
+            };
+            Response.Cookies.Add(userCookie);
         }
     }
 }
