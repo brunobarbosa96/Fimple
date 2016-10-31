@@ -1,6 +1,7 @@
 ﻿var diskAdapter = require('sails-disk'),
     postgresAdapter = require('sails-postgresql'),
-    msSqlAdapter = require('sails-sqlserver');
+    msSqlAdapter = require('sails-sqlserver'),
+    mySqlAdapter = require('sails-mysql');
 
 module.exports = () => {
 
@@ -12,7 +13,8 @@ module.exports = () => {
             'default': diskAdapter,
             disk: diskAdapter,
             postgres: postgresAdapter,
-            msSql: msSqlAdapter
+            msSql: msSqlAdapter,
+            mySql: mySqlAdapter
         },
 
         // Build Connections Config
@@ -22,17 +24,8 @@ module.exports = () => {
                 adapter: 'disk'
             },
 
-            myLocalSql: {
-                adapter: 'postgres',
-                database: 'Fimple',
-                host: 'localhost',
-                user: 'Admin',
-                password: 'Fimple@2016',
-                port: 5432,
-                ssl: false
-            }
-            // myLocalSql: {
-            //    adapter: 'msSql',
+            //myLocalSql: {
+            //    adapter: 'postgres',
             //    database: 'Fimple',
             //    host: 'localhost',
             //    user: 'Admin',
@@ -40,6 +33,16 @@ module.exports = () => {
             //    port: 5432,
             //    ssl: false
             //}
+            myLocalSql: {
+                adapter: 'mySql',
+                database: 'fimple',
+                host: '191.6.198.21',
+                user: 'fimple',
+                password: 'mudar123fimpleman',
+                port: 3306,
+                ssl: false,
+                charset: 'utf8'
+            }
         },
 
         defaults: {
