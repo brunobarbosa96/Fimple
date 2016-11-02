@@ -24,7 +24,7 @@ module.exports = () => {
                 adapter: 'disk'
             },
 
-            //myLocalSql: {
+            // myLocalSql: {
             //    adapter: 'postgres',
             //    database: 'Fimple',
             //    host: 'localhost',
@@ -32,16 +32,16 @@ module.exports = () => {
             //    password: 'Fimple@2016',
             //    port: 5432,
             //    ssl: false
-            //}
+            // }
             myLocalSql: {
                 adapter: 'mySql',
                 database: 'fimple',
                 host: '191.6.198.21',
                 user: 'fimple',
                 password: 'mudar123fimpleman',
-                port: 3306,
-                ssl: false,
-                charset: 'utf8'
+                port: 3306//,
+                // ssl: false,
+                // charset: 'utf8'
             }
         },
 
