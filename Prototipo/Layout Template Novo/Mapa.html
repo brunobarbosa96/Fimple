@@ -63,7 +63,9 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li class="external">
-                                <h3><span class="bold">7 </span> notificações</h3>
+                                <h3>
+                                    <span class="bold">7 </span> notificações
+                                </h3>
                             </li>
                             <li>
                                 <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
@@ -256,120 +258,125 @@
                 <!-- END PAGE HEADER-->
                 <!-- BEGIN PAGE CONTENT-->
                 <div class="row margin-top-20">
-                    <input type="text" onkeyup="filter($(this).val())"/>
-                    <div class="col-md-12" id="Container">
-                        <div class="col-md-6 panel-body bloco mix" data-nome="ADMINISTRAÇÃO">
-                            <div class="col-md-6 text-center" style="padding: 10px 0">
-                                <label class="control-label">ADMINISTRAÇÃO</label>
-                            </div>
-                            <div class="col-md-6 text-center prata">
-                                <label class="control-label">PRATA</label>
-                            </div>
+                    <div>
+                        <div class="input-icon col-md-12">
+                            <i class="icon-magnifier"></i>
+                            <input type="text" class="form-control " placeholder="buscar..." onkeydown="filter($(this).val())" />
                         </div>
-                        <div class="col-md-6 panel-body bloco mix" data-nome="ENGENHARIA MECATRÔNICA">
-                            <div class="col-md-6 text-center" style="padding: 10px 0">
-                                <label class="control-label">ENGENHARIA MECATRÔNICA</label>
+                        <div class="col-md-12" id="Container">
+                            <div class="col-md-6 panel-body bloco mix" data-nome="ADMINISTRAÇÃO">
+                                <div class="col-md-6 text-center" style="padding: 10px 0">
+                                    <label class="control-label">ADMINISTRAÇÃO</label>
+                                </div>
+                                <div class="col-md-6 text-center prata">
+                                    <label class="control-label">PRATA</label>
+                                </div>
                             </div>
-                            <div class="col-md-6 text-center vermelho">
-                                <label class="control-label">VERMELHO</label>
+                            <div class="col-md-6 panel-body bloco mix" data-nome="ENGENHARIA MECATRÔNICA">
+                                <div class="col-md-6 text-center" style="padding: 10px 0">
+                                    <label class="control-label">ENGENHARIA MECATRÔNICA</label>
+                                </div>
+                                <div class="col-md-6 text-center vermelho">
+                                    <label class="control-label">VERMELHO</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 panel-body bloco mix" data-nome="ARQUITETURA">
-                            <div class="col-md-6 text-center" style="padding: 10px 0">
-                                <label class="control-label">ARQUITETURA</label>
+                            <div class="col-md-6 panel-body bloco mix" data-nome="ARQUITETURA">
+                                <div class="col-md-6 text-center" style="padding: 10px 0">
+                                    <label class="control-label">ARQUITETURA</label>
+                                </div>
+                                <div class="col-md-6 text-center verde">
+                                    <label class="control-label">VERDE</label>
+                                </div>
                             </div>
-                            <div class="col-md-6 text-center verde">
-                                <label class="control-label">VERDE</label>
+                            <div class="col-md-6 panel-body bloco mix" data-nome="ENGENHARIA QUÍMICA">
+                                <div class="col-md-6 text-center" style="padding: 10px 0">
+                                    <label class="control-label">ENGENHARIA QUÍMICA</label>
+                                </div>
+                                <div class="col-md-6 text-center ouro">
+                                    <label class="control-label">OURO</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 panel-body bloco mix" data-nome="ENGENHARIA QUÍMICA">
-                            <div class="col-md-6 text-center" style="padding: 10px 0">
-                                <label class="control-label">ENGENHARIA QUÍMICA</label>
+                            <div class="col-md-6 panel-body bloco mix" data-nome="BIOMEDICINA">
+                                <div class="col-md-6 text-center" style="padding: 10px 0">
+                                    <label class="control-label">BIOMEDICINA</label>
+                                </div>
+                                <div class="col-md-6 text-center bordo">
+                                    <label class="control-label">BORDÔ</label>
+                                </div>
                             </div>
-                            <div class="col-md-6 text-center ouro">
-                                <label class="control-label">OURO</label>
+                            <div class="col-md-6 panel-body bloco mix" data-nome="FARMÁCIA">
+                                <div class="col-md-6 text-center" style="padding: 10px 0">
+                                    <label class="control-label">FARMÁCIA</label>
+                                </div>
+                                <div class="col-md-6 text-center bordo" data-nome="">
+                                    <label class="control-label">BORDÔ</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 panel-body bloco mix" data-nome="BIOMEDICINA">
-                            <div class="col-md-6 text-center" style="padding: 10px 0">
-                                <label class="control-label">BIOMEDICINA</label>
+                            <div class="col-md-6 panel-body bloco mix" data-nome="CIÊNCIA DA COMPUTAÇÃO">
+                                <div class="col-md-6 text-center" style="padding: 10px 0">
+                                    <label class="control-label">CIÊNCIA DA COMPUTAÇÃO</label>
+                                </div>
+                                <div class="col-md-6 text-center amarelo">
+                                    <label class="control-label">AMARELO</label>
+                                </div>
                             </div>
-                            <div class="col-md-6 text-center bordo">
-                                <label class="control-label">BORDÔ</label>
+                            <div class="col-md-6 panel-body bloco mix" data-nome="FISIOTERAPIA">
+                                <div class="col-md-6 text-center" style="padding: 10px 0">
+                                    <label class="control-label">FISIOTERAPIA</label>
+                                </div>
+                                <div class="col-md-6 text-center bordo">
+                                    <label class="control-label">BORDÔ</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 panel-body bloco mix" data-nome="FARMÁCIA">
-                            <div class="col-md-6 text-center" style="padding: 10px 0">
-                                <label class="control-label">FARMÁCIA</label>
-                            </div>
-                            <div class="col-md-6 text-center bordo" data-nome="">
-                                <label class="control-label">BORDÔ</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 panel-body bloco mix" data-nome="CIÊNCIA DA COMPUTAÇÃO">
-                            <div class="col-md-6 text-center" style="padding: 10px 0">
-                                <label class="control-label">CIÊNCIA DA COMPUTAÇÃO</label>
-                            </div>
-                            <div class="col-md-6 text-center amarelo">
-                                <label class="control-label">AMARELO</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 panel-body bloco mix" data-nome="FISIOTERAPIA">
-                            <div class="col-md-6 text-center" style="padding: 10px 0">
-                                <label class="control-label">FISIOTERAPIA</label>
-                            </div>
-                            <div class="col-md-6 text-center bordo">
-                                <label class="control-label">BORDÔ</label>
-                            </div>
-                        </div>
 
-                        <div class="col-md-6 panel-body bloco mix" data-nome="DESIGN EM MODA">
-                            <div class="col-md-6 text-center" style="padding: 10px 0">
-                                <label class="control-label">DESIGN EM MODA</label>
+                            <div class="col-md-6 panel-body bloco mix" data-nome="DESIGN EM MODA">
+                                <div class="col-md-6 text-center" style="padding: 10px 0">
+                                    <label class="control-label">DESIGN EM MODA</label>
+                                </div>
+                                <div class="col-md-6 text-center verde">
+                                    <label class="control-label">VERDE</label>
+                                </div>
                             </div>
-                            <div class="col-md-6 text-center verde">
-                                <label class="control-label">VERDE</label>
+                            <div class="col-md-6 panel-body bloco mix" data-nome="MEDICINA">
+                                <div class="col-md-6 text-center" style="padding: 10px 0">
+                                    <label class="control-label">MEDICINA</label>
+                                </div>
+                                <div class="col-md-6 text-center ouro">
+                                    <label class="control-label">OURO</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 panel-body bloco mix" data-nome="MEDICINA">
-                            <div class="col-md-6 text-center" style="padding: 10px 0">
-                                <label class="control-label">MEDICINA</label>
-                            </div>
-                            <div class="col-md-6 text-center ouro">
-                                <label class="control-label">OURO</label>
-                            </div>
-                        </div>
 
-                        <div class="col-md-6 panel-body bloco mix" data-nome="DIREITO">
-                            <div class="col-md-6 text-center" style="padding: 10px 0">
-                                <label class="control-label">DIREITO</label>
+                            <div class="col-md-6 panel-body bloco mix" data-nome="DIREITO">
+                                <div class="col-md-6 text-center" style="padding: 10px 0">
+                                    <label class="control-label">DIREITO</label>
+                                </div>
+                                <div class="col-md-6 text-center azul">
+                                    <label class="control-label">AZUL</label>
+                                </div>
                             </div>
-                            <div class="col-md-6 text-center azul">
-                                <label class="control-label">AZUL</label>
+                            <div class="col-md-6 panel-body bloco mix" data-nome="EDUCAÇÃO FÍSICA">
+                                <div class="col-md-6 text-center" style="padding: 10px 0">
+                                    <label class="control-label">EDUCAÇÃO FÍSICA</label>
+                                </div>
+                                <div class="col-md-6 text-center esportivo">
+                                    <label class="control-label">CENTRO ESPORTIVO</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 panel-body bloco mix" data-nome="EDUCAÇÃO FÍSICA">
-                            <div class="col-md-6 text-center" style="padding: 10px 0">
-                                <label class="control-label">EDUCAÇÃO FÍSICA</label>
+                            <div class="col-md-6 panel-body bloco mix" data-nome="ENGENHARIA DE PRODUÇÃO">
+                                <div class="col-md-6 text-center" style="padding: 10px 0">
+                                    <label class="control-label">ENGENHARIA DE PRODUÇÃO</label>
+                                </div>
+                                <div class="col-md-6 text-center lilas">
+                                    <label class="control-label">LILÁS</label>
+                                </div>
                             </div>
-                            <div class="col-md-6 text-center esportivo">
-                                <label class="control-label">CENTRO ESPORTIVO</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 panel-body bloco mix" data-nome="ENGENHARIA DE PRODUÇÃO">
-                            <div class="col-md-6 text-center" style="padding: 10px 0">
-                                <label class="control-label">ENGENHARIA DE PRODUÇÃO</label>
-                            </div>
-                            <div class="col-md-6 text-center lilas">
-                                <label class="control-label">LILÁS</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 panel-body bloco mix" data-nome="SISTEMAS DE INFORMAÇÃO">
-                            <div class="col-md-6 text-center" style="padding: 10px 0">
-                                <label class="control-label">SISTEMAS DE INFORMAÇÃO</label>
-                            </div>
-                            <div class="col-md-6 text-center amarelo">
-                                <label class="control-label">AMARELO</label>
+                            <div class="col-md-6 panel-body bloco mix" data-nome="SISTEMAS DE INFORMAÇÃO">
+                                <div class="col-md-6 text-center" style="padding: 10px 0">
+                                    <label class="control-label">SISTEMAS DE INFORMAÇÃO</label>
+                                </div>
+                                <div class="col-md-6 text-center amarelo">
+                                    <label class="control-label">AMARELO</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -579,6 +586,7 @@
     <script src="javascript/layout.js" type="text/javascript"></script>
     <script src="javascript/quick-sidebar.js" type="text/javascript"></script>
     <script>
+        var mixCompleto = true;
         $(document).ready(function () {
             $('#Container').mixItUp({
                 animation: {
@@ -594,6 +602,10 @@
                 },
                 load: {
                     sort: '.mix[data-nome]'
+                },
+                callbacks: {
+                    onMixStart: mixCompleto = false,
+                    onMixEnd: mixCompleto = true
                 }
             });
 
@@ -606,7 +618,7 @@
         function filter(nome) {
             if (!nome || !nome.length)
                 $('#Container').mixItUp('filter', 'all');
-            else
+            else 
                 $('#Container').mixItUp('filter', '.mix[data-nome*=' + nome.toUpperCase() + ']');
         }
     </script>
