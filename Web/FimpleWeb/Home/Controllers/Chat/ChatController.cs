@@ -32,7 +32,7 @@ namespace Home.Controllers.Chat
                 // Instanciando Chat e deserializando resposta
                 var chat = new ChatDto
                 {
-                    Usuario = new Models.Entity.Usuario { Id = UsuarioLogado.Id, Nome = UsuarioLogado.Nome },
+                    Usuario = UsuarioLogado,
                     Conversas = JsonConvert.DeserializeObject<IEnumerable<Conversa>>(response.Content.ReadAsStringAsync().Result)
                 };
 

@@ -3,9 +3,9 @@ using System;
 using System.Net;
 using System.Web.Mvc;
 
-namespace Home.Controllers.TimeLine
+namespace Home.Controllers.Timeline
 {
-    public class TimeLineController : BaseController
+    public class TimelineController : BaseController
     {
         public ActionResult Index()
         {

@@ -9,8 +9,8 @@ namespace Home.Infra
     {
         public Usuario UsuarioLogado
         {
-            get { return (Usuario)Session["UsuarioLoago"]; }
-            set { Session["UsuarioLoago"] = value; }
+            get { return (Usuario)Session["UsuarioLogado"]; }
+            set { Session["UsuarioLogado"] = value; }
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)

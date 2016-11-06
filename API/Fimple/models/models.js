@@ -122,17 +122,13 @@ module.exports = () => {
                 collection: 'evento',
                 via: 'Usuario'
             },
-            ConversasRemetente: {
-                collection: 'conversa',
-                via: 'Remetente'
-            },
-            ConversasDestino: {
-                collection: 'conversa',
-                via: 'Destino'
-            },
-            Mensagens: {
+            MensagensEnvio: {
                 collection: 'mensagem',
                 via: 'UsuarioEnvio'
+            },
+            MensagensDestino: {
+                collection: 'mensagem',
+                via: 'UsuarioDestino'
             }
 }
     }));
@@ -254,41 +250,19 @@ module.exports = () => {
     }));
 
     orm.loadCollection(Waterline.Collection.extend({
-        identity: 'conversa',
-        connection: 'myLocalSql',
-        attributes: {
-            Id: { type: 'integer', primaryKey: true, autoIncrement: true },
-            Data: { type: 'date', required: true },
-            Visualizada: { type: 'boolean', required: true },
-            Remetente: {
-                model: 'usuario'
-            },
-            Destino: {
-                model: 'usuario'
-            },
-            Mensagem: {
-                collection: 'mensagem',
-                via: 'Conversa'
-            }
-        }
-    }));
-
-    orm.loadCollection(Waterline.Collection.extend({
         identity: 'mensagem',
         connection: 'myLocalSql',
         attributes: {
             Id: { type: 'integer', primaryKey: true, autoIncrement: true },
             Conteudo: { type: 'string', required: true },
             DataEnvio: { type: 'date', required: true },
-            DataRecebimento: { type: 'date', required: true },
+            DataRecebimento: { type: 'date'},
+            DataVisualizacao: { type: 'date'},
 
-            IdConversa: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'conversa', on: 'Id' },
-            IdUsuarioEnvio: { type: 'integer', required: true, unique: true, foreignKey: true, references: 'usuario', on: 'Id' },
-
-            Conversa: {
-                model: 'conversa'
-            },
             UsuarioEnvio: {
+                model: 'usuario'
+            },
+            UsuarioDestino: {
                 model: 'usuario'
             }
         }

@@ -1,13 +1,13 @@
 module.exports = (app) => {
 
-    var repository = require('./ConversaRepository')(app);
+    var repository = require('./ChatRepository')(app);
     var controller = {
 
         get: (req, res) => {
 
             repository.get(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message": "Erro ao buscar publicações", "exception": err });
+                    res.status(500).json({ "message": "Erro ao buscar mensagens", "exception": err });
                 if (!row)
                     res.status(204).json({ "message": "Nenhum registro encontrado" });
                 else
@@ -18,7 +18,7 @@ module.exports = (app) => {
         post: (req, res) => {
             repository.post(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao inserir publicação", "exception": err  });
+                    res.status(500).json({ "message:": "Erro ao inserir mensagem", "exception": err  });
                 else
                     res.status(200).json(row);
             });
@@ -27,7 +27,7 @@ module.exports = (app) => {
         delete: (req, res) => {
             repository.delete(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao excluir publicação", "exception": err  });
+                    res.status(500).json({ "message:": "Erro ao excluir mensagem", "exception": err  });
                 else
                     res.status(200).json(row);
             });

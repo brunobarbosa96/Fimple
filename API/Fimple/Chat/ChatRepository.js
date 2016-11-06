@@ -1,21 +1,22 @@
 module.exports = (app) => {
 
-    var conversa = app.models.conversa;
+    var mensagem = app.models.mensagem;
     var repository = {
 
         get: (req, res, callback) => {
-            conversa.find({
+            mensagem.find({
                 or: [
-                    { Remetente: req.params.Id },
-                    { Destino: req.params.Id }
+                    { UsuarioEnvio: req.params.Id },
+                    { UsuarioDestino: req.params.Id }
                 ]
             }/*, { select: ['Id', 'Data', 'Visualizada' ] }*/).exec((err, row) => {
+                console.log(row);
                 return callback(err, row);
             });
         },
 
         post: (req, res, callback) => {
-            conversa.create({
+            mensagem.create({
                 Data: req.body.Data,
                 Visualizada: false,
                 Remetente: req.body.Remetente.Id,
@@ -29,7 +30,7 @@ module.exports = (app) => {
         },
 
         delete: (req, res, callback) => {
-            conversa.update({ Id: req.params.Id }, {
+            mensagem.update({ Id: req.params.Id }, {
                 Ativa: 0
             }).exec((err, row) => {
                 return callback(err, row);

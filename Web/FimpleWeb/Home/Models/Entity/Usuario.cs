@@ -6,6 +6,11 @@ namespace Home.Models.Entity
 {
     public class Usuario
     {
+        public Usuario()
+        {
+            ConnectionIds = new List<string>();
+        }
+
         public int Id { get; set; }
         [Required]
         public string Senha { get; set; }
@@ -22,7 +27,7 @@ namespace Home.Models.Entity
         public Curso Curso { get; set; }
         public IEnumerable<Usuario> UsuariosBloqueados { get; set; }
 
-        public string ConnectionId { get; set; }
+        public List<string> ConnectionIds { get; set; }
 
         public byte? Lembrar { get; set; }
         public IEnumerable<Curso> ComboCurso { get; set; }

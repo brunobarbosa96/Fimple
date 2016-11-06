@@ -15,7 +15,7 @@ namespace Home.Application.Chat
 
         public HttpResponseMessage Get(int idUsuario)
         {
-            return _request.Get($"{UriWebApi.Chat}conversa/", idUsuario.ToString());
+            return _request.Get($"{UriWebApi.Chat}", idUsuario.ToString());
         }
     }
 }
