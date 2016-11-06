@@ -43,7 +43,7 @@ INSERT INTO curso (Categoria, Nome) VALUES (7, N'MEDICINA VETERINÁRIA');
 INSERT INTO curso (Categoria, Nome) VALUES (2, N'NUTRIÇÃO');
 INSERT INTO curso (Categoria, Nome) VALUES (7, N'ODONTOLOGIA');
 INSERT INTO curso (Categoria, Nome) VALUES (7, N'PSICOLOGIA');
-INSERT INTO curso (Categoria, Nome) VALUES (7, N'RADIOLOGIA');;
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'RADIOLOGIA');
 INSERT INTO curso (Categoria, Nome) VALUES (9, N'ANÁLISE E DESENVOLVIMENTO DE SISTEMAS');
 INSERT INTO curso (Categoria, Nome) VALUES (9, N'CIÊNCIA DA COMPUTAÇÃO');
 INSERT INTO curso (Categoria, Nome) VALUES (9, N'CST EM AUTOMAÇÃO INDUSTRIAL');
