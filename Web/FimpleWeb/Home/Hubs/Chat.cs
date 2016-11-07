@@ -1,12 +1,21 @@
-﻿using Home.Models.Entity;
+﻿using Home.Application.Chat;
+using Home.Models.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Home.Hubs
 {
     public class Chat : Microsoft.AspNet.SignalR.Hub
     {
+        private readonly IChatApp _chatApp;
+
+        public Chat()
+        {
+            _chatApp = DependencyResolver.Current.GetService<IChatApp>();
+        }
+
         public static List<Usuario> Usuarios = new List<Usuario>();
 
         public void Conectar(Usuario usuario)
@@ -63,7 +72,8 @@ namespace Home.Hubs
             // Transmitindo mensagem para todos os usuários da conversa
             Clients.Clients(connectionIds).TransmitirMensagem(usuarioEnvio, mensagem);
 
-            //TODO  Salvar no banco
+            // Salvando mensagem na base de dados
+            _chatApp.Post(new Mensagem(mensagem, usuarioEnvio, idUsuarioDestino));
         }
     }
 }   
