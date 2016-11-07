@@ -22,7 +22,7 @@ module.exports = () => {
             Publicacoes: {
                 collection: 'publicacao',
                 via: 'Entidade'
-            },
+            }
         }
     }));
 
@@ -33,7 +33,8 @@ module.exports = () => {
             Id: { type: 'integer', primaryKey: true, autoIncrement: true },
             Nome: { type: 'string', required: true },
             Entidade: {
-                model: 'entidade'
+                model: 'entidade',
+                foreignKey: true
             },
             Cursos: {
                 collection: 'curso',
@@ -57,7 +58,8 @@ module.exports = () => {
             Id: { type: 'integer', primaryKey: true, autoIncrement: true },
             Nome: { type: 'string', required: true },
             Categoria: {
-                model: 'categoria'
+                model: 'categoria',
+                foreignKey: true
             },
             Usuarios: {
                 collection: 'usuario',
@@ -94,10 +96,12 @@ module.exports = () => {
             Cep: { type: 'integer' },
             DataUltimoAcesso: { type: 'date' },
             Curso: {
-                model: 'curso'
+                model: 'curso',
+                foreignKey: true
             },
             Evento: {
-                model: 'evento'
+                model: 'evento',
+                foreignKey: true
             },
             UsuariosBloqueados: {
                 collection: 'usuario',
@@ -116,7 +120,8 @@ module.exports = () => {
                 via: 'Usuario'
             },
             EventoParticipacao: {
-                model: 'evento'
+                model: 'evento',
+                foreignKey: true
             },
             Eventos: {
                 collection: 'evento',
@@ -140,13 +145,16 @@ module.exports = () => {
             Id: { type: 'integer', primaryKey: true, autoIncrement: true },
             DataVisualizacao: { type: 'date', required: true },
             Usuario: {
-                model: 'usuario'
+                model: 'usuario',
+                foreignKey: true
             },
             Evento: {
-                model: 'evento'
+                model: 'evento',
+                foreignKey: true
             },
             Publicacao: {
-                model: 'publicacao'
+                model: 'publicacao',
+                foreignKey: true
             },
             ComentariosEvento: {
                 collection: 'comentario',
@@ -157,13 +165,16 @@ module.exports = () => {
                 via: 'NotificacaoPublicacao'
             },
             Curso: {
-                model: 'curso'
+                model: 'curso',
+                foreignKey: true
             },
             Entidade: {
-                model: 'entidade'
+                model: 'entidade',
+                foreignKey: true
             },
             Categoria: {
-                model: 'categoria'
+                model: 'categoria',
+                foreignKey: true
             }
         }
     }));
@@ -178,16 +189,20 @@ module.exports = () => {
             Ativa: { type: 'boolean', required: true },
             Data: { type: 'date', required: true },
             Usuario: {
-                model: 'usuario'
+                model: 'usuario',
+                foreignKey: true
             },
             Entidade: {
-              model: 'entidade'  
+                model: 'entidade',
+                foreignKey: true
             },
             Categoria: {
-              model: 'categoria'  
+                model: 'categoria',
+                foreignKey: true
             },
             Curso: {
-                model: 'curso'
+                model: 'curso',
+                foreignKey: true
             },
             Notificacoes: {
                 collection: 'notificacao',
@@ -206,16 +221,20 @@ module.exports = () => {
             Data: { type: 'date', required: true },
             Ativo: { type: 'boolean', required: true },
             Usuario: {
-                model: 'usuario'
+                model: 'usuario',
+                foreignKey: true
             },
             NotificacaoEvento: {
-                model: 'notificacao'
+                model: 'notificacao',
+                foreignKey: true
             },
             NotificacaoPublicacao: {
-                model: 'notificacao'
+                model: 'notificacao',
+                foreignKey: true
             },
             Evento: {
-                model: 'evento'
+                model: 'evento',
+                foreignKey: true
             }
         }
     }));
@@ -229,10 +248,12 @@ module.exports = () => {
             Local: { type: 'string', required: true },
             Data: { type: 'date', required: true },
             Usuario: {
-              model: 'usuario'  
+                model: 'usuario',
+                foreignKey: true
             },
             Curso: {
-                model: 'curso'
+                model: 'curso',
+                foreignKey: true
             },
             Participantes: {
                 collection: 'usuario',
@@ -255,7 +276,6 @@ module.exports = () => {
         attributes: {
             Id: { type: 'integer', primaryKey: true, autoIncrement: true },
             Conteudo: { type: 'string', required: true },
-            DataEnvio: { type: 'date', required: true },
             DataRecebimento: { type: 'date'},
             DataVisualizacao: { type: 'date'},
 

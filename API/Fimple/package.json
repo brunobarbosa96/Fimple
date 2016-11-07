@@ -15,6 +15,7 @@
   "homepage": "https://bitbucket.org/brunobarbosa96/sru#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "devbox-linq": "^3.0.3",
     "express": "^4.14.0",
     "express-load": "^1.1.15",
     "lodash": "^4.16.4",

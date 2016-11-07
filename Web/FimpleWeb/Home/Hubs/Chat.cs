@@ -19,7 +19,8 @@ namespace Home.Hubs
             else if (user.ConnectionIds.All(x => x != Context.ConnectionId))
                 user.ConnectionIds.Add(Context.ConnectionId);
 
-            Clients.All.AtualizaNovoUsuarioOnline(usuario);
+            if (Usuarios.FirstOrDefault(x => x.Id == usuario.Id)?.ConnectionIds.Count() == 1)
+                Clients.All.AtualizaNovoUsuarioOnline(usuario);
             Clients.Caller.MontaListaLogados(Usuarios);
         }
 
@@ -40,15 +41,9 @@ namespace Home.Hubs
         public void EnviarMensagem(string mensagem, string usuario)
         {
             if (usuario != "0")
-                Clients.Clients(new[] { usuario, Context.ConnectionId }).TransmitirMensagem(RetornaNomeUsuario(), mensagem);
+                Clients.Clients(new[] { usuario, Context.ConnectionId }).TransmitirMensagem(usuario, mensagem);
             else
                 Clients.All.TransmitirMensagem(Context.ConnectionId, mensagem);
-        }
-
-        public string RetornaNomeUsuario()
-        {
-            return "";
-            //return Usuarios.First(x => x.ConnectionId == Context.ConnectionId).Nome;
         }
     }
 }   

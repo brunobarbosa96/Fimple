@@ -14,16 +14,16 @@
                 <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
                     <div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
                         <ul class="media-list list-items">
-                            <li class="media" data-user-id="2" onclick="openChat(this)">
-                                <div class="media-status">
-                                    <span class="badge badge-success">2</span>
-                                </div>
-                                <img class="media-object" src="~/assets/img/placeholder.jpg" alt="...">
-                                <div class="media-body">
-                                    <h4 class="media-heading">Teste</h4>
-                                    <div class="media-heading-sub">Ciencia da computacao</div>
-                                </div>
-                            </li>
+                            @*<li class="media" data-user-id="2" onclick="openChat(this)">
+                                    <div class="media-status">
+                                        <span class="badge badge-success">2</span>
+                                    </div>
+                                    <img class="media-object" src="~/assets/img/placeholder.jpg" alt="...">
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Teste</h4>
+                                        <div class="media-heading-sub">Ciencia da computacao</div>
+                                    </div>
+                                </li>*@
                         </ul>
                     </div>
                     <div class="page-quick-sidebar-item">
@@ -112,6 +112,15 @@
 <script src="/signalr/hubs" type="text/javascript"></script>
 
 <script>
+
+    var usuarioLogado = {
+        Id: '@Model.Usuario.Id',
+        Nome: '@Model.Usuario.Nome',
+        Curso: {
+            Id: '@Model.Usuario.Curso.Id',
+            Nome: '@Model.Usuario.Curso.Nome'
+        }
+    }
 
     var wrapper = $('.page-quick-sidebar-wrapper');
     var wrapperChat = wrapper.find('.page-quick-sidebar-chat');
@@ -221,29 +230,25 @@
     };
 
     chatHub.client.atualizaNovoUsuarioOnline = function (usuario) {
-        $(".page-quick-sidebar-chat-users > ul.media-list.list-items").append(montaChatUsuario(usuario));
-    }
-
-    chatHub.client.removerUsuarioChat = function (usuario) {
-        $("[data-connection-id=" + usuario.ConnectionId + "]").remove();
+        if (usuario.Id != usuarioLogado.Id)
+            $(".page-quick-sidebar-chat-users > ul.media-list.list-items").append(montaChatUsuario(usuario));
     }
 
     chatHub.client.montaListaLogados = function (usuarios) {
-        for (var usuario in usuarios)
-            $(".page-quick-sidebar-chat-users > ul.media-list list-items").append(montaChatUsuario(usuario));
+        usuarios.forEach((usuario) => {
+            chatHub.client.atualizaNovoUsuarioOnline(usuario);
+        });
+    }
+
+    chatHub.client.removerUsuarioChat = function (usuario) {
+        console.log(usuario);
+        $("[data-user-id=" + usuario.Id + "]").remove();
     }
 
     // Iniciando a conexão com o Hub
     $.connection.hub.start(() => {
 
-        chatHub.server.conectar({
-            Id: '@Model.Usuario.Id',
-            Nome: '@Model.Usuario.Nome',
-            Curso: {
-                Id: '@Model.Usuario.Curso.Id',
-                Nome: '@Model.Usuario.Curso.Nome'
-            }
-        });
+        chatHub.server.conectar(usuarioLogado);
 
         wrapperChat.find('.page-quick-sidebar-chat-user-form .btn')
             .click(() => {

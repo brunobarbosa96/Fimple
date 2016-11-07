@@ -9,9 +9,8 @@ module.exports = (app) => {
                         { Rgm: +req.body.Email || "" },
                         { Email: req.body.Email }
                     ]
-                }).populate("Curso")
+                }).populate("Curso", { select: [ "Id", "Nome"]})
                     .exec((err, row) => {
-                        if(row) delete row.Curso.Categoria;
                         return callback(err, row);
                     });
             } catch (ex) {

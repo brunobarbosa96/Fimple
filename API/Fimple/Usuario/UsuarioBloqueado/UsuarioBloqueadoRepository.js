@@ -1,4 +1,5 @@
-﻿module.exports = (app) => {
+﻿//require('devbox-linq');
+module.exports = (app) => {
 
     var usuario = app.models.usuario;
     var repository = {
@@ -52,6 +53,7 @@
                         for (var i in usuariosBloqueados)
                             if (usuariosBloqueados[i] == req.query.IdUsuarioBloqueado)
                                 usuariosBloqueados.splice(i, 1);
+                        //usuariosBloqueados.Remve(x => x == req.query.IdUsuarioBloqueado);
 
                         usuario.update({ Id: req.query.IdUsuarioBloqueou }, {
                             UsuariosBloqueados: usuariosBloqueados
