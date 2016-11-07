@@ -27,74 +27,37 @@
                         </ul>
                     </div>
                     <div class="page-quick-sidebar-item">
-                        <div class="page-quick-sidebar-chat-user" style="display: none" data-user-id="2">
+                        <div class="page-quick-sidebar-chat-user" data-user-id style="display: none">
                             <div class="page-quick-sidebar-nav">
                                 <a href="javascript:;" class="page-quick-sidebar-back-to-list" onclick="hideChat(this)"><i class="icon-arrow-left"></i>Voltar</a>
                             </div>
                             <div class="page-quick-sidebar-chat-user-messages">
-                                <div class="post out">
-                                    <img class="avatar" alt="" src="~/assets/img/placeholder.jpg" />
-                                    <div class="message">
-                                        <span class="arrow"></span>
-                                        <a href="javascript:;" class="name">Bob Nilson</a>
-                                        <span class="datetime">20:15</span>
-                                        <span class="body">
-                                            TESTE DO BOB NILSON?
-                                        </span>
+                                @*<div class="post out">
+                                        <img class="avatar" alt="" src="~/assets/img/placeholder.jpg" />
+                                        <div class="message">
+                                            <span class="arrow"></span>
+                                            <a href="javascript:;" class="name">Bob Nilson</a>
+                                            <span class="datetime">20:15</span>
+                                            <span class="body">
+                                                TESTE DO BRUNO BARBOSA?
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="post in">
-                                    <img class="avatar" alt="" src="~/assets/img/placeholder.jpg" />
-                                    <div class="message">
-                                        <span class="arrow"></span>
-                                        <a href="javascript:;" class="name">Ella Wong</a>
-                                        <span class="datetime">20:15</span>
-                                        <span class="body">
-                                            Its almost done. I will be sending it shortly
-                                        </span>
-                                    </div>
-                                </div>
+                                    <div class="post in">
+                                        <img class="avatar" alt="" src="~/assets/img/placeholder.jpg" />
+                                        <div class="message">
+                                            <span class="arrow"></span>
+                                            <a href="javascript:;" class="name">Ella Wong</a>
+                                            <span class="datetime">20:15</span>
+                                            <span class="body">
+                                                SIM, MUITO BOM ESSE CARA!!
+                                            </span>
+                                        </div>
+                                    </div>*@
                             </div>
                             <div class="page-quick-sidebar-chat-user-form">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Type a message here...">
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn blue"><i class="icon-check"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="page-quick-sidebar-chat-user" style="display: none" data-user-id="1">
-                            <div class="page-quick-sidebar-nav">
-                                <a href="javascript:;" class="page-quick-sidebar-back-to-list" onclick="hideChat(this)"><i class="icon-arrow-left"></i>Voltar</a>
-                            </div>
-                            <div class="page-quick-sidebar-chat-user-messages">
-                                <div class="post out">
-                                    <img class="avatar" alt="" src="~/assets/img/placeholder.jpg" />
-                                    <div class="message">
-                                        <span class="arrow"></span>
-                                        <a href="javascript:;" class="name">Bob Nilson</a>
-                                        <span class="datetime">20:15</span>
-                                        <span class="body">
-                                            TESTE DO BRUNO BARBOSA?
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="post in">
-                                    <img class="avatar" alt="" src="~/assets/img/placeholder.jpg" />
-                                    <div class="message">
-                                        <span class="arrow"></span>
-                                        <a href="javascript:;" class="name">Ella Wong</a>
-                                        <span class="datetime">20:15</span>
-                                        <span class="body">
-                                            SIM, MUITO BOM ESSE CARA!!
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-quick-sidebar-chat-user-form">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Type a message here...">
+                                    <input type="text" class="form-control" placeholder="Digite uma mensagem">
                                     <div class="input-group-btn">
                                         <button type="button" class="btn blue"><i class="icon-check"></i></button>
                                     </div>
@@ -102,6 +65,23 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divContainerMessage">
+    <div class="page-quick-sidebar-chat-user" data-user-id style="display: none">
+        <div class="page-quick-sidebar-nav">
+            <a href="javascript:;" class="page-quick-sidebar-back-to-list" onclick="hideChat(this)"><i class="icon-arrow-left"></i>Voltar</a>
+        </div>
+        <div class="page-quick-sidebar-chat-user-messages"></div>
+        <div class="page-quick-sidebar-chat-user-form">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Digite uma mensagem">
+                <div class="input-group-btn">
+                    <button type="button" class="btn blue"><i class="icon-check"></i></button>
                 </div>
             </div>
         </div>
@@ -145,11 +125,10 @@
         Metronic.initSlimScroll(chatMessages);
     };
 
-    Metronic.addResizeHandler(initChatSlimScroll); // reinitialize on window resize
+    //Metronic.addResizeHandler(initChatSlimScroll); // reinitialize on window resize
 
     function openChat(obj) {
         $("[data-user-id=" + $(obj).attr("data-user-id") + "]").show();
-        initChatSlimScroll();
         wrapperChat.addClass("page-quick-sidebar-content-item-shown");
     };
 
@@ -158,6 +137,7 @@
         $(".page-quick-sidebar-chat-user[data-user-id=" + $(obj).closest(".page-quick-sidebar-chat-user").attr("data-user-id") + "]").hide();
     };
 
+    // Definindo template para adicionar novo usuário ao chat
     var montaChatUsuario = (usuario) => {
         var newUser = '';
         newUser += '<li class="media" data-user-id=' + usuario.Id + ' onclick="openChat(this)">';
@@ -170,7 +150,15 @@
         newUser += '<div class="media-heading-sub">' + usuario.Curso.Nome + '</div>';
         newUser += '</div>';
         newUser += '</li>';
+
+        $(".page-quick-sidebar-item").append(montaChatMensagens(usuario));
+        //initChatSlimScroll();
         return newUser;
+    }
+
+    // Template adicionado para cada usuário criado no chat referente as mensagens
+    var montaChatMensagens = (usuario) => {
+        return $("#divContainerMessage .page-quick-sidebar-chat-user").clone().attr("data-user-id", usuario.Id);
     }
 
     // Declarando um proxy de referencia ao Hub
@@ -178,21 +166,22 @@
 
     // Criando a função que será chamada pelo Hub para distribuir as mensagens aos clientes.
     // Por convenção as chamadas aos métodos são feitas em "camelCase"
-    chatHub.client.transmitirMensagem = function (apelido, msg) {
+    chatHub.client.transmitirMensagem = function (usuario, mensagem) {
+        var isUsuarioLogado = usuarioLogado.Id == usuario.Id;
 
         // Area do chat
         var chatContainer = wrapperChat.find(".page-quick-sidebar-chat-user-messages");
-        var input = wrapperChat.find('.page-quick-sidebar-chat-user-form .form-control');
+        var input = wrapperChat.find('.page-quick-sidebar-chat-user-form:visible .form-control');
 
-        var text = input.val();
-        if (text.length === 0) {
-            return;
-        }
+        //var text = input.val();
+        //if (text.length === 0) {
+        //    return;
+        //}
 
         var preparePost = function (dir, time, name, avatar, message) {
             var tpl = '';
             tpl += '<div class="post ' + dir + '">';
-            tpl += '<img class="avatar" alt="" src="' + /*Layout.getLayoutImgPath()*/"~/assets/img/placeholder.jpg" + avatar + '.jpg"/>';
+            tpl += '<img class="avatar" alt="" src="' + /*Layout.getLayoutImgPath()*/"/assets/img/placeholder.jpg" /*+ avatar + '.jpg*/+'"/>';
             tpl += '<div class="message">';
             tpl += '<span class="arrow"></span>';
             tpl += '<a href="#" class="name">' + name + '</a>&nbsp;';
@@ -208,7 +197,7 @@
 
         // Preparando postagem
         var time = new Date();
-        var message = preparePost('out', (time.getHours() + ':' + time.getMinutes()), apelido, 'avatar3', msg);
+        var message = preparePost(isUsuarioLogado ? 'out' : 'in', (time.getHours() + ':' + time.getMinutes()), usuario.Nome, 'avatar3', mensagem);
         message = $(message);
         chatContainer.append(message);
 
@@ -226,7 +215,8 @@
             scrollTo: getLastPostPos()
         });
 
-        input.val("");
+        if (isUsuarioLogado)
+            input.val("");
     };
 
     chatHub.client.atualizaNovoUsuarioOnline = function (usuario) {
@@ -241,7 +231,6 @@
     }
 
     chatHub.client.removerUsuarioChat = function (usuario) {
-        console.log(usuario);
         $("[data-user-id=" + usuario.Id + "]").remove();
     }
 
@@ -250,21 +239,21 @@
 
         chatHub.server.conectar(usuarioLogado);
 
-        wrapperChat.find('.page-quick-sidebar-chat-user-form .btn')
-            .click(() => {
-                chatHub.server.enviarMensagem(wrapperChat
-                    .find('.page-quick-sidebar-chat-user-form .form-control').val(),
-                    $("#nomeUsuario").val());
-            });
-        wrapperChat.find('.page-quick-sidebar-chat-user-form .form-control')
-            .keypress((e) => {
-                if (e.which == 13) {
-                    chatHub.server.enviarMensagem(wrapperChat
-                        .find('.page-quick-sidebar-chat-user-form .form-control').val(),
-                        $("#nomeUsuario").val());
-                    return false;
-                }
-            });
+        $(document).on("click", '.page-quick-sidebar-chat-user-form .btn', () => {
+            chatHub.server.enviarMensagem(
+                usuarioLogado,
+                $(".page-quick-sidebar-chat-user:visible").attr("data-user-id"),
+                $('.page-quick-sidebar-chat-user-form:visible .form-control').val());
+        });
+
+        $(document).on("keypress", '.page-quick-sidebar-chat-user-form .form-control', (e) => {
+            if (e.which == 13) {
+                chatHub.server.enviarMensagem(usuarioLogado,
+                $(".page-quick-sidebar-chat-user:visible").attr("data-user-id"),
+                $('.page-quick-sidebar-chat-user-form:visible .form-control').val());
+                return false;
+            }
+        });
     });
 
 </script>
