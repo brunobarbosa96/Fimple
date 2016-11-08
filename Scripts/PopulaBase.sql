@@ -1,90 +1,84 @@
-﻿USE Fimple
+truncate table entidade;
+truncate table categoria;
+truncate table curso;
 
+INSERT INTO entidade (Nome, Cep) VALUES (N'Unifran', 14404600);
 
-SET IDENTITY_INSERT [dbo].[Entidade] ON
-INSERT INTO [dbo].[Entidade] ([Id], [Nome], [Cep]) VALUES (1, N'Unifran', 14404600)
-SET IDENTITY_INSERT [dbo].[Entidade] OFF
+INSERT INTO categoria (Entidade, Nome) VALUES (1, N'CIÊNCIAS ADMINISTRATIVAS');
+INSERT INTO categoria (Entidade, Nome) VALUES (1, N'CIÊNCIAS BIOLÓGICAS');
+INSERT INTO categoria (Entidade, Nome) VALUES (1, N'CIÊNCIAS EXATAS');
+INSERT INTO categoria (Entidade, Nome) VALUES (1, N'CIÊNCIAS HUMANAS');
+INSERT INTO categoria (Entidade, Nome) VALUES (1, N'CIÊNCIAS JURÍDICAS');
+INSERT INTO categoria (Entidade, Nome) VALUES (1, N'CIÊNCIAS DA SAÚDE');
+INSERT INTO categoria (Entidade, Nome) VALUES (1, N'CIÊNCIAS TECNOLÓGICAS');
+INSERT INTO categoria (Entidade, Nome) VALUES (1, N'ARTES');
 
-
-SET IDENTITY_INSERT [dbo].[Categoria] ON
-INSERT INTO [dbo].[Categoria] ([Id], [IdEntidade], [Nome]) VALUES (1, 1, N'CIÊNCIAS ADMINISTRATIVAS')
-INSERT INTO [dbo].[Categoria] ([Id], [IdEntidade], [Nome]) VALUES (2, 1, N'CIÊNCIAS BIOLÓGICAS')
-INSERT INTO [dbo].[Categoria] ([Id], [IdEntidade], [Nome]) VALUES (3, 1, N'CIÊNCIAS EXATAS')
-INSERT INTO [dbo].[Categoria] ([Id], [IdEntidade], [Nome]) VALUES (4, 1, N'CIÊNCIAS HUMANAS')
-INSERT INTO [dbo].[Categoria] ([Id], [IdEntidade], [Nome]) VALUES (5, 1, N'CIÊNCIAS JURÍDICAS')
-INSERT INTO [dbo].[Categoria] ([Id], [IdEntidade], [Nome]) VALUES (7, 1, N'CIÊNCIAS DA SAÚDE')
-INSERT INTO [dbo].[Categoria] ([Id], [IdEntidade], [Nome]) VALUES (9, 1, N'CIÊNCIAS TECNOLÓGICAS')
-INSERT INTO [dbo].[Categoria] ([Id], [IdEntidade], [Nome]) VALUES (10, 1, N'ARTES')
-SET IDENTITY_INSERT [dbo].[Categoria] OFF
-
-SET IDENTITY_INSERT [dbo].[Curso] ON
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (8, 1, N'ADMINISTRAÇÃO')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (10, 1, N'AGRONEGÓCIO')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (11, 1, N'CIÊNCIAS CONTÁBEIS')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (12, 1, N'CIÊNCIAS ECONÔMICAS')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (13, 1, N'COMÉRCIO EXTERIOR')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (14, 5, N'DIREITO')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (15, 1, N'GESTÃO COMERCIAL')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (16, 1, N'GESTÃO DE RECURSOS HUMANOS')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (17, 1, N'GESTÃO FINANCEIRA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (18, 1, N'LOGÍSTICA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (19, 1, N'MARKETING')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (20, 1, N'PROCESSOS GERENCIAIS')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (21, 5, N'RELAÇÕES INTERNACIONAIS')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (22, 1, N'SEGURANÇA NO TRABALHO')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (23, 7, N'BIOMEDICINA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (25, 2, N'CIÊNCIAS BIOLÓGICAS (Bacharelado)')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (26, 2, N'CIÊNCIAS BIOLÓGICAS (Licenciatura)')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (27, 7, N'EDUCAÇÃO FÍSICA (Bacharelado)')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (28, 7, N'EDUCAÇÃO FÍSICA (Licenciatura)')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (29, 7, N'ENFERMAGEM')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (30, 7, N'ESTÉTICA E COSMÉTICA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (31, 7, N'FARMÁCIA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (32, 7, N'FISIOTERAPIA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (33, 7, N'FONOAUDIOLOGIA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (34, 7, N'GASTRONOMIA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (36, 7, N'MEDICINA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (37, 7, N'MEDICINA VETERINÁRIA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (38, 2, N'NUTRIÇÃO')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (40, 7, N'ODONTOLOGIA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (41, 7, N'PSICOLOGIA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (42, 7, N'RADIOLOGIA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (43, 9, N'ANÁLISE E DESENVOLVIMENTO DE SISTEMAS')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (44, 9, N'CIÊNCIA DA COMPUTAÇÃO')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (45, 9, N'CST EM AUTOMAÇÃO INDUSTRIAL')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (46, 3, N'ENGENHARIA AGRONÔMICA (AGRONOMIA)')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (48, 3, N'ENGENHARIA CIVIL')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (50, 3, N'ENGENHARIA DE PRODUÇÃO')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (51, 3, N'ENGENHARIA MECÂNICA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (53, 9, N'ENGENHARIA MECATRÔNICA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (54, 3, N'ENGENHARIA QUÍMICA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (55, 3, N'FÍSICA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (56, 3, N'GESTÃO AMBIENTAL')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (57, 3, N'MANUTENÇÃO INDUSTRIAL')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (58, 3, N'MATEMÁTICA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (59, 9, N'MECATRÔNICA INDUSTRIAL')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (61, 3, N'PRODUÇÃO SUCROALCOOLEIRA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (62, 3, N'QUÍMICA (Bacharelado)')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (63, 3, N'QUÍMICA (Licenciatura)')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (64, 9, N'SISTEMAS DE INFORMAÇÃO')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (65, 9, N'SISTEMAS PARA INTERNET')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (66, 4, N'ARQUITETURA E URBANISMO')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (67, 10, N'ARTES VISUAIS')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (68, 4, N'CIÊNCIAS SOCIAIS (LICENCIATURA)')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (69, 10, N'DESIGN DE MODA (Tecnológico)')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (71, 10, N'DESIGN DE PRODUTO')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (72, 10, N'DESIGN GRÁFICO (Bacharelado)')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (73, 10, N'DESIGN GRÁFICO (Tecnológico)')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (74, 4, N'FORMAÇÃO DE PROF. EM PSICOLOGIA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (75, 4, N'GEOGRAFIA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (76, 4, N'HISTÓRIA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (77, 4, N'JORNALISMO')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (78, 4, N'LETRAS (Tradutor/Intérprete)')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (79, 4, N'LETRAS- PORTUGUÊS')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (80, 4, N'LETRAS-PORTUGUÊS E ESPANHOL')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (81, 4, N'LETRAS-PORTUGUÊS E INGLÊS')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (82, 10, N'MODA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (83, 4, N'PEDAGOGIA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (85, 10, N'PUBLICIDADE E PROPAGANDA')
-INSERT INTO [dbo].[Curso] ([Id], [IdCategoria], [Nome]) VALUES (86, 4, N'SERVIÇO SOCIAL')
-SET IDENTITY_INSERT [dbo].[Curso] OFF
+INSERT INTO curso (Categoria, Nome) VALUES (1, N'ADMINISTRAÇÃO');
+INSERT INTO curso (Categoria, Nome) VALUES (1, N'AGRONEGÓCIO');
+INSERT INTO curso (Categoria, Nome) VALUES (1, N'CIÊNCIAS CONTÁBEIS');
+INSERT INTO curso (Categoria, Nome) VALUES (1, N'CIÊNCIAS ECONÔMICAS');
+INSERT INTO curso (Categoria, Nome) VALUES (1, N'COMÉRCIO EXTERIOR');
+INSERT INTO curso (Categoria, Nome) VALUES (5, N'DIREITO');
+INSERT INTO curso (Categoria, Nome) VALUES (1, N'GESTÃO COMERCIAL');
+INSERT INTO curso (Categoria, Nome) VALUES (1, N'GESTÃO DE RECURSOS HUMANOS');
+INSERT INTO curso (Categoria, Nome) VALUES (1, N'GESTÃO FINANCEIRA');
+INSERT INTO curso (Categoria, Nome) VALUES (1, N'LOGÍSTICA');
+INSERT INTO curso (Categoria, Nome) VALUES (1, N'MARKETING');
+INSERT INTO curso (Categoria, Nome) VALUES (1, N'PROCESSOS GERENCIAIS');
+INSERT INTO curso (Categoria, Nome) VALUES (5, N'RELAÇÕES INTERNACIONAIS');
+INSERT INTO curso (Categoria, Nome) VALUES (1, N'SEGURANÇA NO TRABALHO');
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'BIOMEDICINA');
+INSERT INTO curso (Categoria, Nome) VALUES (2, N'CIÊNCIAS BIOLÓGICAS (Bacharelado)');
+INSERT INTO curso (Categoria, Nome) VALUES (2, N'CIÊNCIAS BIOLÓGICAS (Licenciatura)');
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'EDUCAÇÃO FÍSICA (Bacharelado)');
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'EDUCAÇÃO FÍSICA (Licenciatura)');
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'ENFERMAGEM');
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'ESTÉTICA E COSMÉTICA');
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'FARMÁCIA');
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'FISIOTERAPIA');
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'FONOAUDIOLOGIA');
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'GASTRONOMIA');
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'MEDICINA');
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'MEDICINA VETERINÁRIA');
+INSERT INTO curso (Categoria, Nome) VALUES (2, N'NUTRIÇÃO');
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'ODONTOLOGIA');
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'PSICOLOGIA');
+INSERT INTO curso (Categoria, Nome) VALUES (7, N'RADIOLOGIA');
+INSERT INTO curso (Categoria, Nome) VALUES (9, N'ANÁLISE E DESENVOLVIMENTO DE SISTEMAS');
+INSERT INTO curso (Categoria, Nome) VALUES (9, N'CIÊNCIA DA COMPUTAÇÃO');
+INSERT INTO curso (Categoria, Nome) VALUES (9, N'CST EM AUTOMAÇÃO INDUSTRIAL');
+INSERT INTO curso (Categoria, Nome) VALUES (3, N'ENGENHARIA AGRONÔMICA (AGRONOMIA)');
+INSERT INTO curso (Categoria, Nome) VALUES (3, N'ENGENHARIA CIVIL');
+INSERT INTO curso (Categoria, Nome) VALUES (3, N'ENGENHARIA DE PRODUÇÃO');
+INSERT INTO curso (Categoria, Nome) VALUES (3, N'ENGENHARIA MECÂNICA');
+INSERT INTO curso (Categoria, Nome) VALUES (9, N'ENGENHARIA MECATRÔNICA');
+INSERT INTO curso (Categoria, Nome) VALUES (3, N'ENGENHARIA QUÍMICA');
+INSERT INTO curso (Categoria, Nome) VALUES (3, N'FÍSICA');
+INSERT INTO curso (Categoria, Nome) VALUES (3, N'GESTÃO AMBIENTAL');
+INSERT INTO curso (Categoria, Nome) VALUES (3, N'MANUTENÇÃO INDUSTRIAL');
+INSERT INTO curso (Categoria, Nome) VALUES (3, N'MATEMÁTICA');
+INSERT INTO curso (Categoria, Nome) VALUES (9, N'MECATRÔNICA INDUSTRIAL');
+INSERT INTO curso (Categoria, Nome) VALUES (3, N'PRODUÇÃO SUCROALCOOLEIRA');
+INSERT INTO curso (Categoria, Nome) VALUES (3, N'QUÍMICA (Bacharelado)');
+INSERT INTO curso (Categoria, Nome) VALUES (3, N'QUÍMICA (Licenciatura)');
+INSERT INTO curso (Categoria, Nome) VALUES (9, N'SISTEMAS DE INFORMAÇÃO');
+INSERT INTO curso (Categoria, Nome) VALUES (9, N'SISTEMAS PARA INTERNET');
+INSERT INTO curso (Categoria, Nome) VALUES (4, N'ARQUITETURA E URBANISMO');
+INSERT INTO curso (Categoria, Nome) VALUES (10, N'ARTES VISUAIS');
+INSERT INTO curso (Categoria, Nome) VALUES (4, N'CIÊNCIAS SOCIAIS (LICENCIATURA)');
+INSERT INTO curso (Categoria, Nome) VALUES (10, N'DESIGN DE MODA (Tecnológico)');
+INSERT INTO curso (Categoria, Nome) VALUES (10, N'DESIGN DE PRODUTO');
+INSERT INTO curso (Categoria, Nome) VALUES (10, N'DESIGN GRÁFICO (Bacharelado)');
+INSERT INTO curso (Categoria, Nome) VALUES (10, N'DESIGN GRÁFICO (Tecnológico)');
+INSERT INTO curso (Categoria, Nome) VALUES (4, N'FORMAÇÃO DE PROF. EM PSICOLOGIA');
+INSERT INTO curso (Categoria, Nome) VALUES (4, N'GEOGRAFIA');
+INSERT INTO curso (Categoria, Nome) VALUES (4, N'HISTÓRIA');
+INSERT INTO curso (Categoria, Nome) VALUES (4, N'JORNALISMO');
+INSERT INTO curso (Categoria, Nome) VALUES (4, N'LETRAS (Tradutor/Intérprete)');
+INSERT INTO curso (Categoria, Nome) VALUES (4, N'LETRAS- PORTUGUÊS');
+INSERT INTO curso (Categoria, Nome) VALUES (4, N'LETRAS-PORTUGUÊS E ESPANHOL');
+INSERT INTO curso (Categoria, Nome) VALUES (4, N'LETRAS-PORTUGUÊS E INGLÊS');
+INSERT INTO curso (Categoria, Nome) VALUES (10, N'MODA');
+INSERT INTO curso (Categoria, Nome) VALUES (4, N'PEDAGOGIA');
+INSERT INTO curso (Categoria, Nome) VALUES (10, N'PUBLICIDADE E PROPAGANDA');
+INSERT INTO curso (Categoria, Nome) VALUES (4, N'SERVIÇO SOCIAL');

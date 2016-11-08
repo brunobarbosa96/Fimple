@@ -279,7 +279,6 @@
     <Content Include="assets\img\logo-big.png" />
     <Content Include="assets\js\profile.js" />
     <Content Include="assets\js\quick-sidebar.js" />
-    <Content Include="assets\js\timeline.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="assets\js\jquery.validate.unobtrusive.min.js" />

@@ -4,37 +4,59 @@ module.exports = (app) => {
     var repository = {
 
         get: (req, res, callback) => {
-            mensagem.find({
-                or: [
-                    { UsuarioEnvio: req.params.Id },
-                    { UsuarioDestino: req.params.Id }
-                ]
-            }/*, { select: ['Id', 'Data', 'Visualizada' ] }*/).exec((err, row) => {
-                console.log(row);
-                return callback(err, row);
-            });
+            try {
+                mensagem.find({
+                    or: [
+                        { UsuarioEnvio: req.params.Id },
+                        { UsuarioDestino: req.params.Id }
+                    ]
+                })
+                    .paginate({ page: req.query.Pagina, limit: 25 })
+                    .populate("UsuarioEnvio", { select: ["Id", "Nome"] })
+                    .populate("UsuarioDestino", { select: ["Id", "Nome"] })
+                    .exec((err, row) => {
+                        return callback(err, row);
+                    });
+            } catch (e) {
+                return callback(e);
+            }
         },
 
         post: (req, res, callback) => {
-            mensagem.create({
-                Data: req.body.Data,
-                Visualizada: false,
-                Remetente: req.body.Remetente.Id,
-                Destino: req.body.Destino.Id,
-                IdCategoria: req.body.IdCategoria,
-                IdCurso: req.body.IdCurso
-            }).exec((err, row) => {
-                delete row.Mensagem;
-                return callback(err, row);
-            });
+            try {
+                mensagem.create({
+                    Conteudo: req.body.Conteudo,
+                    UsuarioEnvio: req.body.UsuarioEnvio.Id,
+                    UsuarioDestino: req.body.UsuarioDestino.Id
+                }).exec((err, row) => {
+                    return callback(err, row);
+                });
+            } catch (e) {
+                return callback(e);
+            } 
+        },
+
+        put: (req, res, callback) => {
+            try {
+                mensagem.update({
+                    DataRecebimento: req.body.DataRecebimento,
+                    DataVisualizacao: req.body.DataVisualizacao
+                }).exec((err, row) => {
+                    return callback(err, row);
+                });
+            } catch (e) {
+                return callback(e);
+            } 
         },
 
         delete: (req, res, callback) => {
-            mensagem.update({ Id: req.params.Id }, {
-                Ativa: 0
-            }).exec((err, row) => {
-                return callback(err, row);
-            });
+            try {
+                mensagem.destroy({ Id: req.params.Id }).exec((err, row) => {
+                    return callback(err, row);
+                });
+            } catch (e) {
+                return callback(e);
+            } 
         }
 
     };

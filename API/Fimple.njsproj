@@ -29,8 +29,8 @@
     <Compile Include="Exemplo\models\models.js" />
     <Compile Include="Exemplo\Routes\Exemplo.js" />
     <Compile Include="Fimple\config\config.js" />
-    <Compile Include="Fimple\Chat\ConversaController.js" />
-    <Compile Include="Fimple\Chat\ConversaRepository.js" />
+    <Compile Include="Fimple\Chat\ChatController.js" />
+    <Compile Include="Fimple\Chat\ChatRepository.js" />
     <Compile Include="Fimple\Curso\CursoController.js" />
     <Compile Include="Fimple\Curso\CursoRepository.js" />
     <Compile Include="Fimple\Login\LoginController.js" />
