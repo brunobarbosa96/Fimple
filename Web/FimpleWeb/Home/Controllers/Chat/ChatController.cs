@@ -5,6 +5,7 @@ using Home.Models.Entity;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
@@ -24,19 +25,40 @@ namespace Home.Controllers.Chat
             try
             {
                 // Fazendo requisição para buscar conversas do usuário
-                var response = _chatApp.Get(UsuarioLogado.Id);
+                var response = _chatApp.GetConversas(UsuarioLogado.Id);
                 if (!response.IsSuccessStatusCode)
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
                         response.Content.ReadAsStringAsync().Result);
 
                 // Instanciando Chat e deserializando resposta
-                var chat = new ChatDto
-                {
-                    Usuario = UsuarioLogado,
-                    Conversas = JsonConvert.DeserializeObject<IEnumerable<Conversa>>(response.Content.ReadAsStringAsync().Result)
-                };
+                var conversas = JsonConvert.DeserializeObject<IEnumerable<Mensagem>>(response.Content.ReadAsStringAsync().Result);
+                var chat = new ChatDto(UsuarioLogado, conversas);
 
                 return View(chat);
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        public ActionResult BuscarMensagens(int idUsuarioEnvio, int idUsuarioDestino, int pagina)
+        {
+            try
+            {
+                // Fazendo requisição para buscar mensagens do usuário
+                var response = _chatApp.Get(idUsuarioEnvio, idUsuarioDestino, pagina);
+                if (!response.IsSuccessStatusCode)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
+                        response.Content.ReadAsStringAsync().Result);
+
+                // Instanciando Mensagens e deserializando resposta
+                var chat = new ChatDto
+                {
+                    Conversas = JsonConvert.DeserializeObject<IEnumerable<Mensagem>>(response.Content.ReadAsStringAsync().Result).OrderBy(x => x.DataEnvio)
+                };
+
+                return Json(chat);
             }
             catch (Exception ex)
             {

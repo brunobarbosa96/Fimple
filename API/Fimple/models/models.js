@@ -276,6 +276,7 @@ module.exports = () => {
         attributes: {
             Id: { type: 'integer', primaryKey: true, autoIncrement: true },
             Conteudo: { type: 'string', required: true },
+            DataEnvio: { type: 'date'},
             DataRecebimento: { type: 'date'},
             DataVisualizacao: { type: 'date'},
 

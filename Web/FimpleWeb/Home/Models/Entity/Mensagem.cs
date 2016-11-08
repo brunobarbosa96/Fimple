@@ -18,6 +18,7 @@ namespace Home.Models.Entity
 
         public int Id { get; set; }
         public string Conteudo { get; set; }
+        public DateTime DataEnvio { get; set; }
         public DateTime? DataRecebimento { get; set; }
         public DateTime? DataVisualizacao { get; set; }
         public Usuario UsuarioEnvio { get; set; }

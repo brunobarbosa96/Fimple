@@ -14,47 +14,46 @@
                 <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
                     <div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
                         <ul class="media-list list-items">
-                            @*<li class="media" data-user-id="2" onclick="openChat(this)">
-                                    <div class="media-status">
-                                        <span class="badge badge-success">2</span>
-                                    </div>
-                                    <img class="media-object" src="~/assets/img/placeholder.jpg" alt="...">
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Teste</h4>
-                                        <div class="media-heading-sub">Ciencia da computacao</div>
-                                    </div>
-                                </li>*@
+                            @if (Model.Usuarios != null && Model.Usuarios.Any())
+                            {
+                                foreach (var usuario in Model.Usuarios)
+                                {
+                                    <li class="media" data-user-id="@usuario.First().UsuarioDestino.Id" onclick="openChat(this)">
+                                        <div class="media-status">
+                                            <span class="badge badge-success">2</span>
+                                        </div>
+                                        <img class="media-object" src="~/assets/img/placeholder.jpg" alt="...">
+                                        <div class="media-body">
+                                            <h4 class="media-heading">@usuario.First().UsuarioDestino.Nome</h4>
+                                            <div class="media-heading-sub">Ciencia da computacao</div>
+                                        </div>
+                                    </li>
+                                }
+                            }
                         </ul>
                     </div>
                     <div class="page-quick-sidebar-item">
-                        <div class="page-quick-sidebar-chat-user" data-user-id style="display: none">
-                            <div class="page-quick-sidebar-nav">
-                                <a href="javascript:;" class="page-quick-sidebar-back-to-list" onclick="hideChat(this)"><i class="icon-arrow-left"></i>Voltar</a>
-                            </div>
-                            <div class="page-quick-sidebar-chat-user-messages">
-                                @*<div class="post out">
-                                        <img class="avatar" alt="" src="~/assets/img/placeholder.jpg" />
-                                        <div class="message">
-                                            <span class="arrow"></span>
-                                            <a href="javascript:;" class="name">Bob Nilson</a>
-                                            <span class="datetime">20:15</span>
-                                            <span class="body">
-                                                TESTE DO BRUNO BARBOSA?
-                                            </span>
+                        <div class="page-quick-sidebar-chat-user-messages">
+                            @if (Model.Usuarios != null && Model.Usuarios.Any())
+                            {
+                                foreach (var usuario in Model.Usuarios)
+                                {
+                                    <div class="page-quick-sidebar-chat-user" data-pagina="0" data-user-id="@usuario.First().UsuarioDestino.Id" style="display: none">
+                                        <div class="page-quick-sidebar-nav">
+                                            <a href="javascript:;" class="page-quick-sidebar-back-to-list" onclick="hideChat(this)"><i class="icon-arrow-left"></i>Voltar</a>
+                                        </div>
+                                        <div class="page-quick-sidebar-chat-user-messages"></div>
+                                        <div class="page-quick-sidebar-chat-user-form">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Digite uma mensagem">
+                                                <div class="input-group-btn">
+                                                    <button type="button" class="btn blue"><i class="icon-check"></i></button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="post in">
-                                        <img class="avatar" alt="" src="~/assets/img/placeholder.jpg" />
-                                        <div class="message">
-                                            <span class="arrow"></span>
-                                            <a href="javascript:;" class="name">Ella Wong</a>
-                                            <span class="datetime">20:15</span>
-                                            <span class="body">
-                                                SIM, MUITO BOM ESSE CARA!!
-                                            </span>
-                                        </div>
-                                    </div>*@
-                            </div>
+                                }
+                            }
                             <div class="page-quick-sidebar-chat-user-form">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Digite uma mensagem">
@@ -102,6 +101,10 @@
         }
     }
 
+    var url = {
+        BuscarMensagens: '@Url.Action("BuscarMensagens", "Chat")'
+    }
+
     var wrapper = $('.page-quick-sidebar-wrapper');
     var wrapperChat = wrapper.find('.page-quick-sidebar-chat');
 
@@ -127,20 +130,10 @@
 
     //Metronic.addResizeHandler(initChatSlimScroll); // reinitialize on window resize
 
-    function openChat(obj) {
-        $("[data-user-id=" + $(obj).attr("data-user-id") + "]").show();
-        wrapperChat.addClass("page-quick-sidebar-content-item-shown");
-    };
-
-    function hideChat(obj) {
-        wrapperChat.removeClass("page-quick-sidebar-content-item-shown");
-        $(".page-quick-sidebar-chat-user[data-user-id=" + $(obj).closest(".page-quick-sidebar-chat-user").attr("data-user-id") + "]").hide();
-    };
-
     // Definindo template para adicionar novo usuário ao chat
     var montaChatUsuario = (usuario) => {
         var newUser = '';
-        newUser += '<li class="media" data-user-id=' + usuario.Id + ' onclick="openChat(this)">';
+        newUser += '<li class="media" data-pagina="0" data-user-id=' + usuario.Id + ' onclick="openChat(this)">';
         newUser += '<div class="media-status">';
         newUser += '<span class="badge badge-success">' + 1 + '</span>';
         newUser += '</div>';
@@ -161,6 +154,58 @@
         return $("#divContainerMessage .page-quick-sidebar-chat-user").clone().attr("data-user-id", usuario.Id);
     }
 
+    var preparePost = function (dir, time, name, avatar, message) {
+        var tpl = '';
+        tpl += '<div class="post ' + dir + '">';
+        tpl += '<img class="avatar" alt="" src="' + /*Layout.getLayoutImgPath()*/"/assets/img/placeholder.jpg" /*+ avatar + '.jpg*/ + '"/>';
+        tpl += '<div class="message">';
+        tpl += '<span class="arrow"></span>';
+        tpl += '<a href="#" class="name">' + name + '</a>&nbsp;';
+        tpl += '<span class="datetime">' + time + '</span>';
+        tpl += '<span class="body">';
+        tpl += message;
+        tpl += '</span>';
+        tpl += '</div>';
+        tpl += '</div>';
+
+        return tpl;
+    };
+
+    function buscarMensagens(idUsuarioDestino, pagina, callback) {
+        $.get(url.BuscarMensagens, {
+            idUsuarioEnvio: usuarioLogado.Id,
+            idUsuarioDestino: idUsuarioDestino,
+            pagina: pagina
+        })
+        .success((data) => {
+            // TODO implementar lista de data
+
+            var message = preparePost();
+
+            if (typeof callback == "function")
+                callback();
+        })
+        .error((err) => {
+
+        })
+        .complete(() => {
+
+        });
+    }
+
+    function openChat(obj) {
+        var data = $("[data-user-id=" + $(obj).attr("data-user-id") + "]").show();
+        if (!+data.attr("data-pagina"))
+            buscarMensagens($(obj).attr("data-user-id"), 1, () => {
+                wrapperChat.addClass("page-quick-sidebar-content-item-shown");
+            });
+    };
+
+    function hideChat(obj) {
+        wrapperChat.removeClass("page-quick-sidebar-content-item-shown");
+        $(".page-quick-sidebar-chat-user[data-user-id=" + $(obj).closest(".page-quick-sidebar-chat-user").attr("data-user-id") + "]").hide();
+    };
+
     // Declarando um proxy de referencia ao Hub
     var chatHub = $.connection.chat;
 
@@ -177,23 +222,6 @@
         //if (text.length === 0) {
         //    return;
         //}
-
-        var preparePost = function (dir, time, name, avatar, message) {
-            var tpl = '';
-            tpl += '<div class="post ' + dir + '">';
-            tpl += '<img class="avatar" alt="" src="' + /*Layout.getLayoutImgPath()*/"/assets/img/placeholder.jpg" /*+ avatar + '.jpg*/+'"/>';
-            tpl += '<div class="message">';
-            tpl += '<span class="arrow"></span>';
-            tpl += '<a href="#" class="name">' + name + '</a>&nbsp;';
-            tpl += '<span class="datetime">' + time + '</span>';
-            tpl += '<span class="body">';
-            tpl += message;
-            tpl += '</span>';
-            tpl += '</div>';
-            tpl += '</div>';
-
-            return tpl;
-        };
 
         // Preparando postagem
         var time = new Date();

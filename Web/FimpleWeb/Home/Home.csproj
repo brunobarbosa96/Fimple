@@ -207,7 +207,6 @@
     <Compile Include="Models\Dto\ChatDto.cs" />
     <Compile Include="Models\Entity\Categoria.cs" />
     <Compile Include="Models\Entity\Comentario.cs" />
-    <Compile Include="Models\Entity\Conversa.cs" />
     <Compile Include="Models\Entity\Curso.cs" />
     <Compile Include="Models\Entity\Entidade.cs" />
     <Compile Include="Models\Entity\Evento.cs" />

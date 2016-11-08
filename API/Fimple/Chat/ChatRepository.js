@@ -3,13 +3,29 @@ module.exports = (app) => {
     var mensagem = app.models.mensagem;
     var repository = {
 
-        get: (req, res, callback) => {
+        getConversas: (req, res, callback) => {
             try {
                 mensagem.find({
                     or: [
                         { UsuarioEnvio: req.params.Id },
                         { UsuarioDestino: req.params.Id }
                     ]
+                }, { select: ["UsuarioEnvio", "UsuarioDestino"] })
+                    .populate("UsuarioEnvio", { select: ["Id", "Nome"] })
+                    .populate("UsuarioDestino", { select: ["Id", "Nome"] })
+                    .exec((err, row) => {
+                        return callback(err, row);
+                    });
+            } catch (e) {
+                return callback(e);
+            }
+        },
+
+        get: (req, res, callback) => {
+            try {
+                mensagem.find({
+                        UsuarioEnvio: req.params.Id,
+                        UsuarioDestino: req.query.UsuarioDestino
                 })
                     .paginate({ page: req.query.Pagina, limit: 25 })
                     .populate("UsuarioEnvio", { select: ["Id", "Nome"] })
@@ -33,7 +49,7 @@ module.exports = (app) => {
                 });
             } catch (e) {
                 return callback(e);
-            } 
+            }
         },
 
         put: (req, res, callback) => {
@@ -46,7 +62,7 @@ module.exports = (app) => {
                 });
             } catch (e) {
                 return callback(e);
-            } 
+            }
         },
 
         delete: (req, res, callback) => {
@@ -56,7 +72,7 @@ module.exports = (app) => {
                 });
             } catch (e) {
                 return callback(e);
-            } 
+            }
         }
 
     };
