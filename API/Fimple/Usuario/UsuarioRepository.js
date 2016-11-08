@@ -5,7 +5,7 @@ module.exports = (app) => {
 
         getAll: (req, res, callback) => {
             try {
-                usuario.find()
+                usuario.find({ select: ["Id", "Rgm", "Nome", "Sobrenome", "Apelido", "Email", "DataNascimento", "DataInicioCurso", "Cep", "Curso"]})
                     .populate("Curso")
                     .exec((err, row) => {
                         return callback(err, row);
