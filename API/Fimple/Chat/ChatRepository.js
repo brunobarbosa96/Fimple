@@ -42,6 +42,7 @@ module.exports = (app) => {
             try {
                 mensagem.create({
                     Conteudo: req.body.Conteudo,
+                    DataEnvio: new Date(),
                     UsuarioEnvio: req.body.UsuarioEnvio.Id,
                     UsuarioDestino: req.body.UsuarioDestino.Id
                 }).exec((err, row) => {

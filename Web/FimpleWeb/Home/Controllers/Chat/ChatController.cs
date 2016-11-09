@@ -55,10 +55,11 @@ namespace Home.Controllers.Chat
                 // Instanciando Mensagens e deserializando resposta
                 var chat = new ChatDto
                 {
-                    Conversas = JsonConvert.DeserializeObject<IEnumerable<Mensagem>>(response.Content.ReadAsStringAsync().Result).OrderBy(x => x.DataEnvio)
+                    Conversas = (IEnumerable<Mensagem>) JsonConvert.DeserializeObject<IEnumerable<Mensagem>>(response.Content.ReadAsStringAsync().Result)
+                        .OrderBy(x => x.DataEnvio) ?? new List<Mensagem>()
                 };
 
-                return Json(chat);
+                return Json(chat, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

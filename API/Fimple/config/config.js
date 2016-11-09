@@ -23,22 +23,36 @@ module.exports = () => {
             myLocalDisk: {
                 adapter: 'disk'
             },
+			// //Postgres localhost
+   //          myLocalSql: {
+   //             adapter: 'postgres',
+   //             database: 'Fimple',
+   //             host: 'localhost',
+   //             user: 'Admin',
+   //             password: 'Fimple@2016',
+   //             port: 5432,
+   //             ssl: false
+   //          }
 
+            ////MySql online
             // myLocalSql: {
-            //    adapter: 'postgres',
-            //    database: 'Fimple',
-            //    host: 'localhost',
-            //    user: 'Admin',
-            //    password: 'Fimple@2016',
-            //    port: 5432,
-            //    ssl: false
+            //     adapter: 'mySql',
+            //     database: 'fimple',
+            //     host: '191.6.198.21',
+            //     user: 'fimple',
+            //     password: 'mudar123fimpleman',
+            //     port: 3306//,
+            //     // ssl: false,
+            //     // charset: 'utf8'
             // }
+
+            //MySql localhost
             myLocalSql: {
                 adapter: 'mySql',
                 database: 'fimple',
-                host: '191.6.198.21',
-                user: 'fimple',
-                password: 'mudar123fimpleman',
+                host: 'localhost',
+                user: 'root',
+                password: 'root',
                 port: 3306//,
                 // ssl: false,
                 // charset: 'utf8'

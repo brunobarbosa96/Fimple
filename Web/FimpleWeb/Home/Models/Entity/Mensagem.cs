@@ -23,5 +23,7 @@ namespace Home.Models.Entity
         public DateTime? DataVisualizacao { get; set; }
         public Usuario UsuarioEnvio { get; set; }
         public Usuario UsuarioDestino { get; set; }
+
+        public string HoraEnvio => $"{DataEnvio:HH:mm}";
     }
 }

@@ -1,3 +1,4 @@
+use fimple;
 truncate table entidade;
 truncate table categoria;
 truncate table curso;

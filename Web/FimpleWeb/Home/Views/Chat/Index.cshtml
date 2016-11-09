@@ -172,24 +172,36 @@
     };
 
     function buscarMensagens(idUsuarioDestino, pagina, callback) {
+        var chatContainer = wrapperChat.find(".page-quick-sidebar-chat-user-messages");
+
         $.get(url.BuscarMensagens, {
             idUsuarioEnvio: usuarioLogado.Id,
             idUsuarioDestino: idUsuarioDestino,
             pagina: pagina
         })
         .success((data) => {
-            // TODO implementar lista de data
+            if (!data || !data.Conversas.length) return;
 
-            var message = preparePost();
+            data.Conversas.forEach((conversa) => {
+                var isUsuarioEnvioLogado = conversa.UsuarioEnvio.Id == usuarioLogado.Id;
 
+                chatContainer.append($(preparePost(isUsuarioEnvioLogado ? 'out' : 'in',
+                                           conversa.HoraEnvio,
+                                           isUsuarioEnvioLogado 
+                                                ? conversa.UsuarioEnvio.Nome
+                                                : conversa.UsuarioDestino.Nome,
+                                           'avatar3',
+                                           conversa.Conteudo)));
+            });
+        })
+        .error((xhr) => {
+                console.log(xhr);
+
+                chatContainer.append("<h1>Erro ao carregar conversas</h1>");
+            })
+        .complete(() => {
             if (typeof callback == "function")
                 callback();
-        })
-        .error((err) => {
-
-        })
-        .complete(() => {
-
         });
     }
 
@@ -197,8 +209,10 @@
         var data = $("[data-user-id=" + $(obj).attr("data-user-id") + "]").show();
         if (!+data.attr("data-pagina"))
             buscarMensagens($(obj).attr("data-user-id"), 1, () => {
-                wrapperChat.addClass("page-quick-sidebar-content-item-shown");
+                data.attr("data-pagina", 1);
             });
+
+        wrapperChat.addClass("page-quick-sidebar-content-item-shown");
     };
 
     function hideChat(obj) {
@@ -217,11 +231,6 @@
         // Area do chat
         var chatContainer = wrapperChat.find(".page-quick-sidebar-chat-user-messages");
         var input = wrapperChat.find('.page-quick-sidebar-chat-user-form:visible .form-control');
-
-        //var text = input.val();
-        //if (text.length === 0) {
-        //    return;
-        //}
 
         // Preparando postagem
         var time = new Date();
@@ -248,7 +257,7 @@
     };
 
     chatHub.client.atualizaNovoUsuarioOnline = function (usuario) {
-        if (usuario.Id != usuarioLogado.Id)
+        if (usuario.Id != usuarioLogado.Id && !$("[data-user-id="+ usuario.Id + "]").length)
             $(".page-quick-sidebar-chat-users > ul.media-list.list-items").append(montaChatUsuario(usuario));
     }
 
