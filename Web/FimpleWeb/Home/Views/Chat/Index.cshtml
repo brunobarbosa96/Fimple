@@ -43,25 +43,17 @@
                                             <a href="javascript:;" class="page-quick-sidebar-back-to-list" onclick="hideChat(this)"><i class="icon-arrow-left"></i>Voltar</a>
                                         </div>
                                         <div class="page-quick-sidebar-chat-user-messages"></div>
-                                        <div class="page-quick-sidebar-chat-user-form">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Digite uma mensagem">
-                                                <div class="input-group-btn">
-                                                    <button type="button" class="btn blue"><i class="icon-check"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 }
-                            }
-                            <div class="page-quick-sidebar-chat-user-form">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Digite uma mensagem">
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn blue"><i class="icon-check"></i></button>
+                                <div class="page-quick-sidebar-chat-user-form">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Digite uma mensagem">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn blue"><i class="icon-check"></i></button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -127,7 +119,6 @@
         chatMessages.attr("data-height", chatMessagesHeight);
         Metronic.initSlimScroll(chatMessages);
     };
-
     //Metronic.addResizeHandler(initChatSlimScroll); // reinitialize on window resize
 
     // Definindo template para adicionar novo usuário ao chat
@@ -179,26 +170,21 @@
             idUsuarioDestino: idUsuarioDestino,
             pagina: pagina
         })
-        .success((data) => {
+        .success((data) => {    
             if (!data || !data.Conversas.length) return;
 
             data.Conversas.forEach((conversa) => {
-                var isUsuarioEnvioLogado = conversa.UsuarioEnvio.Id == usuarioLogado.Id;
-
-                chatContainer.append($(preparePost(isUsuarioEnvioLogado ? 'out' : 'in',
-                                           conversa.HoraEnvio,
-                                           isUsuarioEnvioLogado 
-                                                ? conversa.UsuarioEnvio.Nome
-                                                : conversa.UsuarioDestino.Nome,
-                                           'avatar3',
-                                           conversa.Conteudo)));
+                chatContainer.append($(preparePost(conversa.UsuarioEnvio.Id == usuarioLogado.Id ? 'out' : 'in',
+                    conversa.HoraEnvio,
+                    conversa.UsuarioEnvio.Nome,
+                    'avatar3',
+                    conversa.Conteudo)));
             });
         })
         .error((xhr) => {
-                console.log(xhr);
-
-                chatContainer.append("<h1>Erro ao carregar conversas</h1>");
-            })
+            console.log(xhr);
+            chatContainer.append("<h1>Erro ao carregar conversas</h1>");
+        })
         .complete(() => {
             if (typeof callback == "function")
                 callback();
@@ -210,6 +196,7 @@
         if (!+data.attr("data-pagina"))
             buscarMensagens($(obj).attr("data-user-id"), 1, () => {
                 data.attr("data-pagina", 1);
+                //initChatSlimScroll();
             });
 
         wrapperChat.addClass("page-quick-sidebar-content-item-shown");
@@ -257,7 +244,7 @@
     };
 
     chatHub.client.atualizaNovoUsuarioOnline = function (usuario) {
-        if (usuario.Id != usuarioLogado.Id && !$("[data-user-id="+ usuario.Id + "]").length)
+        if (usuario.Id != usuarioLogado.Id && !$("[data-user-id=" + usuario.Id + "]").length)
             $(".page-quick-sidebar-chat-users > ul.media-list.list-items").append(montaChatUsuario(usuario));
     }
 

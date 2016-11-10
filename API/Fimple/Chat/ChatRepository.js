@@ -24,8 +24,10 @@ module.exports = (app) => {
         get: (req, res, callback) => {
             try {
                 mensagem.find({
-                        UsuarioEnvio: req.params.Id,
-                        UsuarioDestino: req.query.UsuarioDestino
+                    or: [
+                        { UsuarioEnvio: req.params.Id, UsuarioDestino: req.query.UsuarioDestino },
+                        { UsuarioEnvio: req.query.UsuarioDestino, UsuarioDestino: req.params.Id }
+                    ]
                 })
                     .paginate({ page: req.query.Pagina, limit: 25 })
                     .populate("UsuarioEnvio", { select: ["Id", "Nome"] })
