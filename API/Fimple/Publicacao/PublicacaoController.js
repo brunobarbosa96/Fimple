@@ -4,7 +4,6 @@ module.exports = (app) => {
     var controller = {
 
         get: (req, res) => {
-
             repository.get(req, res, (err, row) => {
                 if (err)
                     res.status(500).json({ "message": "Erro ao buscar publicações", "exception": err });

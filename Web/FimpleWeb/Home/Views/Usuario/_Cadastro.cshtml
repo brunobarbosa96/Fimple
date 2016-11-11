@@ -8,6 +8,7 @@
 }, new { id = "formUsuario" }))
 {
     <h3>Cadastrar</h3>
+    <div>@Html.ValidationSummary()</div>
     <p class="hint">
         Insira suas informações pessoais abaixo:
     </p>
@@ -74,13 +75,35 @@
 
 <script>
 
-    $("#DataInicioCurso").datepicker({
-        format: 'mm/yyyy',
-        language: 'pt-BR',
-        viewMode: 'years',
-        minViewMode: "months",
-        autoclose: true
-    });
+            $(document).ready(function () {
+                Metronic.init(); // init metronic core components
+                Layout.init(); // init current layout
+
+                paceOptions = {
+                    elements: false,
+                    restartOnPushState: false,
+                    restartOnRequestAfter: false
+                }
+
+                $(".date-picker")
+                       .datepicker({
+                           format: 'dd/mm/yyyy',
+                           language: 'pt-BR',
+                           autoclose: true
+                       });
+                $("#DataInicioCurso")
+                    .datepicker({
+                        format: 'mm/yyyy',
+                        language: 'pt-BR',
+                        viewMode: 'years',
+                        minViewMode: "months",
+                        autoclose: true
+                    });
+            });
+
+</script>
+
+<script>
 
     $("#btnCadastrar").click(function () {
         if ($("#Senha").val() != $("#NovaSenha").val())

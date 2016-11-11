@@ -26,28 +26,6 @@
         </div>
         <div id="divContent" class="content">@RenderBody()</div>
         <div class="copyright">2016 © Fimple.</div>
-
-        <script>
-            
-            $(document).ready(function () {
-                Metronic.init(); // init metronic core components
-                Layout.init(); // init current layout
-
-                paceOptions = {
-                    elements: false,
-                    restartOnPushState: false,
-                    restartOnRequestAfter: false
-                }
-
-                $(".date-picker").datepicker({
-                    format: 'dd/mm/yyyy',
-                    language: 'pt-BR',
-                    autoclose: true
-                });
-            });
-
-        </script>
-
     </div>
 </body>
 </html>

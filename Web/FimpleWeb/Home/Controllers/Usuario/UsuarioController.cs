@@ -33,7 +33,7 @@ namespace Home.Controllers.Usuario
                 // Recuperando cursos retornados
                 usuario.ComboCurso = JsonConvert.DeserializeObject<IEnumerable<Curso>>(responseCurso.Content.ReadAsStringAsync().Result);
 
-                return View("_Dados", usuario);
+                return View("_Cadastro", usuario);
             }
             catch (Exception ex)
             {
@@ -45,6 +45,12 @@ namespace Home.Controllers.Usuario
         {
             try
             {
+                //if (!ModelState.IsValid)
+                //{
+                //    ValidateModel(usuario);
+                //    return RedirectToAction("GetDados", "Usuario", usuario);
+                //}
+
                 // Requisição para inserir usuário
                 var response = _usuarioApp.Post(usuario);
                 if (!response.IsSuccessStatusCode)

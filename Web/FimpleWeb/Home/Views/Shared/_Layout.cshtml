@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <title>Fimple</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <link rel="shortcut icon" href="~/assets/icon/favicon.ico" />
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
@@ -24,7 +24,7 @@
     <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
         <div class="page-header-inner">
             <div class="page-logo">
-                <a href="#">
+                <a href="@Url.Action("Index", "Timeline")">
                     <img src="~/assets/img/logo-big.png" alt="logo" class="logo-default" />
                 </a>
                 <div class="menu-toggler sidebar-toggler hide"></div>
@@ -88,9 +88,54 @@
         </div>
     </div>
     <div class="clearfix"></div>
-    <div>@Html.ValidationSummary()</div>
-    <div id="divContent">@RenderBody()</div>
+    <div class="page-container">
+        <div class="page-sidebar-wrapper">
+            <div class="page-sidebar navbar-collapse collapse">
+                <ul class="page-sidebar-menu page-sidebar-menu-light " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                    <li class="sidebar-toggler-wrapper">
+                        <div class="sidebar-toggler"></div>
+                    </li>
+                    <li class="start active open">
+                        <a href="@Url.Action("Index", "Timeline")">
+                            <i class="icon-home"></i>
+                            <span class="title">Timeline</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">
+                            <i class="fa fa-users"></i>
+                            <span class="title">Eventos</span>
+                            <span class=""></span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">
+                            <i class="fa fa-map"></i>
+                            <span class="title">Mapa</span>
+                            <span class=""></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
+        <div>@Html.ValidationSummary()</div>
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <div id="divContent">@RenderBody()</div>
+
+                <a href="javascript:;" class="page-quick-sidebar-toggler"><i class="icon-close"></i></a>
+                @Html.Action("Index", "Chat")
+            </div>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <div class="page-footer-inner">
+            2016 © Fimple
+        </div>
+    </div>
     <script>
 
         $(document).ready(function () {
@@ -101,4 +146,5 @@
 
     </script>
 </body>
+
 </html>

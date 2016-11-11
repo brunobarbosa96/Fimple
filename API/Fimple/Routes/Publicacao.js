@@ -1,8 +1,8 @@
 module.exports = (app) => {
    
     var controller = require('../Publicacao/PublicacaoController.js')(app);
-    app.get('/api/timeLine/Publicacao/', controller.get);
-    app.post('/api/timeLine/Publicacao/', controller.post);
-    app.put('/api/timeLine/Publicacao/', controller.put);
-    app.delete('/api/timeLine/Publicacao/:Id', controller.delete);
+    app.get('/api/timeline/publicacao/:IdUsuario', controller.get);
+    app.post('/api/timeline/publicacao/', controller.post);
+    app.put('/api/timeline/publicacao/', controller.put);
+    app.delete('/api/timeline/publicacao/:Id', controller.delete);
 };

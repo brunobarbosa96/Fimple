@@ -181,6 +181,8 @@
     <Compile Include="Application\Chat\IChatApp.cs" />
     <Compile Include="Application\Curso\ICursoApp.cs" />
     <Compile Include="Application\Curso\CursoApp.cs" />
+    <Compile Include="Application\Timeline\IPublicacaoApp.cs" />
+    <Compile Include="Application\Timeline\PublicacaoApp.cs" />
     <Compile Include="Application\Usuario\UsuarioApp.cs" />
     <Compile Include="Application\Usuario\IUsuarioApp.cs" />
     <Compile Include="Application\Login\ILoginApp.cs" />
@@ -191,7 +193,7 @@
     <Compile Include="App_Start\SimpleInjectorContainer.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\Chat\ChatController.cs" />
-    <Compile Include="Controllers\Timeline\TimeLineController.cs" />
+    <Compile Include="Controllers\Timeline\TimelineController.cs" />
     <Compile Include="Controllers\Usuario\UsuarioController.cs" />
     <Compile Include="Controllers\Login\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -297,6 +299,8 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Timeline\_Publicacao.cshtml" />
+    <Content Include="Views\Timeline\_Comentarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,7 +311,7 @@
   <ItemGroup>
     <Content Include="Views\Chat\Index.cshtml" />
     <None Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\TimeLine\Index.cshtml" />
+    <Content Include="Views\Timeline\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -318,7 +322,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Fimple Web.pubxml" />
-    <Content Include="Views\Usuario\_Dados.cshtml" />
+    <Content Include="Views\Usuario\_Cadastro.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

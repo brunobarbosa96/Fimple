@@ -16,5 +16,7 @@ namespace Home.Models.Entity
         public Curso Curso { get; set; }
         public IEnumerable<Comentario> Comantarios { get; set; }
         public IEnumerable<UsuarioPublicacao> VisualizacaoPublicacao { get; set; }
+
+        public DateTime updateAt { get; set; }
     }
 }
