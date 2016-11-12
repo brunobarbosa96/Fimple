@@ -29,16 +29,16 @@
                                 Ações <i class="fa fa-angle-down"></i>
                             </button>
                             <ul class="dropdown-menu pull-right" role="menu">
-                                <li><a href="javascript:;">Editar </a></li>
+                                <li><a href="javascript:;" onclick="editarPost(this)">Editar </a></li>
 
                                 <li class="divider">
                                 </li>
-                                <li><a href="javascript:;">Excluir </a></li>
+                                <li><a href="@Url.Action("Index", "Timeline")" onclick="excluirPublicacao('@publicacao.Id', this)">Excluir </a></li>
                             </ul>
                         </div>
                     }
                     <div class="btn-group btn-salvar" style="display: none">
-                        <button class="btn btn-circle green-haze btn-sm" type="button" data-toggle="dropdown" data-close-others="true">
+                        <button class="btn btn-circle green-haze btn-sm" onclick="salvarEdicao('@publicacao.Id', this)" type="button" data-toggle="dropdown" data-close-others="true">
                             Salvar <i class="fa fa-floppy-o "></i>
                         </button>
                     </div>
@@ -53,10 +53,11 @@
             <hr>
         </div>
     }
+    <script> if ($("[data-nocontent]").length) $("[data-nocontent]").remove();</script>
 }
 else
 {
-    <div class="timeline-body">
+    <div class="timeline-body" data-nocontent>
         <div class="timeline-body-content">
             <div class="divPost">
                 Nenhuma publicação encontrada até o momento. Aproveite e faça você o primeiro :)

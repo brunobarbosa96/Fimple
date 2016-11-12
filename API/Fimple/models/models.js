@@ -186,7 +186,6 @@ module.exports = () => {
             Id: { type: 'integer', primaryKey: true, autoIncrement: true },
             Titulo: { type: 'string', required: true },
             Conteudo: { type: 'string', required: true },
-            Ativa: { type: 'boolean', required: true },
             Data: { type: 'date', required: true },
             Usuario: {
                 model: 'usuario',

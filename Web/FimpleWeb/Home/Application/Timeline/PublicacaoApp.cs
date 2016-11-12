@@ -21,22 +21,22 @@ namespace Home.Application.Timeline
 
         public HttpResponseMessage Get(int id)
         {
-            return _request.Get(UriWebApi.Usuario, id.ToString());
+            return _request.Get(UriWebApi.Publicacao, id.ToString());
         }
 
         public HttpResponseMessage Post(Publicacao publicacao)
         {
-            return _request.Post(UriWebApi.Usuario, publicacao);
+            return _request.Post(UriWebApi.Publicacao, publicacao);
         }
 
         public HttpResponseMessage Put(Publicacao publicacao)
         {
-            return _request.Put(UriWebApi.Usuario, publicacao);
+            return _request.Put(UriWebApi.Publicacao, publicacao);
         }
 
         public HttpResponseMessage Delete(int id)
         {
-            return _request.Delete(UriWebApi.Usuario, id.ToString());
+            return _request.Delete(UriWebApi.Publicacao, id.ToString());
         }
     }
 }

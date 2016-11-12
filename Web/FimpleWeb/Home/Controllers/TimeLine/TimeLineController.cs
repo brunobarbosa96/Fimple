@@ -4,7 +4,6 @@ using Home.Models.Entity;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
@@ -32,7 +31,7 @@ namespace Home.Controllers.Timeline
             }
         }
 
-        public ActionResult GetPublicacoes(int pagina)
+        public ActionResult GetAll(int pagina)
         {
             try
             {
@@ -42,8 +41,7 @@ namespace Home.Controllers.Timeline
                         response.Content.ReadAsStringAsync().Result);
 
                 var publicacoes = JsonConvert.DeserializeObject<IEnumerable<Publicacao>>(
-                    response.Content.ReadAsStringAsync().Result)
-                    .OrderBy(x => x.updateAt);
+                    response.Content.ReadAsStringAsync().Result);
                 ViewBag.UsuarioLogado = UsuarioLogado.Id;
                 return View("_Publicacao", publicacoes);
             }
@@ -53,7 +51,7 @@ namespace Home.Controllers.Timeline
             }
         }
 
-        public ActionResult PostPublicacao(Publicacao publicacao)
+        public ActionResult Post(Publicacao publicacao)
         {
             try
             {
@@ -62,7 +60,41 @@ namespace Home.Controllers.Timeline
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
                         response.Content.ReadAsStringAsync().Result);
 
-                return Json(publicacao);
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        public ActionResult Put(Publicacao publicacao)
+        {
+            try
+            {
+                var response = _publicacaoApp.Put(publicacao);
+                if (!response.IsSuccessStatusCode)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
+                        response.Content.ReadAsStringAsync().Result);
+
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                var response = _publicacaoApp.Delete(id);
+                if (!response.IsSuccessStatusCode)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
+                        response.Content.ReadAsStringAsync().Result);
+
+                return new EmptyResult();
             }
             catch (Exception ex)
             {

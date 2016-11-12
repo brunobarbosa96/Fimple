@@ -9,6 +9,6 @@ namespace Home.Infra.Config
         public static string Usuario => $"{Server}:5000/api/usuario/";
         public static string Curso => $"{Server}:5000/api/curso/";
         public static string Chat => $"{Server}:5000/api/chat/";
-        public static string Publicacao => $"{Server}:5000/api/timeLine/publicacao/";
+        public static string Publicacao => $"{Server}:5000/api/timeline/publicacao/";
     }
 }
