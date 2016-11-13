@@ -1,55 +1,46 @@
-﻿@{ Layout = null;}
+﻿@model Home.Models.Entity.Publicacao
+@{ Layout = null;}
 
- <!-- COMENTARIOS -->
+<!-- COMENTARIOS -->
 <div class="row">
     <div class="col-md-12 blog-page">
         <h3>Comentarios</h3>
-        <div class="row">
-            <div class="col-md-9 article-block">
-                <div class="media">
-                    <a href="javascript:;" class="pull-left">
-                        <img alt="" src="~/assets/img/placeholder.jpg" class="media-object">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading font-grey-cascade">
-                            <a href="javascript:;">Lucas Taraia</a>
-                            <i>5 horas atrás</i>
-                            <a href="javascript:;" class="btn btn-xs black">
-                                <span class="md-click-circle md-click-animate" style="height: 65px; width: 65px; top: -22.5px; left: 2.07813px;"></span>
-                                <i class="fa fa-comments-o"></i>
+        @if (Model.Comantarios != null && Model.Comantarios.Any())
+        {
+            foreach (var comentario in Model.Comantarios)
+            {
+                <div class="row">
+                    <div class="col-md-9 article-block">
+                        <div class="media">
+                            <a href="javascript:;" class="pull-left">
+                                <img alt="" src="~/assets/img/placeholder.jpg" class="media-object">
                             </a>
-                        </h4>
-                        <div>
-                            Aqui é Body Builder Ipsum PORRA! Ó o homem ali porra!, é 13 porra! Eu quero esse 13 daqui a pouquinho aí. É esse que a gente quer, é ele que nóis vamo buscar. Sabe o que é isso daí? Trapézio descendente é o nome disso aí. É 37 anos caralho! Negativa Bambam negativa.
+                            <div class="media-body">
+                                <h4 class="media-heading font-grey-cascade">
+                                    <a href="javascript:;">@comentario.Usuario.Nome</a>
+                                    <i>Há algum tempo</i>
+                                    <a href="javascript:;" class="btn btn-xs black">
+                                        <span class="md-click-circle md-click-animate" style="height: 65px; width: 65px; top: -22.5px; left: 2.07813px;"></span>
+                                        <i class="fa fa-comments-o"></i>
+                                    </a>
+                                </h4>
+                                <div>
+                                    @comentario.Conteudo
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row" style="display: none">
-            <div class="col-md-9 article-block">
-                <div class="media">
-                    <a href="javascript:;" class="pull-left">
-                        <img alt="" src="~/assets/img/placeholder.jpg" class="media-object">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading font-grey-cascade">
-                            <a href="javascript:;">Jorge</a>
-                            <i></i>
-                        </h4>
-                        <div id="divComment"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            }
+        }
         <div>
             <div class="btn-group" id="btnAddComent">
-                <button class="btn btn-circle green-haze btn-sm" type="button" data-toggle="dropdown" data-close-others="true">
+                <button class="btn btn-circle green-haze btn-sm" type="button" data-toggle="dropdown" data-close-others="true" onclick="addComentario()">
                     Comentar <i class="fa fa-comment-o"></i>
                 </button>
             </div>
             <div class="btn-group" style="display: none" id="btnSalvarComent">
-                <button class="btn btn-circle green-haze btn-sm" type="button" data-toggle="dropdown" data-close-others="true">
+                <button class="btn btn-circle green-haze btn-sm" type="button" data-toggle="dropdown" data-close-others="true" onclick="salvarComentario()">
                     Salvar <i class="fa fa fa-floppy-o"></i>
                 </button>
             </div>

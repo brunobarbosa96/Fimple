@@ -87,6 +87,17 @@
         $(element).closest(".timeline-body-head-actions").find(".btn-salvar").show();
     }
 
+    function addComentario() {
+        $("#btnAddComent").hide();
+        $("#btnSalvarComent").show();
+        $(".row:not(:visible)").show();
+    }
+
+    function salvarComentario() {
+        $("#btnSalvarComent").hide();
+        $("#divComment").summernote("destroy");
+    }
+
 </script>
 
 <script>

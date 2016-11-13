@@ -156,14 +156,6 @@ module.exports = () => {
                 model: 'publicacao',
                 foreignKey: true
             },
-            ComentariosEvento: {
-                collection: 'comentario',
-                via: 'NotificacaoEvento'
-            },
-            ComentariosPublicacao: {
-                collection: 'comentario',
-                via: 'NotificacaoPublicacao'
-            },
             Curso: {
                 model: 'curso',
                 foreignKey: true
@@ -220,18 +212,8 @@ module.exports = () => {
         attributes: {
             Id: { type: 'integer', primaryKey: true, autoIncrement: true },
             Conteudo: { type: 'string', required: true },
-            Data: { type: 'date', required: true },
-            Ativo: { type: 'boolean', required: true },
             Usuario: {
                 model: 'usuario',
-                foreignKey: true
-            },
-            NotificacaoEvento: {
-                model: 'notificacao',
-                foreignKey: true
-            },
-            NotificacaoPublicacao: {
-                model: 'notificacao',
                 foreignKey: true
             },
             Evento: {

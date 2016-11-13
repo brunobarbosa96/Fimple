@@ -36,6 +36,8 @@
     <Compile Include="Fimple\Login\LoginController.js" />
     <Compile Include="Fimple\Login\LoginRepository.js" />
     <Compile Include="Fimple\models\models.js" />
+    <Compile Include="Fimple\Publicacao\Comentario\ComentarioController.js" />
+    <Compile Include="Fimple\Publicacao\Comentario\ComentarioRepository.js" />
     <Compile Include="Fimple\Publicacao\PublicacaoController.js" />
     <Compile Include="Fimple\Publicacao\PublicacaoRepository.js" />
     <Compile Include="Fimple\Routes\Chat.js" />
@@ -61,6 +63,7 @@
     <Folder Include="Fimple\Curso\" />
     <Folder Include="Fimple\Chat\" />
     <Folder Include="Fimple\Publicacao" />
+    <Folder Include="Fimple\Publicacao\Comentario\" />
     <Folder Include="Fimple\Routes" />
     <Folder Include="Fimple\Usuario" />
     <Folder Include="Fimple\Usuario\UsuarioBloqueado" />

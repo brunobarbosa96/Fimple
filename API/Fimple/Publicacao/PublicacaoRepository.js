@@ -9,7 +9,7 @@ module.exports = (app) => {
                     .sort("updatedAt DESC")
                     .paginate({ page: req.query.Pagina, limit: 30 })
                     .populate("Usuario", { select: ["Id", "Nome", "Sobrenome"] })
-                    .populate("Comentarios", { select: ["Id", "Conteudo", "Data", "Usuario", "updateAt"] })
+                    .populate("Comentarios", { select: ["Id", "Conteudo", "Data", "Usuario.Id", "Usuario.Nome", "updateAt"] })
                     .populate("Entidade", { select: ["Id"] })
                     .populate("Categoria", { select: ["Id"] })
                     .populate("Curso", { select: ["Id"] })
@@ -32,8 +32,8 @@ module.exports = (app) => {
                     Categoria: req.body.Categoria.Id,
                     Curso: req.body.Curso.Id
                 }).exec((err, row) => {
-                    return callback(err, row);
-                });
+                        return callback(err, row);
+                    });
             } catch (e) {
                 return callback(e);
             }
