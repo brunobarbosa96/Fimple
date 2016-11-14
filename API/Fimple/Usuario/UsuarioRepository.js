@@ -5,7 +5,19 @@ module.exports = (app) => {
 
         getAll: (req, res, callback) => {
             try {
-                usuario.find({ select: ["Id", "Rgm", "Nome", "Sobrenome", "Apelido", "Email", "DataNascimento", "DataInicioCurso", "Cep", "Curso"] })
+                usuario.find({
+                    select: [
+                        "Id",
+                        "Rgm",
+                        "Nome",
+                        "Sobrenome",
+                        "Apelido",
+                        "Email",
+                        "DataNascimento",
+                        "DataInicioCurso",
+                        "Cep",
+                        "Curso"]
+                })
                     .populate("Curso", { select: ["Id", "Nome"] })
                     .exec((err, row) => {
                         return callback(err, row);
@@ -17,7 +29,18 @@ module.exports = (app) => {
 
         get: (req, res, callback) => {
             try {
-                usuario.findOne({ Id: req.params.Id }, { select: ["Id", "Rgm", "Nome", "Sobrenome", "Apelido", "Email", "DataNascimento", "DataInicioCurso", "Cep", "Curso"] })
+                usuario.findOne({ Id: req.params.Id }, {
+                    select: [
+                        "Id",
+                        "Rgm",
+                        "Nome",
+                        "Sobrenome",
+                        "Apelido",
+                        "Email",
+                        "DataNascimento",
+                        "DataInicioCurso",
+                        "Cep",
+                        "Curso"] })
                     .populate("Curso", { select: ["Id", "Nome"] })
                     .exec((err, row) => {
                         return callback(err, row);
