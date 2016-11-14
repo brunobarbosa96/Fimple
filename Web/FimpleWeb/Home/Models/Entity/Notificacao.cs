@@ -9,8 +9,6 @@ namespace Home.Models.Entity
         public Usuario Usuario { get; set; }
         public Evento Evento { get; set; }
         public Publicacao Publicacao { get; set; }
-        public Comentario ComentarioEvento { get; set; }
-        public Comentario ComentarioPublicacao { get; set; }
         public Curso Curso { get; set; }
         public Entidade Entidade { get; set; }
         public Categoria Categoria { get; set; }

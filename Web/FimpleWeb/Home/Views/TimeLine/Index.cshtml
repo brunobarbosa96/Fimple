@@ -69,8 +69,8 @@
         $("#novoPost").summernote("focus");
     }
 
-    function editarPost(element) {
-        $('.divPost').summernote({
+    function editarPost(id, element) {
+        $("[data-post="+ id + "]").summernote({
             toolbar: false,
             height: 200,
             minHeight: 200,
@@ -110,7 +110,7 @@
         $.post('@Url.Action("Post", "Timeline")',
             {
                 Titulo: "Título padrão",
-                Conteudo: $("textarea.note-codable").val(),
+                Conteudo: $(".note-editable.panel-body:first").text().trim(),
                 Data: new Date(),
                 Usuario: { Id: '@Model.Id' },
                 Entidade: { Id: 1 },
@@ -119,7 +119,7 @@
             })
             .done(() => {
                 $("#novaPostagem").hide();
-                $("textarea.note-codable").val("");
+                $(".note-editable.panel-body").text("");
                 $('.divPost').summernote("destroy");
                 buscarPublicacoes();
             })
@@ -133,7 +133,7 @@
            {
                Id: id,
                Titulo: "Título padrão",
-               Conteudo: $("textarea.note-codable").val(),
+               Conteudo: $("[data-post=" + id + "]").closest(".timeline-body-content > .note-editable.panel-body:first").text().trim(),
                Data: new Date(),
                Usuario: { Id: '@Model.Id' },
                Entidade: { Id: 1 },
@@ -142,7 +142,7 @@
            })
            .done(() => {
                //$(".btn-salvar").hide();
-               $("textarea.note-codable").val("");
+               $(".note-editable.panel-body").text("");
                $('.divPost').summernote("destroy");
                buscarPublicacoes(() => {
                    var body = $(obj).closest(".timeline-badge") + $(obj).closest(".timeline-body");

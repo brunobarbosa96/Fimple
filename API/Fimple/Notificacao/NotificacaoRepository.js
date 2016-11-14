@@ -38,10 +38,8 @@ module.exports = (app) => {
             try {
                 notificacao.update({
                     Id: req.body.Id
-                },
-                    {
-                        Usuario: req.body.Usuario.Id,
-                        Publicacao: req.body.IdPublicacao
+                }, {
+                        DataVisualizacao: new Date()
                     }).exec((err, row) => {
                         return callback(err, row);
                     });
