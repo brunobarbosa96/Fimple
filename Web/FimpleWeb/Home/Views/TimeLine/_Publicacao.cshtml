@@ -16,7 +16,7 @@
                     <a href="javascript:;" class="timeline-body-title font-blue-madison">@publicacao.Usuario.NomeCompleto</a>
 
                     <span class="timeline-body-time font-grey-cascade">à algum tempo</span>
-                    @if (publicacao.Usuario.Id == ViewBag.UsuarioLogado)
+                    @if (publicacao.Usuario.Id != ViewBag.UsuarioLogado)
                     {
                         <a href="javascript:;" onclick="abrirChat('@publicacao.Usuario.Id')" class="btn btn-xs black">
                             <span class="md-click-circle md-click-animate" style="height: 65px; width: 65px; top: -22.5px; left: 2.07813px;"></span>
@@ -36,7 +36,7 @@
 
                                 <li class="divider">
                                 </li>
-                                <li><a href="@Url.Action("Index", "Timeline")" onclick="excluirPublicacao('@publicacao.Id', this)">Excluir </a></li>
+                                <li><a href="@Url.Action("Index", "Timeline")" onclick="excluirPublicacao('@publicacao.Id')">Excluir </a></li>
                             </ul>
                         </div>
                     }

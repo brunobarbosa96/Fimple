@@ -12,10 +12,12 @@ namespace Home.Controllers.Timeline
     public class TimelineController : BaseController
     {
         private readonly IPublicacaoApp _publicacaoApp;
+        private readonly IComentarioApp _comentarioApp;
 
-        public TimelineController(IPublicacaoApp publicacaoApp)
+        public TimelineController(IPublicacaoApp publicacaoApp, IComentarioApp comentarioApp)
         {
             _publicacaoApp = publicacaoApp;
+            _comentarioApp = comentarioApp;
         }
 
         public ActionResult Index()
@@ -90,6 +92,57 @@ namespace Home.Controllers.Timeline
             try
             {
                 var response = _publicacaoApp.Delete(id);
+                if (!response.IsSuccessStatusCode)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
+                        response.Content.ReadAsStringAsync().Result);
+
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        public ActionResult PostComentario(Comentario comentario)
+        {
+            try
+            {
+                var response = _comentarioApp.Post(comentario);
+                if (!response.IsSuccessStatusCode)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
+                        response.Content.ReadAsStringAsync().Result);
+
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        public ActionResult PutComentario(Comentario comentario)
+        {
+            try
+            {
+                var response = _comentarioApp.Put(comentario);
+                if (!response.IsSuccessStatusCode)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
+                        response.Content.ReadAsStringAsync().Result);
+
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        public ActionResult DeleteComentario(int id)
+        {
+            try
+            {
+                var response = _comentarioApp.Delete(id);
                 if (!response.IsSuccessStatusCode)
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
                         response.Content.ReadAsStringAsync().Result);

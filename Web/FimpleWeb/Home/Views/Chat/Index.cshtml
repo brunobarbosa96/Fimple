@@ -20,12 +20,12 @@
                                 {
                                     <li class="media" data-user-id="@usuario.First().UsuarioDestino.Id" onclick="openChat(this)">
                                         <div class="media-status">
-                                            <span class="badge badge-success">2</span>
+                                            <span class="badge badge-success">1</span>
                                         </div>
                                         <img class="media-object" src="~/assets/img/placeholder.jpg" alt="...">
                                         <div class="media-body">
                                             <h4 class="media-heading">@usuario.First().UsuarioDestino.Nome</h4>
-                                            <div class="media-heading-sub">Ciencia da computacao</div>
+                                            <div class="media-heading-sub">@usuario.First().UsuarioDestino.Curso.Nome</div>
                                         </div>
                                     </li>
                                 }

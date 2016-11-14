@@ -64,15 +64,7 @@
         maxHeight: 500
     });
 
-    $("#divComment")
-        .summernote({
-            toolbar: false,
-            height: 50,
-            minHeight: 50,
-            maxHeight: 100
-        });
-
-    function addPost() {
+   function addPost() {
         $("#novaPostagem").show();
         $("#novoPost").summernote("focus");
     }
@@ -87,19 +79,12 @@
         $(element).closest(".timeline-body-head-actions").find(".btn-salvar").show();
     }
 
-    function addComentario() {
-        $("#btnAddComent").hide();
-        $("#btnSalvarComent").show();
-        $(".row:not(:visible)").show();
-    }
-
-    function salvarComentario() {
-        $("#btnSalvarComent").hide();
-        $("#divComment").summernote("destroy");
+    function addComentario(obj) {
+        $(obj).closest("[data-add-coment]").hide().next("[data-salvar-coment]").show();
+        $(obj).closest(".col-md-12 blog-page").find("[data-row-coment]").show();
     }
 
 </script>
-
 <script>
 
     var buscarPublicacoes = (function publicacao(callback, isUpdate) {
@@ -107,7 +92,7 @@
             pagina: Math.ceil($(".timeline-body").length / 30)
         })
         .done((data) => {
-            isUpdate 
+            isUpdate
             ? $("#divPublicacoes").prepend(data)
             : $("#divPublicacoes").html(data);
 
@@ -171,14 +156,50 @@
            });
     }
 
-    function excluirPublicacao(id, obj) {
+    function excluirPublicacao(id) {
         $.get('@Url.Action("Delete", "Timeline")',
             {
                 id: id
             })
             .fail(() => {
-                $("#divPublicacoes").html("<h1>Erro ao salvar publicação</h1>");
+                $("#divPublicacoes").html("<h1>Erro ao excluir publicação</h1>");
             });
+    }
+
+    function salvarComentario(obj) {
+        $.post('@Url.Action("PostComentario", "Timeline")',
+            {
+                IdPublicacao: $(obj).closest("[data-id-publicacao]").attr("data-id-publicacao"),
+                Conteudo: $("textarea.note-codable").val(),
+                Usuario: { Id: '@Model.Id' }
+            })
+            .done(() => {
+                $("#novaPostagem").hide();
+                $("textarea.note-codable").val("");
+                $('.divPost').summernote("destroy");
+                buscarPublicacoes();
+            })
+            .fail(() => {
+                $("#divPublicacoes").html("<h1>Erro ao salvar comentário</h1>");
+            });
+
+        $(obj).closest("[data-add-coment]").show().next("[data-salvar-coment]").hide();
+        $(obj).closest(".col-md-12 blog-page").find("[data-div-coment]").summernote("destroy");
+    }
+
+    function excluirComentario(id) {
+        $.get('@Url.Action("DeleteComentario", "Timeline")',
+            {
+                id: id
+            })
+            .fail(() => {
+                $("#divPublicacoes").html("<h1>Erro ao excluir comentário</h1>");
+            });
+    }
+
+    function abrirchat(idUsuario) {
+        $('body').toggleClass('page-quick-sidebar-open');
+        $(".media[data-user-id=" + idUsuario + "]").trigger("click");
     }
 
 </script>

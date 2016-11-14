@@ -20,7 +20,7 @@ orm.initialize(config, function (err, models) {
     load('Routes').into(app);
 
     // Start Server
-    app.listen(5000, () => {
-        console.log("Server up on port 5000");
+    app.listen(21066, () => {
+        console.log("Server up on port 21066");
     });
 });

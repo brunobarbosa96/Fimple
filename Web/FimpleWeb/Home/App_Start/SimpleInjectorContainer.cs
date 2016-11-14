@@ -23,6 +23,7 @@ namespace Home
             container.Register<ICursoApp, CursoApp>();
             container.Register<IChatApp, ChatApp>();
             container.Register<IPublicacaoApp, PublicacaoApp>();
+            container.Register<IComentarioApp, ComentarioApp>();
 
             container.Verify();
             return container;

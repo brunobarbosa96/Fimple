@@ -8,7 +8,8 @@ module.exports = (app) => {
             try {
                 comentario.create({
                     Conteudo: req.body.Conteudo,
-                    Usuario: req.body.Usuario.Id
+                    Usuario: req.body.Usuario.Id,
+                    Publicacao: req.body.IdPublicacao
                 }).exec((err) => {
                     if (err)
                         return callback(err);

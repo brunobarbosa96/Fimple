@@ -24,7 +24,7 @@ namespace Home.Models.Entity
         public Usuario UsuarioEnvio { get; set; }
         public Usuario UsuarioDestino { get; set; }
 
-        public DateTime updateAt { get; set; }
-        public string HoraEnvio => $"{updateAt:HH:mm}";
+        public DateTime updatedAt { get; set; }
+        public string HoraEnvio => $"{updatedAt:HH:mm}";
     }
 }

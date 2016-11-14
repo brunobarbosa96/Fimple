@@ -1,6 +1,7 @@
 module.exports = (app) => {
 
     var mensagem = app.models.mensagem;
+    var curso = app.models.curso;
     var repository = {
 
         getConversas: (req, res, callback) => {
@@ -11,10 +12,20 @@ module.exports = (app) => {
                         { UsuarioDestino: req.params.Id }
                     ]
                 }, { select: ["UsuarioEnvio", "UsuarioDestino"] })
-                    .populate("UsuarioEnvio", { select: ["Id", "Nome"] })
-                    .populate("UsuarioDestino", { select: ["Id", "Nome"] })
+                    .populate("UsuarioEnvio", { select: ["Id", "Nome", "Curso"] })
+                    .populate("UsuarioDestino", { select: ["Id", "Nome", "Curso"] })
                     .exec((err, row) => {
-                        return callback(err, row);
+                        curso.find({ select: ['Id', 'Nome'] }).exec((error, cursos) => {
+                            if (error)
+                                return callback(error);
+
+                            for (var i in row) {
+                                row[i].UsuarioEnvio.Curso = cursos.filter((x) => x.Id == row[i].UsuarioEnvio.Curso)[0];
+                                row[i].UsuarioDestino.Curso = cursos.filter((x) => x.Id == row[i].UsuarioDestino.Curso)[0];
+                            }
+
+                            return callback(err, row);
+                        });
                     });
             } catch (e) {
                 return callback(e);
