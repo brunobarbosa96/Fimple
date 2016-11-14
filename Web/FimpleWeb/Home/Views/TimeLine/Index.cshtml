@@ -1,7 +1,7 @@
 ﻿@model Home.Models.Entity.Usuario
 <!-- BEGIN PAGE HEADER-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
-
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -9,7 +9,7 @@
             <a href="@Url.Action("Index", "Timeline")">Timeline</a>
         </li>
     </ul>
-    <div class="page-toolbar">
+    <div class="page-toolbar">  
         <div class="btn-group">
             <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true" onclick="addPost()">
                 Nova Postagem
