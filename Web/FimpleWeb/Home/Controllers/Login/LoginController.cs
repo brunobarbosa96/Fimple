@@ -51,7 +51,7 @@ namespace Home.Controllers.Login
             try
             {
                 // Criptografando senha
-                usuario.Senha = Security.Encrypt(usuario.Senha);
+                //usuario.Senha = Security.Encrypt(usuario.Senha);
 
                 // Requisição para validar login
                 var response = _loginApp.Post(usuario);

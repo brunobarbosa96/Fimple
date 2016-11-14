@@ -1,7 +1,6 @@
 ﻿using Home.Application.Curso;
 using Home.Application.Usuario;
 using Home.Infra;
-using Home.Infra.Security;
 using Home.Models.Entity;
 using Newtonsoft.Json;
 using System;
@@ -47,7 +46,7 @@ namespace Home.Controllers.Usuario
             try
             {
                 // Criptografando senha
-                usuario.Senha = Security.Encrypt(usuario.Senha);
+                //usuario.Senha = Security.Encrypt(usuario.Senha);
 
                 // Requisição para inserir usuário
                 var response = _usuarioApp.Post(usuario);
