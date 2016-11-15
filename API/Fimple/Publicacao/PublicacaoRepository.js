@@ -7,20 +7,32 @@ module.exports = (app) => {
         get: (req, res, callback) => {
             try {
                 publicacao.find({
-                    select: ["Id", "Conteudo", "Data", "updatedAt"]
+                    select: ["Id", "Conteudo", "Data", "updatedAt", "Usuario"]
                 })
                     .sort("updatedAt DESC")
                     .paginate({ page: req.query.Pagina, limit: 30 })
                     .populate("Usuario", { select: ["Id", "Nome", "Sobrenome"] })
                     .exec((err, row) => {
-                        comentario.find({ select: ["Id", "Conteudo", "Publicacao", "updatedAt"] })
-                            .populate("Usuario", { select: ["Id", "Nome"] })
+                        comentario.find({ select: ["Id", "Conteudo", "Publicacao", "updatedAt", "Usuario"] })
+                            .populate("Usuario", { select: ["Id", "Nome", "Sobrenome"] })
                             .exec((erro, rows) => {
                                 if (erro)
                                     return callback(erro);
 
                                 for (var i in row)
-                                    row[i].Comentarios = rows.filter((x) => x.Publicacao == row[i].Id);
+                                    row[i].Comentarios =
+                                        rows.filter((x) => x.Publicacao == row[i].Id)
+                                        .map((x) => {
+                                            return {
+                                                Id: x.Id,
+                                                Conteudo: x.Conteudo,
+                                                updatedAt: x.updatedAt,
+                                                Usuario: {
+                                                    Id: x.Usuario.Id,
+                                                    Nome: x.Usuario.Nome
+                                                }
+                                            }
+                                        });
 
                                 return callback(err, row);
                             });

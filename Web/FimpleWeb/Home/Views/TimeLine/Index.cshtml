@@ -167,7 +167,7 @@
         $.post('@Url.Action("PostComentario", "Timeline")',
             {
                 IdPublicacao: $(obj).closest("[data-id-publicacao]").attr("data-id-publicacao"),
-                Conteudo: $(obj).closest(".col-md-12.blog-page").find(".note-editable").html(),
+                Conteudo: $(obj).closest(".col-md-12.blog-page").find(".note-editable p").text(),
                 Usuario: { Id: '@Model.Id' }
             })
             .done(() => {
