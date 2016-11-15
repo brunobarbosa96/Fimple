@@ -2,6 +2,7 @@
 using Home.Infra;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Web.Mvc;
 
@@ -15,7 +16,7 @@ namespace Home.Controllers.Perfil
         {
             _usuarioApp = usuarioApp;
         }
-            
+
         public ActionResult Index()
         {
             try
@@ -36,6 +37,8 @@ namespace Home.Controllers.Perfil
             }
         }
 
+
+        #region --> Abas <--
         public ActionResult GetInfo()
         {
             try
@@ -48,6 +51,51 @@ namespace Home.Controllers.Perfil
                     retorno.Content.ReadAsStringAsync().Result);
 
                 return View("Abas/_InformacaoPessoal", usuario);
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        public ActionResult GetMudarAvatar()
+        {
+            return PartialView("Abas/_MudarAvatar");
+        }
+
+        public ActionResult GetMudarSenha()
+        {
+            return PartialView("Abas/_MudarSenha");
+        }
+
+        public ActionResult GetUsuarioBloqueado()
+        {
+            var retorno = _usuarioApp.GetUsuarioBloqueado(UsuarioLogado.Id);
+            if (!retorno.IsSuccessStatusCode)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, retorno.Content.ReadAsStringAsync().Result);
+
+            var usuario = JsonConvert.DeserializeObject<IEnumerable<Models.Entity.Usuario>>(
+                retorno.Content.ReadAsStringAsync().Result);
+
+            return PartialView("Abas/_UsuarioBloqueado", usuario);
+
+        }
+        #endregion
+
+        public ActionResult AtualizaUsuario(Models.Entity.Usuario usuarioEditar)
+        {
+            try
+            {
+                var retorno = _usuarioApp.Put(usuarioEditar);
+
+                if (!retorno.IsSuccessStatusCode)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, retorno.Content.ReadAsStringAsync().Result);
+
+                var usuario = JsonConvert.DeserializeObject<Models.Entity.Usuario>(
+                    retorno.Content.ReadAsStringAsync().Result);
+
+                return View("Abas/_InformacaoPessoal", usuario);
+
             }
             catch (Exception ex)
             {

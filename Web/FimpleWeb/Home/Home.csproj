@@ -315,6 +315,8 @@
     <Content Include="Views\Notificacao\_Index.cshtml" />
     <Content Include="Views\PerfilEditar\Abas\_MudarAvatar.cshtml" />
     <Content Include="Views\PerfilEditar\Abas\_InformacaoPessoal.cshtml" />
+    <Content Include="Views\PerfilEditar\Abas\_MudarSenha.cshtml" />
+    <Content Include="Views\PerfilEditar\Abas\_UsuarioBloqueado.cshtml" />
     <None Include="Views\PerfilEditar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

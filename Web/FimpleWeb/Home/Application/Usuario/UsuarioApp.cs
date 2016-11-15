@@ -23,6 +23,11 @@ namespace Home.Application.Usuario
             return _request.Get(UriWebApi.Usuario, id.ToString());
         }
 
+        public HttpResponseMessage GetUsuarioBloqueado(int id)
+        {
+            return _request.Get($"{UriWebApi.Usuario}bloqueado/{id}");
+        }
+
         public HttpResponseMessage Post(Models.Entity.Usuario usuario)
         {
             return _request.Post(UriWebApi.Usuario, usuario);

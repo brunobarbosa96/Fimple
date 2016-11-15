@@ -39,6 +39,6 @@ namespace Home.Models.Entity
 
         public string NomeCompleto => $"{Nome} {Sobrenome}";
         public string NomeDataNascimento => $"{DataNascimento.ToShortDateString()}";
-        public string NomeInicioCurso => $"{DataInicioCurso.ToShortDateString()}";
+        public string NomeDataInicioCurso => $"{DataInicioCurso.ToShortDateString()}";
     }
 }
