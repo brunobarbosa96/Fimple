@@ -5,7 +5,10 @@ module.exports = (app) => {
     var repository = {
 
         getAll: (req, res, callback) => {
-            usuario.find({ Id: req.params.Id })
+            usuario.find({ Id: req.params.Id },
+                {
+                    select: ["Id", "UsuariosBloqueados"]
+                })
                 .populate("UsuariosBloqueados")
                 .exec((err, row) => {
                     return callback(err, row);
