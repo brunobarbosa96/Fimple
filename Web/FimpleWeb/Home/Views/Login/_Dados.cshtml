@@ -41,7 +41,8 @@
             Email: $("#Email").val(),
             Senha: $("#Senha").val()
         }).done((data) => {
-            $(document).html(data);
+            $("#formLogin").submit();
+            return false;
         }).fail((xhr) => {
             $("#formLogin")[0].reset();
             setErrorLogin(xhr);
