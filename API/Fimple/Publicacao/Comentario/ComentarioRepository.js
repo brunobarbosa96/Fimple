@@ -10,16 +10,8 @@ module.exports = (app) => {
                     Conteudo: req.body.Conteudo,
                     Usuario: req.body.Usuario.Id,
                     Publicacao: req.body.IdPublicacao
-                }).exec((err) => {
-                    if (err)
-                        return callback(err);
-
-                    notificacao.create({
-                        Usuario: req.body.Usuario.Id,
-                        Publicacao: req.body.IdPublicacao
-                    }).exec((err, row) => {
-                        return callback(err, row);
-                    });
+                }).exec((err, row) => {
+                    return callback(err, row);
                 });
 
             } catch (e) {

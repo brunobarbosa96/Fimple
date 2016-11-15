@@ -195,6 +195,8 @@
     <Compile Include="App_Start\SimpleInjectorContainer.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\Chat\ChatController.cs" />
+    <Compile Include="Controllers\Notificacao\NotificacaoController.cs" />
+    <Compile Include="Controllers\Perfil\PerfilEditarController.cs" />
     <Compile Include="Controllers\Timeline\TimelineController.cs" />
     <Compile Include="Controllers\Usuario\UsuarioController.cs" />
     <Compile Include="Controllers\Login\LoginController.cs" />
@@ -303,9 +305,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Timeline\_Publicacao.cshtml" />
     <Content Include="Views\Timeline\_Comentarios.cshtml" />
+    <Content Include="Views\Notificacao\_Index.cshtml" />
+    <None Include="Views\PerfilEditar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Perfil\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

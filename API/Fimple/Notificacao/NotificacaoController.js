@@ -1,25 +1,13 @@
 module.exports = (app) => {
 
-    var repository = require('./ChatRepository')(app);
+    var repository = require('./NotificacaoRepository')(app);
     var controller = {
-
-        getConversas: (req, res) => {
-
-            repository.getConversas(req, res, (err, row) => {
-                if (err)
-                    res.status(500).json({ "message": "Erro ao buscar conversas", "exception": err });
-                if (!row)
-                    res.status(204).json({ "message": "Nenhum registro encontrado" });
-                else
-                    res.status(200).json(row);
-            });
-        },
 
         get: (req, res) => {
 
             repository.get(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message": "Erro ao buscar mensagens", "exception": err });
+                    res.status(500).json({ "message": "Erro ao buscar notificações", "exception": err });
                 if (!row)
                     res.status(204).json({ "message": "Nenhum registro encontrado" });
                 else
@@ -30,7 +18,16 @@ module.exports = (app) => {
         post: (req, res) => {
             repository.post(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao inserir mensagem", "exception": err  });
+                    res.status(500).json({ "message:": "Erro ao inserir notificação", "exception": err  });
+                else
+                    res.status(200).json(row);
+            });
+        },
+
+        put: (req, res) => {
+            repository.put(req, res, (err, row) => {
+                if (err)
+                    res.status(500).json({ "message:": "Erro ao atualizar notificação", "exception": err });
                 else
                     res.status(200).json(row);
             });
@@ -39,7 +36,7 @@ module.exports = (app) => {
         delete: (req, res) => {
             repository.delete(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao excluir mensagem", "exception": err  });
+                    res.status(500).json({ "message:": "Erro ao excluir notificação", "exception": err  });
                 else
                     res.status(200).json(row);
             });
