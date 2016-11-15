@@ -23,7 +23,8 @@ namespace Home
                     "~/assets/js/bootstrap-fileinput.js",
                     "~/assets/js/jquery.sparkline.min.js",
                     "~/assets/js/jquery.validate.min.js",
-                    "~/assets/js/jquery.validate.unobtrusive.min.js"
+                    "~/assets/js/jquery.validate.unobtrusive.min.js",
+                    "~/assets/js/jquery.toast.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/assets/js").Include(
@@ -33,7 +34,8 @@ namespace Home
                     "~/assets/js/profile.js",
                     "~/assets/js/quick-sidebar.js",
                     "~/assets/js/timeline.js",
-                    "~/assets/js/demo.js"
+                    "~/assets/js/demo.js",
+                    "~/assets/js/common.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/assets/js/SignalR").Include(
@@ -56,7 +58,8 @@ namespace Home
                     "~/assets/css/bootstrap-fileinput.css",
                     "~/assets/css/bootstrap.min.css",
                     "~/assets/css/uniform.css",
-                    "~/assets/css/bootstrap-switch.min.css"
+                    "~/assets/css/bootstrap-switch.min.css",
+                    "~/assets/css/jquery.toast.css"
                 ));
 
             BundleTable.EnableOptimizations = false;

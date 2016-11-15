@@ -6,6 +6,7 @@ using System;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json.Serialization;
 
 namespace Home.Controllers.Login
 {
@@ -38,7 +39,7 @@ namespace Home.Controllers.Login
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 
@@ -57,15 +58,14 @@ namespace Home.Controllers.Login
                 // Requisição para validar login
                 var response = _loginApp.Post(usuario);
                 if (!response.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
-                        response.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(response.Content.ReadAsStringAsync().Result);
 
                 // Instanciando resposta
                 var model = JsonConvert.DeserializeObject<Models.Entity.Usuario>(response.Content.ReadAsStringAsync().Result);
 
                 // Verificando se foi encontrado algum usuário com este login
                 if (model.Id == default(int))
-                    return new HttpStatusCodeResult(HttpStatusCode.NoContent, "Usuario Não encontrado");
+                    return ErrorMessage("Usuario Não encontrado");
 
                 // Verificando se a opção de lembrar senha está habilitada
                 if (usuario.Lembrar.HasValue)
@@ -88,7 +88,7 @@ namespace Home.Controllers.Login
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 
@@ -106,7 +106,7 @@ namespace Home.Controllers.Login
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 
