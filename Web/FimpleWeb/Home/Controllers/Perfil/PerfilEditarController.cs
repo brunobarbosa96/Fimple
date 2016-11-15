@@ -82,5 +82,25 @@ namespace Home.Controllers.Perfil
         }
         #endregion
 
+        public ActionResult AtualizaUsuario(Models.Entity.Usuario usuarioEditar)
+        {
+            try
+            {
+                var retorno = _usuarioApp.Put(usuarioEditar);
+
+                if (!retorno.IsSuccessStatusCode)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, retorno.Content.ReadAsStringAsync().Result);
+
+                var usuario = JsonConvert.DeserializeObject<Models.Entity.Usuario>(
+                    retorno.Content.ReadAsStringAsync().Result);
+
+                return View("Abas/_InformacaoPessoal", usuario);
+
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
     }
 }

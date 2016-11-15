@@ -31,20 +31,30 @@
 }
 
 <script>
-
     $("#criarConta").click(getUsuario);
 
-    $("#btnEntrar").click(function() {
+    $("#btnEntrar").click(function () {
         if (!$("#Email").val() || !$("#Senha").val())
             return false;
+
+        $.post('@Url.Action("Entrar")', {
+            Email: $("#Email").val(),
+            Senha: $("#Senha").val()
+        }).done((data) => {
+            $(document).html(data);
+        }).fail((xhr) => {
+            $("#formLogin")[0].reset();
+            setErrorLogin(xhr);
+        });
+        return false;
     });
-    
+
     function formLoginSuccess(data) {
         $("#divContent").html(data);
     }
 
     function formLoginFailure(xhr) {
-        $("body").html(xhr.responseText);
+        notify.error(xhr.responseText);
     }
 
 </script>
