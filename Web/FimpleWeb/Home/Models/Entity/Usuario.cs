@@ -38,5 +38,7 @@ namespace Home.Models.Entity
         public IEnumerable<Curso> ComboCurso { get; set; }
 
         public string NomeCompleto => $"{Nome} {Sobrenome}";
+        public string NomeDataNascimento => $"{DataNascimento.ToShortDateString()}";
+        public string NomeInicioCurso => $"{DataInicioCurso.ToShortDateString()}";
     }
 }
