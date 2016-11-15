@@ -57,7 +57,8 @@ module.exports = (app) => {
                     Conteudo: req.body.Conteudo,
                     DataEnvio: new Date(),
                     UsuarioEnvio: req.body.UsuarioEnvio.Id,
-                    UsuarioDestino: req.body.UsuarioDestino.Id
+                    UsuarioDestino: req.body.UsuarioDestino.Id,
+                    DataRecebimento: req.body.DataRecebimento
                 }).exec((err, row) => {
                     return callback(err, row);
                 });
@@ -69,11 +70,14 @@ module.exports = (app) => {
         put: (req, res, callback) => {
             try {
                 mensagem.update({
-                    DataRecebimento: req.body.DataRecebimento,
-                    DataVisualizacao: req.body.DataVisualizacao
-                }).exec((err, row) => {
-                    return callback(err, row);
-                });
+                    UsuarioEnvio: req.body.UsuarioEnvio.Id,
+                    UsuairoDestino: req.body.UsuairoDestino.Id
+                }, {
+                        DataRecebimento: req.body.DataRecebimento,
+                        DataVisualizacao: req.body.DataVisualizacao
+                    }).exec((err, row) => {
+                        return callback(err, row);
+                    });
             } catch (e) {
                 return callback(e);
             }

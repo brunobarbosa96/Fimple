@@ -36,10 +36,13 @@
     <Compile Include="Fimple\Login\LoginController.js" />
     <Compile Include="Fimple\Login\LoginRepository.js" />
     <Compile Include="Fimple\models\models.js" />
+    <Compile Include="Fimple\Notificacao\NotificacaoController.js" />
+    <Compile Include="Fimple\Notificacao\NotificacaoRepository.js" />
     <Compile Include="Fimple\Publicacao\Comentario\ComentarioController.js" />
     <Compile Include="Fimple\Publicacao\Comentario\ComentarioRepository.js" />
     <Compile Include="Fimple\Publicacao\PublicacaoController.js" />
     <Compile Include="Fimple\Publicacao\PublicacaoRepository.js" />
+    <Compile Include="Fimple\Routes\Notificacao.js" />
     <Compile Include="Fimple\Routes\Chat.js" />
     <Compile Include="Fimple\Routes\Curso.js" />
     <Compile Include="Fimple\Routes\Login.js" />
@@ -62,11 +65,19 @@
     <Folder Include="Fimple\models" />
     <Folder Include="Fimple\Curso\" />
     <Folder Include="Fimple\Chat\" />
+    <Folder Include="Fimple\Notificacao\" />
     <Folder Include="Fimple\Publicacao" />
     <Folder Include="Fimple\Publicacao\Comentario\" />
     <Folder Include="Fimple\Routes" />
     <Folder Include="Fimple\Usuario" />
     <Folder Include="Fimple\Usuario\UsuarioBloqueado" />
+    <Folder Include="typings\" />
+    <Folder Include="typings\globals\" />
+    <Folder Include="typings\globals\node\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
+    <TypeScriptCompile Include="typings\index.d.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->

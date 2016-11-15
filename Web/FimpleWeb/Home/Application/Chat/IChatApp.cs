@@ -8,5 +8,6 @@ namespace Home.Application.Chat
         HttpResponseMessage Get(int idUsuarioEnvio, int idUsuarioDestino, int pagina);
         HttpResponseMessage GetConversas(int idUsuario);
         HttpResponseMessage Post(Mensagem mensagem);
+        HttpResponseMessage Put(Mensagem mensagem);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Home.Application.Chat;
 using Home.Models.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -72,8 +73,28 @@ namespace Home.Hubs
             // Transmitindo mensagem para todos os usuários da conversa
             Clients.Clients(connectionIds).TransmitirMensagem(usuarioEnvio, mensagem);
 
+            // Verificando se usuário destino está online para gravar data de recebimento
+            DateTime? dataRecebimento = null;
+            if (Usuarios.Any(x => x.Id == idUsuarioDestino))
+                dataRecebimento = DateTime.Today;
+
             // Salvando mensagem na base de dados
-            _chatApp.Post(new Mensagem(mensagem, usuarioEnvio, idUsuarioDestino));
+            _chatApp.Post(new Mensagem(mensagem, usuarioEnvio, idUsuarioDestino, dataRecebimento));
+        }
+
+        public void MarcarComoVisualizada(int idUsuarioLogado, int idUsuarioEnvio)
+        {
+            // Instanciando objeto de mensagem
+            var mensagem = new Mensagem
+            {
+                UsuarioEnvio = new Usuario { Id = idUsuarioEnvio },
+                UsuarioDestino = new Usuario { Id = idUsuarioLogado },
+                DataVisualizacao = DateTime.Today,
+                DataRecebimento = DateTime.Today
+            };
+
+            // Gravando mensagem como visualizada
+            _chatApp.Put(mensagem);
         }
     }
 }   

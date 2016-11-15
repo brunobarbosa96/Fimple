@@ -28,5 +28,10 @@ namespace Home.Application.Chat
         {
             return _request.Post(UriWebApi.Chat, mensagem);
         }
+
+        public HttpResponseMessage Put(Mensagem mensagem)
+        {
+            return _request.Put(UriWebApi.Chat, mensagem);
+        }
     }
 }

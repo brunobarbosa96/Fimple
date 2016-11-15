@@ -36,6 +36,15 @@ module.exports = (app) => {
             });
         },
 
+        put: (req, res) => {
+            repository.put(req, res, (err, row) => {
+                if (err)
+                    res.status(500).json({ "message:": "Erro ao atualizar mensagem", "exception": err });
+                else
+                    res.status(200).json(row);
+            });
+        },
+
         delete: (req, res) => {
             repository.delete(req, res, (err, row) => {
                 if (err)

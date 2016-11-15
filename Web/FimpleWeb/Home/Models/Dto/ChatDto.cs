@@ -23,5 +23,7 @@ namespace Home.Models.Dto
         public Usuario Usuario { get; set; }
         public IEnumerable<Mensagem> Conversas { get; set; }
         public IEnumerable<IGrouping<int, Mensagem>> Usuarios { get; set; }
+
+        public int TotalNaoLidas => Conversas.Count(x => !x.DataVisualizacao.HasValue);
     }
 }

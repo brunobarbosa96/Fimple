@@ -93,6 +93,11 @@
         BuscarMensagens: '@Url.Action("BuscarMensagens", "Chat")'
     }
 
+    var setaNumeroConversas = (function conversa() {
+        $("li a span.badge.badge-default").text($(".media[data-user-id]").length);
+        return conversa;
+    })();
+
     var wrapper = $('.page-quick-sidebar-wrapper');
     var wrapperChat = wrapper.find('.page-quick-sidebar-chat');
 
@@ -122,7 +127,7 @@
         var newUser = '';
         newUser += '<li class="media" data-pagina="0" data-user-id=' + usuario.Id + ' onclick="openChat(this)">';
         newUser += '<div class="media-status">';
-        newUser += '<span class="badge badge-success">' + 1 + '</span>';
+        //newUser += '<span class="badge badge-success"></span>';
         newUser += '</div>';
         newUser += '<img class="media-object" src="/assets/img/placeholder.jpg" alt="...">';
         newUser += '<div class="media-body">';
@@ -133,6 +138,7 @@
 
         $(".page-quick-sidebar-item").append(montaChatMensagens(usuario));
         initChatSlimScroll();
+        setaNumeroConversas();
         return newUser;
     }
 
@@ -188,16 +194,6 @@
         });
     }
 
-    function openChat(obj) {
-        var data = $("[data-user-id=" + $(obj).attr("data-user-id") + "]").show();
-        if (!+data.attr("data-pagina"))
-            buscarMensagens($(obj).attr("data-user-id"), 1, () => {
-                data.attr("data-pagina", 1);
-            });
-        initChatSlimScroll();
-        wrapperChat.addClass("page-quick-sidebar-content-item-shown");
-    };
-
     function hideChat(obj) {
         wrapperChat.removeClass("page-quick-sidebar-content-item-shown");
         $(".page-quick-sidebar-chat-user[data-user-id=" + $(obj).closest(".page-quick-sidebar-chat-user").attr("data-user-id") + "]").hide();
@@ -205,6 +201,21 @@
 
     // Declarando um proxy de referencia ao Hub
     var chatHub = $.connection.chat;
+
+    function openChat(obj) {
+        var idUsuarioDestino = $(obj).attr("data-user-id");
+        var data = $("[data-user-id=" + idUsuarioDestino + "]").show();
+        if (!+data.attr("data-pagina"))
+            buscarMensagens(idUsuarioDestino, 1, () => {
+                data.attr("data-pagina", 1);
+            });
+        initChatSlimScroll();
+        setaNumeroConversas();
+        wrapperChat.addClass("page-quick-sidebar-content-item-shown");
+
+        chatHub.server.marcarComoVisualizada(usuarioLogado.Id, idUsuarioDestino);
+        $(".media[data-user-id=" + idUsuarioDestino + "] .media-status span").text("").removeClass("badge-success");
+    };
 
     // Criando a função que será chamada pelo Hub para distribuir as mensagens aos clientes.
     // Por convenção as chamadas aos métodos são feitas em "camelCase"
@@ -241,16 +252,21 @@
     chatHub.client.atualizaNovoUsuarioOnline = function (usuario) {
         if (usuario.Id != usuarioLogado.Id && !$("[data-user-id=" + usuario.Id + "]").length)
             $(".page-quick-sidebar-chat-users > ul.media-list.list-items").append(montaChatUsuario(usuario));
+
+        setaNumeroConversas();
     }
 
     chatHub.client.montaListaLogados = function (usuarios) {
         usuarios.forEach((usuario) => {
             chatHub.client.atualizaNovoUsuarioOnline(usuario);
         });
+
+        setaNumeroConversas();
     }
 
     chatHub.client.removerUsuarioChat = function (usuario) {
         $("[data-user-id=" + usuario.Id + "]").remove();
+        setaNumeroConversas();
     }
 
     // Iniciando a conexão com o Hub

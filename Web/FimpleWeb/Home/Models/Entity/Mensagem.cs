@@ -9,11 +9,12 @@ namespace Home.Models.Entity
             
         }
 
-        public Mensagem(string conteudo, Usuario usuarioEnvio, int idUsuarioDestino)
+        public Mensagem(string conteudo, Usuario usuarioEnvio, int idUsuarioDestino, DateTime? dataRecebimento)
         {
             Conteudo = conteudo;
             UsuarioEnvio = usuarioEnvio;
             UsuarioDestino = new Usuario { Id = idUsuarioDestino };
+            DataRecebimento = dataRecebimento;
         }
 
         public int Id { get; set; }
