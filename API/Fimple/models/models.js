@@ -195,10 +195,10 @@ module.exports = () => {
                 model: 'curso',
                 foreignKey: true
             },
-            Comentarios: {
-                collection: 'comentario',
-                via: 'Publicacao'
-            },
+            //Comentarios: {
+            //    collection: 'comentario',
+            //    via: 'Publicacao'
+            //},
             Notificacoes: {
                 collection: 'notificacao',
                 via: 'Publicacao'

@@ -133,7 +133,7 @@
            {
                Id: id,
                Titulo: "Título padrão",
-               Conteudo: $("[data-post=" + id + "]").closest(".timeline-body-content > .note-editable.panel-body:first").text().trim(),
+               Conteudo: $("[data-post=" + id + "]").closest(".timeline-body-content").find(".note-editable.panel-body:first").text().trim(),
                Data: new Date(),
                Usuario: { Id: '@Model.Id' },
                Entidade: { Id: 1 },
@@ -141,14 +141,11 @@
                Curso: { Id: 0 }
            })
            .done(() => {
-               //$(".btn-salvar").hide();
                $(".note-editable.panel-body").text("");
                $('.divPost').summernote("destroy");
                buscarPublicacoes(() => {
-                   var body = $(obj).closest(".timeline-badge") + $(obj).closest(".timeline-body");
                    $(obj).closest(".timeline-badge").remove();
                    $(obj).closest(".timeline-body").remove();
-                   $("#divPublicacoes").prepend(body);
                });
            })
            .fail(() => {
@@ -170,7 +167,7 @@
         $.post('@Url.Action("PostComentario", "Timeline")',
             {
                 IdPublicacao: $(obj).closest("[data-id-publicacao]").attr("data-id-publicacao"),
-                Conteudo: $(obj).closest("div").prev("div").find("[data-div-coment]").summernote('code'),
+                Conteudo: $(obj).closest(".col-md-12.blog-page").find(".note-editable").html(),
                 Usuario: { Id: '@Model.Id' }
             })
             .done(() => {
@@ -181,10 +178,11 @@
             })
             .fail(() => {
                 $("#divPublicacoes").html("<h1>Erro ao salvar comentário</h1>");
+            })
+            .complete(() => {
+                $(obj).closest("[data-add-coment]").show().next("[data-salvar-coment]").hide();
+                $(obj).closest(".col-md-12 blog-page").find("[data-div-coment]").summernote("destroy");
             });
-
-        $(obj).closest("[data-add-coment]").show().next("[data-salvar-coment]").hide();
-        $(obj).closest(".col-md-12 blog-page").find("[data-div-coment]").summernote("destroy");
     }
 
     function excluirComentario(id) {
