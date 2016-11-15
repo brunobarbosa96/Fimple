@@ -1,6 +1,5 @@
 ﻿@model Home.Models.Dto.ChatDto
 @{ Layout = null; }
-
 <input type="hidden" id="nomeUsuario" value="@Model.Usuario.Nome" />
 <div class="page-quick-sidebar-wrapper">
     <div class="page-quick-sidebar">
@@ -33,35 +32,32 @@
                         </ul>
                     </div>
                     <div class="page-quick-sidebar-item">
-                        <div class="page-quick-sidebar-chat-user-messages">
-                            @if (Model.Usuarios != null && Model.Usuarios.Any())
+                        @if (Model.Usuarios != null && Model.Usuarios.Any())
+                        {
+                            foreach (var usuario in Model.Usuarios)
                             {
-                                foreach (var usuario in Model.Usuarios)
-                                {
-                                    <div class="page-quick-sidebar-chat-user" data-pagina="0" data-user-id="@usuario.First().UsuarioDestino.Id" style="display: none">
-                                        <div class="page-quick-sidebar-nav">
-                                            <a href="javascript:;" class="page-quick-sidebar-back-to-list" onclick="hideChat(this)"><i class="icon-arrow-left"></i>Voltar</a>
-                                        </div>
-                                        <div class="page-quick-sidebar-chat-user-messages"></div>
+                                <div class="page-quick-sidebar-chat-user" data-pagina="0" data-user-id="@usuario.First().UsuarioDestino.Id" style="display: none">
+                                    <div class="page-quick-sidebar-nav">
+                                        <a href="javascript:;" class="page-quick-sidebar-back-to-list" onclick="hideChat(this)"><i class="icon-arrow-left"></i>Voltar</a>
                                     </div>
-                                }
-                                <div class="page-quick-sidebar-chat-user-form">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Digite uma mensagem">
-                                        <div class="input-group-btn">
-                                            <button type="button" class="btn blue"><i class="icon-check"></i></button>
-                                        </div>
-                                    </div>
+                                    <div class="page-quick-sidebar-chat-user-messages"></div>
                                 </div>
                             }
-                        </div>
+                            <div class="page-quick-sidebar-chat-user-form" data-teste>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Digite uma mensagem">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn blue"><i class="icon-check"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <div id="divContainerMessage">
     <div class="page-quick-sidebar-chat-user" data-user-id style="display: none">
         <div class="page-quick-sidebar-nav">
@@ -119,8 +115,8 @@
         chatMessages.attr("data-height", chatMessagesHeight);
         Metronic.initSlimScroll(chatMessages);
     };
-    //Metronic.addResizeHandler(initChatSlimScroll); // reinitialize on window resize
-
+    Metronic.addResizeHandler(initChatSlimScroll); // reinitialize on window resize
+    initChatSlimScroll();
     // Definindo template para adicionar novo usuário ao chat
     var montaChatUsuario = (usuario) => {
         var newUser = '';
@@ -136,7 +132,7 @@
         newUser += '</li>';
 
         $(".page-quick-sidebar-item").append(montaChatMensagens(usuario));
-        //initChatSlimScroll();
+        initChatSlimScroll();
         return newUser;
     }
 
@@ -170,16 +166,17 @@
             idUsuarioDestino: idUsuarioDestino,
             pagina: pagina
         })
-        .success((data) => {    
+        .success((data) => {
             if (!data || !data.Conversas.length) return;
 
             data.Conversas.forEach((conversa) => {
-                chatContainer.append($(preparePost(conversa.UsuarioEnvio.Id == usuarioLogado.Id ? 'out' : 'in',
+                chatContainer.append(preparePost(conversa.UsuarioEnvio.Id == usuarioLogado.Id ? 'out' : 'in',
                     conversa.HoraEnvio,
                     conversa.UsuarioEnvio.Nome,
                     'avatar3',
-                    conversa.Conteudo)));
+                    conversa.Conteudo));
             });
+            initChatSlimScroll();
         })
         .error((xhr) => {
             console.log(xhr);
@@ -196,9 +193,8 @@
         if (!+data.attr("data-pagina"))
             buscarMensagens($(obj).attr("data-user-id"), 1, () => {
                 data.attr("data-pagina", 1);
-                //initChatSlimScroll();
             });
-
+        initChatSlimScroll();
         wrapperChat.addClass("page-quick-sidebar-content-item-shown");
     };
 
@@ -221,8 +217,7 @@
 
         // Preparando postagem
         var time = new Date();
-        var message = preparePost(isUsuarioLogado ? 'out' : 'in', (time.getHours() + ':' + time.getMinutes()), usuario.Nome, 'avatar3', mensagem);
-        message = $(message);
+        var message = preparePost(isUsuarioLogado ? 'out' : 'in', (time.getHours() + ':' + time.getMinutes()), usuario.Nome, 'ds', mensagem);
         chatContainer.append(message);
 
         var getLastPostPos = function () {
