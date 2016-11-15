@@ -5,14 +5,16 @@ module.exports = (app) => {
     var repository = {
 
         getAll: (req, res, callback) => {
-            usuario.find({ Id: req.params.Id },
-                {
-                    select: ["Id", "UsuariosBloqueados"]
-                })
-                .populate("UsuariosBloqueados")
-                .exec((err, row) => {
-                    return callback(err, row);
-                });
+            try {
+                usuario.findOne({ Id: req.params.Id }, {select: ["Id", "Nome", "UsuariosBloqueados"]})
+                    .populate("UsuariosBloqueados", {select: ["Id", "Nome"]})
+                    .exec((err, row) => {
+                        return callback(err, row.UsuariosBloqueados);
+                    });
+            } catch (e) {
+                return callback(e);
+            } 
+            
         },
 
         post: (req, res, callback) => {
