@@ -66,5 +66,7 @@ namespace Home.Controllers.Usuario
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
+        
     }
 }

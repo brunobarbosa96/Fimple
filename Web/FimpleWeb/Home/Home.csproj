@@ -306,6 +306,8 @@
     <Content Include="Views\Timeline\_Publicacao.cshtml" />
     <Content Include="Views\Timeline\_Comentarios.cshtml" />
     <Content Include="Views\Notificacao\_Index.cshtml" />
+    <Content Include="Views\PerfilEditar\Abas\_MudarAvatar.cshtml" />
+    <Content Include="Views\PerfilEditar\Abas\_InformacaoPessoal.cshtml" />
     <None Include="Views\PerfilEditar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

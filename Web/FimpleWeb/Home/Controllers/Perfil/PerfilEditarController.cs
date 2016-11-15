@@ -35,5 +35,24 @@ namespace Home.Controllers.Perfil
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
+        public ActionResult GetInfo()
+        {
+            try
+            {
+                var retorno = _usuarioApp.Get(UsuarioLogado.Id);
+                if (!retorno.IsSuccessStatusCode)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, retorno.Content.ReadAsStringAsync().Result);
+
+                var usuario = JsonConvert.DeserializeObject<Models.Entity.Usuario>(
+                    retorno.Content.ReadAsStringAsync().Result);
+
+                return View("Abas/_InformacaoPessoal", usuario);
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
     }
 }
