@@ -1,7 +1,7 @@
 module.exports = (app) => {
 
-    var repository = require('./Comentario/ComentarioRepository')(app);
-    var notificacaoRepository = require('./Notificacao/NotificacaoRepository')(app);
+    var repository = require('./ComentarioRepository')(app);
+    var notificacaoRepository = require('../../Notificacao/NotificacaoRepository')(app);
     var controller = {
 
         post: (req, res) => {

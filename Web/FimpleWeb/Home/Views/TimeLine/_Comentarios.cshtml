@@ -5,9 +5,9 @@
 <div class="row" data-id-publicacao="@Model.Id">
     <div class="col-md-12 blog-page">
         <h3>Comentarios</h3>
-        @if (Model.Comantarios != null && Model.Comantarios.Any())
+        @if (Model.Comentarios != null && Model.Comentarios.Any())
         {
-            foreach (var comentario in Model.Comantarios)
+            foreach (var comentario in Model.Comentarios)
             {
                 <div class="row">
                     <div class="col-md-9 article-block">
@@ -41,7 +41,7 @@
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading font-grey-cascade">
-                            <a href="#">Jorge</a>
+                            <a href="javascript:;">@ViewBag.UsuarioLogado.Nome</a>
                             <i></i>
                         </h4>
                         <div data-div-coment></div>

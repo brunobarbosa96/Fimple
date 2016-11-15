@@ -44,7 +44,7 @@ namespace Home.Controllers.Timeline
 
                 var publicacoes = JsonConvert.DeserializeObject<IEnumerable<Publicacao>>(
                     response.Content.ReadAsStringAsync().Result);
-                ViewBag.UsuarioLogado = UsuarioLogado.Id;
+                ViewBag.UsuarioLogado = UsuarioLogado;
                 return View("_Publicacao", publicacoes);
             }
             catch (Exception ex)
@@ -104,6 +104,7 @@ namespace Home.Controllers.Timeline
             }
         }
 
+        [ValidateInput(false)]
         public ActionResult PostComentario(Comentario comentario)
         {
             try
@@ -121,6 +122,7 @@ namespace Home.Controllers.Timeline
             }
         }
 
+        [ValidateInput(false)]
         public ActionResult PutComentario(Comentario comentario)
         {
             try

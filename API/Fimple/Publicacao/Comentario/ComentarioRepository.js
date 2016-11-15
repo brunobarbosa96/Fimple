@@ -1,7 +1,6 @@
 module.exports = (app) => {
 
     var comentario = app.models.comentario;
-    var notificacao = app.models.notificacao;
     var repository = {
 
         post: (req, res, callback) => {

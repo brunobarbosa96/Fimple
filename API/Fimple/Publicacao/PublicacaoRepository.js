@@ -1,20 +1,29 @@
 module.exports = (app) => {
 
     var publicacao = app.models.publicacao;
+    var comentario = app.models.comentario;
     var repository = {
 
         get: (req, res, callback) => {
             try {
-                publicacao.find()
+                publicacao.find({
+                    select: ["Id", "Conteudo", "Data", "updatedAt"]
+                })
                     .sort("updatedAt DESC")
                     .paginate({ page: req.query.Pagina, limit: 30 })
                     .populate("Usuario", { select: ["Id", "Nome", "Sobrenome"] })
-                    .populate("Comentarios", { select: ["Id", "Conteudo", "Data", "Usuario.Id", "Usuario.Nome", "updateAt"] })
-                    .populate("Entidade", { select: ["Id"] })
-                    .populate("Categoria", { select: ["Id"] })
-                    .populate("Curso", { select: ["Id"] })
                     .exec((err, row) => {
-                        return callback(err, row);
+                        comentario.find({ select: ["Id", "Conteudo", "Publicacao", "updatedAt"] })
+                            .populate("Usuario", { select: ["Id", "Nome"] })
+                            .exec((erro, rows) => {
+                                if (erro)
+                                    return callback(erro);
+
+                                for (var i in row)
+                                    row[i].Comentarios = rows.filter((x) => x.Publicacao == row[i].Id);
+
+                                return callback(err, row);
+                            });
                     });
             } catch (e) {
                 return callback(e);
@@ -32,8 +41,8 @@ module.exports = (app) => {
                     Categoria: req.body.Categoria.Id,
                     Curso: req.body.Curso.Id
                 }).exec((err, row) => {
-                        return callback(err, row);
-                    });
+                    return callback(err, row);
+                });
             } catch (e) {
                 return callback(e);
             }
@@ -42,7 +51,7 @@ module.exports = (app) => {
 
         put: (req, res, callback) => {
             try {
-                publicacao.update({ Id: req.body.IdPublicacao }, {
+                publicacao.update({ Id: req.body.Id }, {
                     Titulo: req.body.Titulo,
                     Conteudo: req.body.Conteudo,
                     Data: new Date(),

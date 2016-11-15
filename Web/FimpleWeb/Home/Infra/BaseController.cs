@@ -1,5 +1,7 @@
-﻿using Home.Models.Entity;
+﻿using System.Collections.Generic;
+using Home.Models.Entity;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -29,6 +31,37 @@ namespace Home.Infra
             }
 
             base.OnActionExecuting(filterContext);
+        }
+
+        protected ActionResult ViewResponse(HttpStatusCode status, string value = "")
+        {
+            Response.StatusCode = (int)status;
+            Response.TrySkipIisCustomErrors = true;
+            return Content(value);
+        }
+
+        protected ActionResult ViewResponse(HttpStatusCode status, IEnumerable<string> value, string separador = "<br/>")
+        {
+            Response.StatusCode = (int)status;
+            Response.TrySkipIisCustomErrors = true;
+            return Content(string.Join(separador, value));
+        }
+
+        protected ActionResult JsonViewResponse(HttpStatusCode status, object value)
+        {
+            Response.StatusCode = (int)status;
+            Response.TrySkipIisCustomErrors = true;
+            return Json(value, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ErrorMessage(string message)
+        {
+            return ViewResponse(HttpStatusCode.BadRequest, message);
+        }
+
+        public ActionResult ErrorMessage(IEnumerable<string> value)
+        {
+            return ViewResponse(HttpStatusCode.BadRequest, value);
         }
     }
 }
