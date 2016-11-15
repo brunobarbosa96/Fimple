@@ -26,6 +26,7 @@ namespace Home.Controllers.Login
                 if (Request.Cookies["fimpleUser"] != null)
                 {
                     var userCookie = JsonConvert.DeserializeObject<Models.Entity.Usuario>(Security.Decrypt(Request.Cookies["fimpleUser"].Value));
+                    userCookie.Senha = Security.Decrypt(userCookie.Senha);
                     return RedirectToAction("Entrar", "Login", userCookie);
                 }
 
@@ -51,7 +52,7 @@ namespace Home.Controllers.Login
             try
             {
                 // Criptografando senha
-                //usuario.Senha = Security.Encrypt(usuario.Senha);
+                usuario.Senha = Security.Encrypt(usuario.Senha);
 
                 // Requisição para validar login
                 var response = _loginApp.Post(usuario);

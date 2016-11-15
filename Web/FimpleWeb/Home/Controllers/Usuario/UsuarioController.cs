@@ -1,10 +1,12 @@
 ﻿using Home.Application.Curso;
 using Home.Application.Usuario;
 using Home.Infra;
+using Home.Infra.Security;
 using Home.Models.Entity;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
@@ -31,7 +33,8 @@ namespace Home.Controllers.Usuario
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest, responseCurso.Content.ReadAsStringAsync().Result);
 
                 // Recuperando cursos retornados
-                usuario.ComboCurso = JsonConvert.DeserializeObject<IEnumerable<Curso>>(responseCurso.Content.ReadAsStringAsync().Result);
+                usuario.ComboCurso = JsonConvert.DeserializeObject<IEnumerable<Curso>>(responseCurso.Content.ReadAsStringAsync().Result)
+                    .OrderBy(x => x.Nome);
 
                 return View("_Cadastro", usuario);
             }
@@ -46,7 +49,7 @@ namespace Home.Controllers.Usuario
             try
             {
                 // Criptografando senha
-                //usuario.Senha = Security.Encrypt(usuario.Senha);
+                usuario.Senha = Security.Encrypt(usuario.Senha);
 
                 // Requisição para inserir usuário
                 var response = _usuarioApp.Post(usuario);
