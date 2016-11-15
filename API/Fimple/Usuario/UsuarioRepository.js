@@ -76,17 +76,17 @@ module.exports = (app) => {
         put: (req, res, callback) => {
             try {
                 usuario.update({ Id: req.body.Id }, {
-                    Senha: req.body.Senha,
-                    Rgm: req.body.Rgm,
+                    //Senha: req.body.Senha,
+                    //Rgm: req.body.Rgm,
                     Nome: req.body.Nome,
                     Sobrenome: req.body.Sobrenome,
                     Apelido: req.body.Apelido,
                     Email: req.body.Email,
                     DataNascimento: req.body.DataNascimento,
-                    Cep: req.body.Cep,
-                    DataInicioCurso: req.body.DataInicioCurso,
+                    //Cep: req.body.Cep,
+                    //DataInicioCurso: req.body.DataInicioCurso,
                     DataUltimoAcesso: new Date(),
-                    Curso: req.body.Curso.Id
+                    //Curso: req.body.Curso.Id
                 }).exec((err, row) => {
                     delete row.Curso;
                     return callback(err, row);
