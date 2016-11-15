@@ -81,7 +81,7 @@
 
     function addComentario(obj) {
         $(obj).closest("[data-add-coment]").hide().next("[data-salvar-coment]").show();
-        $(obj).closest(".col-md-12 blog-page").find("[data-row-coment]").show();
+        $(obj).closest(".col-md-12.blog-page").find("[data-row-coment]").show();
     }
 
 </script>
@@ -170,7 +170,7 @@
         $.post('@Url.Action("PostComentario", "Timeline")',
             {
                 IdPublicacao: $(obj).closest("[data-id-publicacao]").attr("data-id-publicacao"),
-                Conteudo: $("textarea.note-codable").val(),
+                Conteudo: $(obj).closest("div").prev("div").find("[data-div-coment]").summernote('code'),
                 Usuario: { Id: '@Model.Id' }
             })
             .done(() => {
