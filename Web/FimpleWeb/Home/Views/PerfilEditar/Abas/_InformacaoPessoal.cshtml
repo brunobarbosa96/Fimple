@@ -3,26 +3,26 @@
 <form role="form" action="#">
     <div class="form-group">
         <label class="control-label">Nome</label>
-        <input type="text" placeholder="@Model.Nome" class="form-control" />
+        <input type="text" placeholder="@Model.Nome" class="form-control" id="nome"/>
     </div>
     <div class="form-group">
         <label class="control-label">Sobrenome</label>
-        <input type="text" placeholder="@Model.Sobrenome" class="form-control" />
+        <input type="text" placeholder="@Model.Sobrenome" class="form-control" id="sobrenome"/>
     </div>
     <div class="form-group">
         <label class="control-label">Apelido</label>
-        <input type="text" placeholder="@Model.Apelido" class="form-control" />
+        <input type="text" placeholder="@Model.Apelido" class="form-control" id="apelido"/>
     </div>
     <div class="form-group">
         <label class="control-label">E-mail</label>
-        <input type="text" placeholder="@Model.Email" class="form-control" />
+        <input type="text" placeholder="@Model.Email" class="form-control" id="email"/>
     </div>
     <div class="form-group">
         <label class="control-label">Data de Nascimento</label>
-        <input type="text" placeholder="@Model.NomeDataNascimento" class="form-control date-picker" />
+        <input type="text" placeholder="@Model.NomeDataNascimento" class="form-control date-picker" id="dataNascimento"/>
     </div>
     <div class="margiv-top-10">
-        <a href="javascript:;" class="btn green-haze">
+        <a href="javascript:;" onclick="editarPerfil()" class="btn green-haze">
             Salvar
         </a>
         <a href="Timeline.html" class="btn default">
@@ -30,3 +30,21 @@
         </a>
     </div>
 </form>
+
+<Script>
+    
+    function editarPerfil() {
+        var model= {
+            Id : @Model.Id,
+            Nome: $("#nome").val(),
+            Sobrenome: $("#sobrenome").val(),
+            Apelido: $("#apelido").val(),
+            Email: $("email").val(),
+            DataNascimento: $("#dataNascimento"),
+        }
+        $.post("@Url.Action("AtualizaUsuario", "PerfilEditar")",
+            function() {
+
+            });
+    }
+</Script>
