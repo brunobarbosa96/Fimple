@@ -58,7 +58,7 @@ namespace Home.Controllers.Usuario
 
                 // Recuperando usuário inserido
                 var model = JsonConvert.DeserializeObject<Models.Entity.Usuario>(response.Content.ReadAsStringAsync().Result);
-
+                model.Senha = Security.Decrypt(model.Senha);
                 return RedirectToAction("Entrar", "Login", model);
             }
             catch (Exception ex)
