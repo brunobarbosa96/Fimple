@@ -95,9 +95,6 @@
 </div>
 <script>
     
-    $("#abaInfo").trigger("");
-
-
     function openDirectory(element) {
         var id = $(element).attr("id");
         var action = $(".portlet-body").find("#" + id).attr("data-id");
@@ -107,7 +104,7 @@
                 $("#divDados").html(data);
             })
             .fail(function(xhr) {
-                $("#divDados").html("<h1>Erro ao buscar publicações</h1>");
+                $("#divDados").html("<h1>Erro ao buscar Usuario</h1>");
             });
     }
 </script>

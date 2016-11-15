@@ -32,19 +32,23 @@
 </form>
 
 <Script>
-    
+
     function editarPerfil() {
         var model= {
             Id : @Model.Id,
             Nome: $("#nome").val(),
             Sobrenome: $("#sobrenome").val(),
             Apelido: $("#apelido").val(),
-            Email: $("email").val(),
-            DataNascimento: $("#dataNascimento"),
+            Email: $("#email").val(),
+            DataNascimento: $("#dataNascimento").val()
         }
-        $.post("@Url.Action("AtualizaUsuario", "PerfilEditar")",
-            function() {
-
+        console.log(model);
+        $.post("@Url.Action("AtualizaUsuario", "PerfilEditar")", model)
+            .done(function(data) {
+                @*"@Url.Action("GetInfo", "PerfilEditar")";*@
+            })
+            .fail(function() {
+                $("#divDados").html("<h1>Erro ao editar usuario</h1>");
             });
     }
 </Script>
