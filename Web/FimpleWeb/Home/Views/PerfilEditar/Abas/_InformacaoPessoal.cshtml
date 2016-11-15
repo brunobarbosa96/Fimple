@@ -3,23 +3,23 @@
 <form role="form" action="#">
     <div class="form-group">
         <label class="control-label">Nome</label>
-        <input type="text" placeholder="@Model.Nome" class="form-control" id="nome"/>
+        <input type="text" placeholder="@Model.Nome" class="form-control" id="nome" />
     </div>
     <div class="form-group">
         <label class="control-label">Sobrenome</label>
-        <input type="text" placeholder="@Model.Sobrenome" class="form-control" id="sobrenome"/>
+        <input type="text" placeholder="@Model.Sobrenome" class="form-control" id="sobrenome" />
     </div>
     <div class="form-group">
         <label class="control-label">Apelido</label>
-        <input type="text" placeholder="@Model.Apelido" class="form-control" id="apelido"/>
+        <input type="text" placeholder="@Model.Apelido" class="form-control" id="apelido" />
     </div>
     <div class="form-group">
         <label class="control-label">E-mail</label>
-        <input type="text" placeholder="@Model.Email" class="form-control" id="email"/>
+        <input type="text" placeholder="@Model.Email" class="form-control" id="email" />
     </div>
     <div class="form-group">
         <label class="control-label">Data de Nascimento</label>
-        <input type="text" placeholder="@Model.NomeDataNascimento" class="form-control date-picker" id="dataNascimento"/>
+        <input type="text" placeholder="@Model.NomeDataNascimento" class="form-control date-picker" id="dataNascimento" />
     </div>
     <div class="margiv-top-10">
         <a href="javascript:;" onclick="editarPerfil()" class="btn green-haze">
@@ -34,15 +34,15 @@
 <Script>
 
     function editarPerfil() {
-        var model= {
-            Id : @Model.Id,
-            Nome: $("#nome").val(),
-            Sobrenome: $("#sobrenome").val(),
-            Apelido: $("#apelido").val(),
-            Email: $("#email").val(),
-            DataNascimento: $("#dataNascimento").val()
+        var model = {
+            Id: @Model.Id,
+            Nome: $("#nome").val() != null ? $("#nome").val() : @Model.Nome,
+            Sobrenome: $("#sobrenome").val() != null ? $("#sobrenome").val() : @Model.Sobrenome,
+            Apelido: $("#apelido").val() != null ? $("#apelido").val() : @Model.Apelido,
+            Email: $("#email").val() != null ? $("#email").val() : '@Model.Email',
+            DataNascimento: $("#dataNascimento").val() != null ? $("#dataNascimento").val(): '@Model.DataNascimento'
         }
-        console.log(model);
+
         $.post("@Url.Action("AtualizaUsuario", "PerfilEditar")", model)
             .done(function(data) {
                 @*"@Url.Action("GetInfo", "PerfilEditar")";*@
