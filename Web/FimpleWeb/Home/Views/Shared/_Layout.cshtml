@@ -68,12 +68,12 @@
     <div class="clearfix"></div>
     <div class="page-container">
         <div class="page-sidebar-wrapper">
-            <div class="page-sidebar navbar-collapse collapse">
+            <div class="page-sidebar navbar-collapse collapse" id="MenuLateral">
                 <ul class="page-sidebar-menu page-sidebar-menu-light " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                     <li class="sidebar-toggler-wrapper">
                         <div class="sidebar-toggler"></div>
                     </li>
-                    <li class="start active open">
+                    <li class="start active open" id="liTimeline">
                         <a href="@Url.Action("Index", "Timeline")">
                             <i class="icon-home"></i>
                             <span class="title">Timeline</span>
@@ -81,14 +81,14 @@
                         </a>
                     </li>
                     <li class="">
-                        <a href="javascript:;">
+                        <a href="javascript:;" id="liEventos">
                             <i class="fa fa-users"></i>
                             <span class="title">Eventos</span>
                             <span class=""></span>
                         </a>
                     </li>
-                    <li class="">
-                        <a href="javascript:;">
+                    <li class="" id="liMapa">
+                        <a href="@Url.Action("Index", "Mapa")">
                             <i class="fa fa-map"></i>
                             <span class="title">Mapa</span>
                             <span class=""></span>
