@@ -245,6 +245,7 @@
     <Content Include="assets\css\timeline.css" />
     <Content Include="assets\css\uniform.css" />
     <Content Include="assets\icon\favicon.ico" />
+    <Content Include="assets\img\placeholder-old.jpg" />
     <Content Include="assets\img\placeholder.jpg" />
     <Content Include="assets\img\remove-icon-small.png" />
     <Content Include="assets\img\search_icon_light.png" />
