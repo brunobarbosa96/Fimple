@@ -195,6 +195,7 @@
     <Compile Include="App_Start\SimpleInjectorContainer.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\Chat\ChatController.cs" />
+    <Compile Include="Controllers\Mapa\MapaController.cs" />
     <Compile Include="Controllers\Notificacao\NotificacaoController.cs" />
     <Compile Include="Controllers\Perfil\PerfilEditarController.cs" />
     <Compile Include="Controllers\Timeline\TimelineController.cs" />
@@ -236,6 +237,7 @@
     <Content Include="assets\css\jquery.toast.css" />
     <Content Include="assets\css\layout.css" />
     <Content Include="assets\css\login.css" />
+    <Content Include="assets\css\mapa.css" />
     <Content Include="assets\css\plugins-md.css" />
     <Content Include="assets\css\profile.css" />
     <Content Include="assets\css\simple-line-icons.css" />
@@ -317,6 +319,7 @@
     <Content Include="Views\PerfilEditar\Abas\_InformacaoPessoal.cshtml" />
     <Content Include="Views\PerfilEditar\Abas\_MudarSenha.cshtml" />
     <Content Include="Views\PerfilEditar\Abas\_UsuarioBloqueado.cshtml" />
+    <Content Include="Views\Mapa\Index.cshtml" />
     <None Include="Views\PerfilEditar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
