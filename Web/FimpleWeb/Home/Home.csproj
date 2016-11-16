@@ -314,7 +314,7 @@
     <Content Include="Views\PerfilEditar\Abas\_MudarSenha.cshtml" />
     <Content Include="Views\PerfilEditar\Abas\_UsuarioBloqueado.cshtml" />
     <Content Include="Views\Mapa\Index.cshtml" />
-    <Content Include="Views\PerfilEditar\Index.cshtml" />
+    <None Include="Views\PerfilEditar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -325,7 +325,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Chat\Index.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
+    <None Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Timeline\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
   </ItemGroup>

@@ -1,8 +1,10 @@
-﻿namespace Home.Infra.Config
+﻿using System.Diagnostics;
+
+namespace Home.Infra.Config
 {
     public static class UriWebApi
     {
-        private static string Server => /*Debugger.IsAttached ? "http://localhost/21066/" :*/ "https://fimple.herokuapp.com/";
+        private static string Server => Debugger.IsAttached ? "http://localhost/21066/" : "https://fimple.herokuapp.com/";
         public static string Login => $"{Server}:api/authentication/Login/";
         public static string Usuario => $"{Server}:api/usuario/";
         public static string Curso => $"{Server}:api/curso/";
