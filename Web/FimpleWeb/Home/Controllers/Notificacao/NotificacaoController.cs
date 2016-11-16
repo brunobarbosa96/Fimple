@@ -7,7 +7,7 @@ namespace Home.Controllers.Notificacao
     {
         public ActionResult Index()
         {
-            return View();
+            return View("_Index");
         }
     }
 }

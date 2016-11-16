@@ -45,8 +45,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
@@ -224,74 +224,10 @@
     <Compile Include="Models\Entity\Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\css\blog.css" />
-    <Content Include="assets\css\bootstrap-fileinput.css" />
-    <Content Include="assets\css\bootstrap-switch.min.css" />
-    <Content Include="assets\css\bootstrap.min.css" />
-    <Content Include="assets\css\components-md.css" />
-    <Content Include="assets\css\custom.css" />
-    <Content Include="assets\css\darkblue.css" />
-    <Content Include="assets\css\font-awesome.min.css" />
-    <Content Include="assets\css\googleOpenSans.css" />
-    <Content Include="assets\css\jquery.toast.css" />
-    <Content Include="assets\css\layout.css" />
-    <Content Include="assets\css\login.css" />
-    <Content Include="assets\css\plugins-md.css" />
-    <Content Include="assets\css\profile.css" />
-    <Content Include="assets\css\simple-line-icons.css" />
-    <Content Include="assets\css\tasks.css" />
-    <Content Include="assets\css\timeline.css" />
-    <Content Include="assets\css\uniform.css" />
-    <Content Include="assets\icon\favicon.ico" />
-    <Content Include="assets\img\placeholder.jpg" />
-    <Content Include="assets\img\remove-icon-small.png" />
-    <Content Include="assets\img\search_icon_light.png" />
-    <Content Include="assets\img\sidebar-menu-arrow-reverse.png" />
-    <Content Include="assets\img\sidebar-menu-arrow-right.png" />
-    <Content Include="assets\img\sidebar-menu-arrow.png" />
-    <Content Include="assets\img\sidebar_arrow_icon_light.png" />
-    <Content Include="assets\img\sidebar_arrow_icon_light_rtl.png" />
-    <Content Include="assets\img\sidebar_inline_toggler_icon_blue.jpg" />
-    <Content Include="assets\img\sidebar_inline_toggler_icon_darkblue.jpg" />
-    <Content Include="assets\img\sidebar_inline_toggler_icon_default.jpg" />
-    <Content Include="assets\img\sidebar_inline_toggler_icon_grey.jpg" />
-    <Content Include="assets\img\sidebar_inline_toggler_icon_light.jpg" />
-    <Content Include="assets\img\sidebar_inline_toggler_icon_light2.jpg" />
-    <Content Include="assets\img\sidebar_toggler_icon_blue.png" />
-    <Content Include="assets\img\sidebar_toggler_icon_darkblue.png" />
-    <Content Include="assets\img\sidebar_toggler_icon_default.png" />
-    <Content Include="assets\img\sidebar_toggler_icon_grey.png" />
-    <Content Include="assets\img\sidebar_toggler_icon_light.png" />
-    <Content Include="assets\img\sidebar_toggler_icon_light2.png" />
-    <Content Include="assets\js\bootstrap-fileinput.js" />
-    <Content Include="assets\js\bootstrap-hover-dropdown.min.js" />
-    <Content Include="assets\js\bootstrap-switch.min.js" />
-    <Content Include="assets\js\bootstrap.min.js" />
-    <Content Include="assets\js\common.js" />
-    <Content Include="assets\js\demo.js" />
-    <Content Include="assets\js\jquery-migrate.min.js" />
-    <Content Include="assets\js\jquery-ui.min.js" />
-    <Content Include="assets\js\jquery.blockUI.min.js" />
-    <Content Include="assets\js\jquery.cookie.min.js" />
-    <Content Include="assets\js\jquery.min.js" />
-    <Content Include="assets\js\jquery.signalR-2.1.2.js" />
-    <Content Include="assets\js\jquery.signalR-2.1.2.min.js" />
-    <Content Include="assets\js\jquery.slimscroll.min.js" />
-    <Content Include="assets\js\jquery.sparkline.min.js" />
-    <Content Include="assets\js\jquery.toast.js" />
-    <Content Include="assets\js\jquery.uniform.standalone.js" />
-    <Content Include="assets\js\jquery.validate.min.js" />
-    <Content Include="assets\js\layout.js" />
-    <Content Include="assets\js\login.js" />
-    <Content Include="assets\js\metronic.js" />
-    <Content Include="assets\img\logo-big.png" />
-    <Content Include="assets\js\profile.js" />
-    <Content Include="assets\js\quick-sidebar.js" />
     <Content Include="content\toastr.css" />
     <Content Include="content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="assets\js\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
     <Content Include="content\toastr.scss" />

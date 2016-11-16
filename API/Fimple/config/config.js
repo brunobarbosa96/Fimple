@@ -38,10 +38,10 @@ module.exports = () => {
              myLocalSql: {
                  adapter: 'mySql',
                  database: 'fimple',
-                 host: '191.6.198.21',
+                 host: 'mysql427.umbler.com',
                  user: 'fimple',
-                 password: 'mudar123fimpleman',
-                 port: 3306,
+                 password: '9plRXxiQ**',
+                 port: 41890,
                  timezone: 'utc'
              }
 

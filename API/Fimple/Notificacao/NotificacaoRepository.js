@@ -7,7 +7,7 @@ module.exports = (app) => {
 
         get: (req, res, callback) => {
             try {
-                notificacao.find({
+                publicacao.find({
                     or: [
                         { UsuarioEnvio: req.params.Id, UsuarioDestino: req.query.UsuarioDestino },
                         { UsuarioEnvio: req.query.UsuarioDestino, UsuarioDestino: req.params.Id }

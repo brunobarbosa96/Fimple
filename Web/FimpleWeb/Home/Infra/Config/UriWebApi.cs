@@ -4,7 +4,7 @@ namespace Home.Infra.Config
 {
     public static class UriWebApi
     {
-        private static string Server => Debugger.IsAttached ? "http://localhost" : "http://www.fimple.com.br";
+        private static string Server => Debugger.IsAttached ? "http://localhost" : "https://fimple.herokuapp.com/";
         public static string Login => $"{Server}:21066/api/authentication/Login/";
         public static string Usuario => $"{Server}:21066/api/usuario/";
         public static string Curso => $"{Server}:21066/api/curso/";
