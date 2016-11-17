@@ -7,9 +7,9 @@ module.exports = (app) => {
 
             repository.getConversas(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message": "Erro ao buscar conversas", "exception": err });
+                    res.status(500).json("Erro ao buscar conversas");
                 if (!row)
-                    res.status(204).json({ "message": "Nenhum registro encontrado" });
+                    res.status(204).json("Nenhum registro encontrado");
                 else
                     res.status(200).json(row);
             });
@@ -19,9 +19,9 @@ module.exports = (app) => {
 
             repository.get(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message": "Erro ao buscar mensagens", "exception": err });
+                    res.status(500).json("Erro ao buscar mensagens");
                 if (!row)
-                    res.status(204).json({ "message": "Nenhum registro encontrado" });
+                    res.status(204).json("Nenhum registro encontrado");
                 else
                     res.status(200).json(row);
             });
@@ -30,7 +30,7 @@ module.exports = (app) => {
         post: (req, res) => {
             repository.post(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao inserir mensagem", "exception": err  });
+                    res.status(500).json("Erro ao inserir mensagem");
                 else
                     res.status(200).json(row);
             });
@@ -39,7 +39,7 @@ module.exports = (app) => {
         put: (req, res) => {
             repository.put(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao atualizar mensagem", "exception": err });
+                    res.status(500).json("Erro ao atualizar mensagem");
                 else
                     res.status(200).json(row);
             });
@@ -48,7 +48,7 @@ module.exports = (app) => {
         delete: (req, res) => {
             repository.delete(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao excluir mensagem", "exception": err  });
+                    res.status(500).json("Erro ao excluir mensagem");
                 else
                     res.status(200).json(row);
             });

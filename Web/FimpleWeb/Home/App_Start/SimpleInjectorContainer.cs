@@ -1,6 +1,7 @@
 ﻿using Home.Application.Chat;
 using Home.Application.Curso;
 using Home.Application.Login;
+using Home.Application.Notificacao;
 using Home.Application.Timeline;
 using Home.Application.Usuario;
 using SimpleInjector;
@@ -24,6 +25,7 @@ namespace Home
             container.Register<IChatApp, ChatApp>();
             container.Register<IPublicacaoApp, PublicacaoApp>();
             container.Register<IComentarioApp, ComentarioApp>();
+            container.Register<INotificacaoApp, NotificacaoApp>();
 
             container.Verify();
             return container;

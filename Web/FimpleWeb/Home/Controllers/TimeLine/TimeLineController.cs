@@ -4,7 +4,6 @@ using Home.Models.Entity;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Web.Mvc;
 
 namespace Home.Controllers.Timeline
@@ -39,11 +38,9 @@ namespace Home.Controllers.Timeline
             {
                 var response = _publicacaoApp.GetAll(UsuarioLogado.Id, pagina);
                 if (!response.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
-                        response.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(response.Content.ReadAsStringAsync().Result);
 
-                var publicacoes = JsonConvert.DeserializeObject<IEnumerable<Publicacao>>(
-                    response.Content.ReadAsStringAsync().Result);
+                var publicacoes = JsonConvert.DeserializeObject<IEnumerable<Publicacao>>(response.Content.ReadAsStringAsync().Result);
                 ViewBag.UsuarioLogado = UsuarioLogado;
                 return View("_Publicacao", publicacoes);
             }
@@ -59,8 +56,7 @@ namespace Home.Controllers.Timeline
             {
                 var response = _publicacaoApp.Post(publicacao);
                 if (!response.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
-                        response.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(response.Content.ReadAsStringAsync().Result);
 
                 return new EmptyResult();
             }
@@ -76,8 +72,7 @@ namespace Home.Controllers.Timeline
             {
                 var response = _publicacaoApp.Put(publicacao);
                 if (!response.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
-                        response.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(response.Content.ReadAsStringAsync().Result);
 
                 return new EmptyResult();
             }
@@ -93,8 +88,7 @@ namespace Home.Controllers.Timeline
             {
                 var response = _publicacaoApp.Delete(id);
                 if (!response.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
-                        response.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(response.Content.ReadAsStringAsync().Result);
 
                 return new EmptyResult();
             }
@@ -111,8 +105,7 @@ namespace Home.Controllers.Timeline
             {
                 var response = _comentarioApp.Post(comentario);
                 if (!response.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
-                        response.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(response.Content.ReadAsStringAsync().Result);
 
                 return new EmptyResult();
             }
@@ -129,8 +122,7 @@ namespace Home.Controllers.Timeline
             {
                 var response = _comentarioApp.Put(comentario);
                 if (!response.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
-                        response.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(response.Content.ReadAsStringAsync().Result);
 
                 return new EmptyResult();
             }
@@ -146,8 +138,7 @@ namespace Home.Controllers.Timeline
             {
                 var response = _comentarioApp.Delete(id);
                 if (!response.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
-                        response.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(response.Content.ReadAsStringAsync().Result);
 
                 return new EmptyResult();
             }

@@ -40,7 +40,8 @@ module.exports = (app) => {
                         "DataNascimento",
                         "DataInicioCurso",
                         "Cep",
-                        "Curso"] })
+                        "Curso"]
+                })
                     .populate("Curso", { select: ["Id", "Nome"] })
                     .exec((err, row) => {
                         return callback(err, row);
@@ -64,10 +65,22 @@ module.exports = (app) => {
                     DataInicioCurso: req.body.DataInicioCurso,
                     DataUltimoAcesso: new Date(),
                     Curso: req.body.Curso.Id
-                }).exec((err, row) => {
-                    delete row.Curso;
-                    return callback(err, row);
-                });
+                },
+                    {
+                        select: [
+                            "Id",
+                            "Rgm",
+                            "Nome",
+                            "Sobrenome",
+                            "Apelido",
+                            "Email",
+                            "DataNascimento",
+                            "DataInicioCurso",
+                            "Cep",
+                            "Curso"]
+                    }).exec((err, row) => {
+                        return callback(err, row);
+                    });
             } catch (e) {
                 return callback(e);
             }
@@ -87,10 +100,23 @@ module.exports = (app) => {
                     //DataInicioCurso: req.body.DataInicioCurso,
                     DataUltimoAcesso: new Date(),
                     //Curso: req.body.Curso.Id
-                }).exec((err, row) => {
-                    delete row.Curso;
-                    return callback(err, row);
-                });
+                },
+                    {
+                        select: [
+                            "Id",
+                            "Rgm",
+                            "Nome",
+                            "Sobrenome",
+                            "Apelido",
+                            "Email",
+                            "DataNascimento",
+                            "DataInicioCurso",
+                            "Cep",
+                            "Curso"
+                        ]
+                    }).exec((err, row) => {
+                        return callback(err, row);
+                    });
             } catch (e) {
 
             }

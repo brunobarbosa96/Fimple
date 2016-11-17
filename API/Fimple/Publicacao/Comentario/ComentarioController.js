@@ -7,7 +7,7 @@ module.exports = (app) => {
         post: (req, res) => {
             repository.post(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao inserir publicação", "exception": err });
+                    res.status(500).json("Erro ao inserir publicação");
                 else
                     res.status(200).json(row);
             });
@@ -20,7 +20,7 @@ module.exports = (app) => {
         put: (req, res) => {
             repository.put(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao atualizar publicação", "exception": err });
+                    res.status(500).json("Erro ao atualizar publicação");
                 else
                     res.status(200).json(row);
             });
@@ -29,7 +29,7 @@ module.exports = (app) => {
         delete: (req, res) => {
             repository.delete(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao excluir publicação", "exception": err });
+                    res.status(500).json("Erro ao excluir publicação");
                 else
                     res.status(200).json(row);
             });

@@ -7,9 +7,9 @@ module.exports = (app) => {
 
             repository.get(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message": "Erro ao buscar notificações", "exception": err });
+                    res.status(500).json("Erro ao buscar notificações");
                 if (!row)
-                    res.status(204).json({ "message": "Nenhum registro encontrado" });
+                    res.status(204).json("Nenhum registro encontrado");
                 else
                     res.status(200).json(row);
             });
@@ -18,7 +18,7 @@ module.exports = (app) => {
         post: (req, res) => {
             repository.post(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao inserir notificação", "exception": err  });
+                    res.status(500).json("Erro ao inserir notificação");
                 else
                     res.status(200).json(row);
             });
@@ -27,7 +27,7 @@ module.exports = (app) => {
         put: (req, res) => {
             repository.put(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao atualizar notificação", "exception": err });
+                    res.status(500).json("Erro ao atualizar notificação");
                 else
                     res.status(200).json(row);
             });
@@ -36,7 +36,7 @@ module.exports = (app) => {
         delete: (req, res) => {
             repository.delete(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao excluir notificação", "exception": err  });
+                    res.status(500).json("Erro ao excluir notificação");
                 else
                     res.status(200).json(row);
             });

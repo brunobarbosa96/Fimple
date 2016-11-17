@@ -6,9 +6,9 @@ module.exports = (app) => {
         getAll: (req, res) => {
             repository.getAll(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message": "Erro ao buscar usuários", "exception": err });
+                    res.status(500).json("Erro ao buscar usuários");
                 if (!row)
-                    res.status(204).json({ "message": "Nenhum registro encontrado." });
+                    res.status(204).json("Nenhum registro encontrado.");
                 else
                     res.status(200).json(row);
             });
@@ -18,9 +18,9 @@ module.exports = (app) => {
 
             repository.get(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message": "Erro ao buscar usuário", "exception": err });
+                    res.status(500).json("Erro ao buscar usuário");
                 if (!row)
-                    res.status(204).json({ "message": "Nenhum registro encontrado." });
+                    res.status(204).json("Nenhum registro encontrado.");
                 else
                     res.status(200).json(row);
             });
@@ -30,7 +30,7 @@ module.exports = (app) => {
 
             repository.post(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao inserir usuário", "exception:": err });
+                    res.status(500).json("Erro ao inserir usuário");
                 else
                     res.status(200).json(row);
             });
@@ -39,7 +39,7 @@ module.exports = (app) => {
         put: (req, res) => {
             repository.put(req, res, (err, row) => {
                 if (err)
-                    res.status(500).json({ "message:": "Erro ao atualizar usuário", "exception:": err });
+                    res.status(500).json("Erro ao atualizar usuário");
                 else
                     res.status(200).json(row);
             });

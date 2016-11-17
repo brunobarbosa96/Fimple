@@ -1,20 +1,28 @@
 module.exports = (app) => {
 
     var notificacao = app.models.notificacao;
-    var publicacao = app.models.publicacao;
+    var usuario = app.models.usuario;
 
     var repository = {
 
         get: (req, res, callback) => {
             try {
-                publicacao.find({
-                    or: [
-                        { UsuarioEnvio: req.params.Id, UsuarioDestino: req.query.UsuarioDestino },
-                        { UsuarioEnvio: req.query.UsuarioDestino, UsuarioDestino: req.params.Id }
-                    ]
-                })
+                notificacao.find({ Usuario: req.params.IdUsuario, DataVisualizacao: null },
+                    {
+                        select: ["Usuario", "Publicacao"]
+                    })
+                    .populate("Usuario", { select: ["Id", "Nome"] })
+                    .populate("Publicacao", { select: ["Id", "Conteudo", "Usuario"] })
                     .exec((err, row) => {
-                        return callback(err, row);
+                        usuario.find({ select: ["Id", "Nome"] }).exec((error, rows) => {
+                            if (error)
+                                return callback(error);
+
+                            for (var i in row) 
+                                row[i].Publicacao.Usuario = rows.filter((x) => x.Id == row[i].Publicacao.Usuario)[0];
+
+                            return callback(err, row);
+                        });
                     });
             } catch (e) {
                 return callback(e);
@@ -27,6 +35,7 @@ module.exports = (app) => {
                     Usuario: req.body.Usuario.Id,
                     Publicacao: req.body.IdPublicacao
                 }).exec((err, row) => {
+                    console.log(row);
                     return callback(err, row);
                 });
             } catch (e) {

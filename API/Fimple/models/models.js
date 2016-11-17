@@ -143,7 +143,7 @@ module.exports = () => {
         connection: 'myLocalSql',
         attributes: {
             Id: { type: 'integer', primaryKey: true, autoIncrement: true },
-            DataVisualizacao: { type: 'date', required: true },
+            DataVisualizacao: { type: 'date' },
             Usuario: {
                 model: 'usuario',
                 foreignKey: true
@@ -199,10 +199,10 @@ module.exports = () => {
             //    collection: 'comentario',
             //    via: 'Publicacao'
             //},
-            Notificacoes: {
-                collection: 'notificacao',
-                via: 'Publicacao'
-            }
+            //Notificacoes: {
+            //    collection: 'notificacao',
+            //    via: 'Publicacao'
+            //}
         }
     }));
 
