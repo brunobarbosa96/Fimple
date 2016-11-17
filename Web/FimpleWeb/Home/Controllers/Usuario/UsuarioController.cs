@@ -30,7 +30,7 @@ namespace Home.Controllers.Usuario
                 // Buscando cursos disponíveis para listar combo
                 var responseCurso = _cursoApp.GetAll();
                 if(!responseCurso.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, responseCurso.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(responseCurso.Content.ReadAsStringAsync().Result);
 
                 // Recuperando cursos retornados
                 usuario.ComboCurso = JsonConvert.DeserializeObject<IEnumerable<Curso>>(responseCurso.Content.ReadAsStringAsync().Result)
@@ -40,7 +40,7 @@ namespace Home.Controllers.Usuario
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 
@@ -54,7 +54,7 @@ namespace Home.Controllers.Usuario
                 // Requisição para inserir usuário
                 var response = _usuarioApp.Post(usuario);
                 if (!response.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, response.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(response.Content.ReadAsStringAsync().Result);
 
                 // Recuperando usuário inserido
                 var model = JsonConvert.DeserializeObject<Models.Entity.Usuario>(response.Content.ReadAsStringAsync().Result);
@@ -63,7 +63,7 @@ namespace Home.Controllers.Usuario
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 

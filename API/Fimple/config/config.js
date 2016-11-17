@@ -39,11 +39,8 @@ module.exports = () => {
                  host: '191.6.198.21',
                  user: 'fimple',
                  password: 'mudar123fimpleman',
-                 port: 3306//,
-                 // ssl: false,
-                 // charset: 'utf8'
+                 port: 3306
              }
-
 
             ////MySql localhost
             //myLocalSql: {

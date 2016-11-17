@@ -29,7 +29,7 @@ namespace Home.Controllers.Timeline
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 
@@ -49,7 +49,7 @@ namespace Home.Controllers.Timeline
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 
@@ -66,7 +66,7 @@ namespace Home.Controllers.Timeline
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 
@@ -83,7 +83,7 @@ namespace Home.Controllers.Timeline
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 
@@ -100,7 +100,7 @@ namespace Home.Controllers.Timeline
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 
@@ -118,7 +118,7 @@ namespace Home.Controllers.Timeline
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 
@@ -136,7 +136,7 @@ namespace Home.Controllers.Timeline
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 
@@ -153,7 +153,7 @@ namespace Home.Controllers.Timeline
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
     }

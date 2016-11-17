@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
 
 namespace Home.Controllers.Chat
@@ -27,8 +26,7 @@ namespace Home.Controllers.Chat
                 // Fazendo requisição para buscar conversas do usuário
                 var response = _chatApp.GetConversas(UsuarioLogado.Id);
                 if (!response.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
-                        response.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(response.Content.ReadAsStringAsync().Result);
 
                 // Instanciando Chat e deserializando resposta
                 var conversas = JsonConvert.DeserializeObject<IEnumerable<Mensagem>>(response.Content.ReadAsStringAsync().Result);
@@ -38,7 +36,7 @@ namespace Home.Controllers.Chat
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 
@@ -49,8 +47,7 @@ namespace Home.Controllers.Chat
                 // Fazendo requisição para buscar mensagens do usuário
                 var response = _chatApp.Get(idUsuarioEnvio, idUsuarioDestino, pagina);
                 if (!response.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,
-                        response.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(response.Content.ReadAsStringAsync().Result);
 
                 // Instanciando Mensagens e deserializando resposta
                 var chat = new ChatDto
@@ -63,7 +60,7 @@ namespace Home.Controllers.Chat
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
     }

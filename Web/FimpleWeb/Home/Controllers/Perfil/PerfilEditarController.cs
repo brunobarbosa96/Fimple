@@ -23,7 +23,7 @@ namespace Home.Controllers.Perfil
             {
                 var retorno = _usuarioApp.Get(UsuarioLogado.Id);
                 if (!retorno.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, retorno.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(retorno.Content.ReadAsStringAsync().Result);
 
                 var usuario = JsonConvert.DeserializeObject<Models.Entity.Usuario>(
                     retorno.Content.ReadAsStringAsync().Result);
@@ -33,7 +33,7 @@ namespace Home.Controllers.Perfil
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 
@@ -45,7 +45,7 @@ namespace Home.Controllers.Perfil
             {
                 var retorno = _usuarioApp.Get(UsuarioLogado.Id);
                 if (!retorno.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, retorno.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(retorno.Content.ReadAsStringAsync().Result);
 
                 var usuario = JsonConvert.DeserializeObject<Models.Entity.Usuario>(
                     retorno.Content.ReadAsStringAsync().Result);
@@ -54,7 +54,7 @@ namespace Home.Controllers.Perfil
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
 
@@ -72,7 +72,7 @@ namespace Home.Controllers.Perfil
         {
             var retorno = _usuarioApp.GetUsuarioBloqueado(UsuarioLogado.Id);
             if (!retorno.IsSuccessStatusCode)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, retorno.Content.ReadAsStringAsync().Result);
+                return ErrorMessage(retorno.Content.ReadAsStringAsync().Result);
 
             var usuario = JsonConvert.DeserializeObject<IEnumerable<Models.Entity.Usuario>>(
                 retorno.Content.ReadAsStringAsync().Result);
@@ -89,7 +89,7 @@ namespace Home.Controllers.Perfil
                 var retorno = _usuarioApp.Put(usuarioEditar);
 
                 if (!retorno.IsSuccessStatusCode)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, retorno.Content.ReadAsStringAsync().Result);
+                    return ErrorMessage(retorno.Content.ReadAsStringAsync().Result);
 
                 var usuario = JsonConvert.DeserializeObject<Models.Entity.Usuario>(
                     retorno.Content.ReadAsStringAsync().Result);
@@ -99,7 +99,7 @@ namespace Home.Controllers.Perfil
             }
             catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+                return ErrorMessage(ex.Message);
             }
         }
     }
