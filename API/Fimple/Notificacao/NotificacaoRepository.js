@@ -12,9 +12,9 @@ module.exports = (app) => {
                         select: ["Usuario", "Publicacao"]
                     })
                     .populate("Usuario", { select: ["Id", "Nome"] })
-                    .populate("Publicacao", { select: ["Id", "Conteudo", "Usuario"] })
+                    .populate("Publicacao", { select: ["Id", "Usuario"] })
                     .exec((err, row) => {
-                        usuario.find({ select: ["Id", "Nome"] }).exec((error, rows) => {
+                        usuario.find({ select: ["Id", "Nome", "Sobrenome"] }).exec((error, rows) => {
                             if (error)
                                 return callback(error);
 

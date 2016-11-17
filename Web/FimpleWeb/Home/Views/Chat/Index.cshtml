@@ -185,7 +185,6 @@
             initChatSlimScroll();
         })
         .error((xhr) => {
-            console.log(xhr);
             chatContainer.append("<h1>Erro ao carregar conversas</h1>");
         })
         .complete(() => {

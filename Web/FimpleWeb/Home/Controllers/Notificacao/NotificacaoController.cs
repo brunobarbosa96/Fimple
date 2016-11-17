@@ -34,5 +34,21 @@ namespace Home.Controllers.Notificacao
                 return ErrorMessage(ex.Message);
             }
         }
+
+        public ActionResult Put(Models.Entity.Notificacao notificacao)
+        {
+            try
+            {
+                var response = _notificacaoApp.Put(notificacao);
+                if (!response.IsSuccessStatusCode)
+                    return ErrorMessage(response.Content.ReadAsStringAsync().Result);
+
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                return ErrorMessage(ex.Message);
+            }
+        }
     }
 }

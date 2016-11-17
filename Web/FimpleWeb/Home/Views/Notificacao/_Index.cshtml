@@ -21,14 +21,14 @@
                     {
                         if (notificacao.Publicacao != null)
                         {
-                            <li>
+                            <li data-notificacao="@notificacao.Id">
                                 <a href="javascript:;">
                                     <span class="time">Há algum tempo</span>
                                     <span class="details">
                                         <span class="label label-sm label-icon label-info">
                                             <i class="fa fa-bullhorn"></i>
                                         </span>
-                                        @($"{notificacao.Usuario.Nome}")
+                                        @($"{notificacao.Usuario.NomeCompleto} comentou sua publicação")
                                     </span>
                                 </a>
                             </li>

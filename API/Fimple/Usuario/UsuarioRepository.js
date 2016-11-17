@@ -98,7 +98,7 @@ module.exports = (app) => {
                     DataNascimento: req.body.DataNascimento,
                     //Cep: req.body.Cep,
                     //DataInicioCurso: req.body.DataInicioCurso,
-                    DataUltimoAcesso: new Date(),
+                    DataUltimoAcesso: new Date()
                     //Curso: req.body.Curso.Id
                 },
                     {
@@ -118,7 +118,7 @@ module.exports = (app) => {
                         return callback(err, row);
                     });
             } catch (e) {
-
+                return callback(e);
             }
         }
 
