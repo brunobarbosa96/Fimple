@@ -33,17 +33,6 @@ module.exports = () => {
    //             port: 5432,
    //             ssl: false
    //          }
-
-            ////MySql online
-             //myLocalSql: {
-             //    adapter: 'mySql',
-             //    database: 'fimple',
-             //    host: 'mysql427.umbler.com',
-             //    user: 'fimple',
-             //    password: '9plRXxiQ**',
-             //    port: 41890,
-             //    timezone: 'utc'
-             //}
              myLocalSql: {
                  adapter: 'mySql',
                  database: 'fimple',
