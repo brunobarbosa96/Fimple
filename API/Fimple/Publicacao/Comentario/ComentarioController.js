@@ -1,38 +1,46 @@
 module.exports = (app) => {
 
     var repository = require('./ComentarioRepository')(app);
-    var notificacaoRepository = require('../../Notificacao/NotificacaoRepository')(app);
+    var service = require('./ComentarioService')(app);
     var controller = {
 
         post: (req, res) => {
-            repository.post(req, res, (err, row) => {
-                if (err)
-                    res.status(500).json("Erro ao inserir publicação");
-                else
-                    res.status(200).json(row);
-            });
-
-            notificacaoRepository.post(req, res, (err) => {
-                if (err) console.log(err);
-            });
+            try {
+                service.post(req, res, (err, row) => {
+                    if (err)
+                        res.status(500).json("Falha ao inserir comentário");
+                    else
+                        res.status(200).json(row);
+                });
+            } catch (e) {
+                res.status(500).json("Erro ao inserir comentário");
+            }
         },
 
         put: (req, res) => {
-            repository.put(req, res, (err, row) => {
-                if (err)
-                    res.status(500).json("Erro ao atualizar publicação");
-                else
-                    res.status(200).json(row);
-            });
+            try {
+                repository.put(req, res, (err, row) => {
+                    if (err)
+                        res.status(500).json("Falha ao atualizar comentário");
+                    else
+                        res.status(200).json(row);
+                });
+            } catch (e) {
+                res.status(500).json("Erro ao atualizar comentário");
+            }
         },
 
         delete: (req, res) => {
-            repository.delete(req, res, (err, row) => {
-                if (err)
-                    res.status(500).json("Erro ao excluir publicação");
-                else
-                    res.status(200).json(row);
-            });
+            try {
+                repository.delete(req, res, (err, row) => {
+                    if (err)
+                        res.status(500).json("Falha ao excluir comentário");
+                    else
+                        res.status(200).json(row);
+                });
+            } catch (e) {
+                res.status(500).json("Erro ao excluir comentário");
+            }
         }
     };
 

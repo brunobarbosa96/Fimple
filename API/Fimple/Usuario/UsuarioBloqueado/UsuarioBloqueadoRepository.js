@@ -5,16 +5,11 @@ module.exports = (app) => {
     var repository = {
 
         getAll: (req, res, callback) => {
-            try {
                 usuario.findOne({ Id: req.params.Id }, {select: ["Id", "Nome", "UsuariosBloqueados"]})
                     .populate("UsuariosBloqueados", {select: ["Id", "Nome"]})
                     .exec((err, row) => {
                         return callback(err, row.UsuariosBloqueados);
                     });
-            } catch (e) {
-                return callback(e);
-            } 
-            
         },
 
         post: (req, res, callback) => {
@@ -37,7 +32,7 @@ module.exports = (app) => {
                             return callback(err, row);
                         });
                     } catch (erro) {
-                        return callback("Erro ao inserir usuarios bloqueados " + erro);
+                        return callback("Erro ao bloquear usuário " + erro);
                     }
                 });
         },
@@ -58,7 +53,7 @@ module.exports = (app) => {
                         for (var i in usuariosBloqueados)
                             if (usuariosBloqueados[i] == req.query.IdUsuarioBloqueado)
                                 usuariosBloqueados.splice(i, 1);
-                        //usuariosBloqueados.Remve(x => x == req.query.IdUsuarioBloqueado);
+                        //usuariosBloqueados.Remove(x => x == req.query.IdUsuarioBloqueado);
 
                         usuario.update({ Id: req.query.IdUsuarioBloqueou }, {
                             UsuariosBloqueados: usuariosBloqueados
@@ -66,7 +61,7 @@ module.exports = (app) => {
                             return callback(err, row);
                         });
                     } catch (error) {
-                        return callback("Erro ao inserir usuarios bloqueados " + error);
+                        return callback("Erro ao bloquear usuário " + error);
                     }
                 });
         }

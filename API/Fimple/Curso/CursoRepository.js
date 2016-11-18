@@ -4,14 +4,10 @@ module.exports = (app) => {
     var repository = {
 
         getAll: (req, res, callback) => {
-            try {
-                curso.find({select: ['Id', 'Nome']})
-                    .exec((err, row) => {
+            curso.find({ select: ['Id', 'Nome'] })
+                .exec((err, row) => {
                     return callback(err, row);
                 });
-            } catch (e) {
-                return callback(e);
-            }
 
         }
     };

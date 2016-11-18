@@ -71,7 +71,7 @@ namespace Home.Hubs
                 connectionIds.AddRange(usuario.ConnectionIds);
 
             // Transmitindo mensagem para todos os usuários da conversa
-            Clients.Clients(connectionIds).TransmitirMensagem(usuarioEnvio, mensagem);
+            Clients.Clients(connectionIds).TransmitirMensagem(usuarioEnvio, idUsuarioDestino, mensagem);
 
             // Verificando se usuário destino está online para gravar data de recebimento
             DateTime? dataRecebimento = null;

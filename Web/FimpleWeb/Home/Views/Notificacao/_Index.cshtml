@@ -4,13 +4,13 @@
 <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
         <i class="icon-bell"></i>
-        <span class="badge badge-warning">@Model.Count()</span>
+        <span class="badge badge-warning" data-count-notification>@Model.Count()</span>
     </a>
     @* -- NOTIFICAÇÕES -- *@
     <ul class="dropdown-menu">
         <li class="external">
             <h3>
-                <span class="bold">@Model.Count()</span> notificações
+                <span class="bold" data-count-notification>@Model.Count()</span> notificações
             </h3>
         </li>
         <li>
@@ -21,7 +21,7 @@
                     {
                         if (notificacao.Publicacao != null)
                         {
-                            <li data-notificacao="@notificacao.Id">
+                            <li onclick="putNotificacao('@notificacao.Id')">
                                 <a href="javascript:;">
                                     <span class="time">Há algum tempo</span>
                                     <span class="details">

@@ -4,45 +4,59 @@ module.exports = (app) => {
     var controller = {
 
         getAll: (req, res) => {
-            repository.getAll(req, res, (err, row) => {
-                if (err)
-                    res.status(500).json("Erro ao buscar usuários");
-                if (!row)
-                    res.status(204).json("Nenhum registro encontrado.");
-                else
-                    res.status(200).json(row);
-            });
+            try {
+                repository.getAll(req, res, (err, row) => {
+                    if (err)
+                        res.status(500).json("Falha ao buscar usuários");
+                    if (!row)
+                        res.status(204).json("Nenhum registro encontrado.");
+                    else
+                        res.status(200).json(row);
+                });
+            } catch (e) {
+                res.status(500).json("Erro ao buscar usuários");
+            }
         },
 
         get: (req, res) => {
-
-            repository.get(req, res, (err, row) => {
-                if (err)
-                    res.status(500).json("Erro ao buscar usuário");
-                if (!row)
-                    res.status(204).json("Nenhum registro encontrado.");
-                else
-                    res.status(200).json(row);
-            });
+            try {
+                repository.get(req, res, (err, row) => {
+                    if (err)
+                        res.status(500).json("Falha ao buscar usuário");
+                    if (!row)
+                        res.status(204).json("Nenhum registro encontrado.");
+                    else
+                        res.status(200).json(row);
+                });
+            } catch (e) {
+                res.status(500).json("Erro ao buscar usuário");
+            }
         },
 
         post: (req, res) => {
-
-            repository.post(req, res, (err, row) => {
-                if (err)
-                    res.status(500).json("Erro ao inserir usuário");
-                else
-                    res.status(200).json(row);
-            });
+            try {
+                repository.post(req, res, (err, row) => {
+                    if (err)
+                        res.status(500).json("Falha ao inserir usuário");
+                    else
+                        res.status(200).json(row);
+                });
+            } catch (e) {
+                res.status(500).json("Erro ao inserir usuário");
+            }
         },
 
         put: (req, res) => {
-            repository.put(req, res, (err, row) => {
-                if (err)
-                    res.status(500).json("Erro ao atualizar usuário");
-                else
-                    res.status(200).json(row);
-            });
+            try {
+                repository.put(req, res, (err, row) => {
+                    if (err)
+                        res.status(500).json("Falha ao atualizar usuário");
+                    else
+                        res.status(200).json(row);
+                });
+            } catch (e) {
+                res.status(500).json("Erro ao atualizar usuário");
+            }
         }
 
     };

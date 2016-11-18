@@ -17,12 +17,12 @@ namespace Home.Models.Dto
             Usuarios = conversas.Select(x => new Mensagem
             {
                 UsuarioDestino = x.UsuarioDestino.Id != usuario.Id ? x.UsuarioDestino : x.UsuarioEnvio
-            }).GroupBy(x => x.Id).Distinct();
+            });
         }
 
         public Usuario Usuario { get; set; }
         public IEnumerable<Mensagem> Conversas { get; set; }
-        public IEnumerable<IGrouping<int, Mensagem>> Usuarios { get; set; }
+        public IEnumerable<Mensagem> Usuarios { get; set; }
 
         public int TotalNaoLidas => Conversas.Count(x => !x.DataVisualizacao.HasValue);
     }

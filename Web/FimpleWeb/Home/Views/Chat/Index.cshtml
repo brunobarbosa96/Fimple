@@ -17,14 +17,14 @@
                             {
                                 foreach (var usuario in Model.Usuarios)
                                 {
-                                    <li class="media" data-user-id="@usuario.First().UsuarioDestino.Id" onclick="openChat(this)">
+                                    <li class="media" data-user-id="@usuario.UsuarioDestino.Id" onclick="openChat(this)">
                                         <div class="media-status">
-                                            <span class="badge badge-success">1</span>
+                                            @*<span class="badge badge-success">1</span>*@
                                         </div>
                                         <img class="media-object" src="~/assets/img/placeholder.jpg" alt="...">
                                         <div class="media-body">
-                                            <h4 class="media-heading">@usuario.First().UsuarioDestino.Nome</h4>
-                                            <div class="media-heading-sub">@usuario.First().UsuarioDestino.Curso.Nome</div>
+                                            <h4 class="media-heading">@usuario.UsuarioDestino.Nome</h4>
+                                            <div class="media-heading-sub">@usuario.UsuarioDestino.Curso.Nome</div>
                                         </div>
                                     </li>
                                 }
@@ -36,21 +36,21 @@
                         {
                             foreach (var usuario in Model.Usuarios)
                             {
-                                <div class="page-quick-sidebar-chat-user" data-pagina="0" data-user-id="@usuario.First().UsuarioDestino.Id" style="display: none">
+                                <div class="page-quick-sidebar-chat-user" data-pagina="0" data-user-id="@usuario.UsuarioDestino.Id" style="display: none">
                                     <div class="page-quick-sidebar-nav">
                                         <a href="javascript:;" class="page-quick-sidebar-back-to-list" onclick="hideChat(this)"><i class="icon-arrow-left"></i>Voltar</a>
                                     </div>
                                     <div class="page-quick-sidebar-chat-user-messages"></div>
                                 </div>
-                            }
-                            <div class="page-quick-sidebar-chat-user-form" data-teste>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Digite uma mensagem">
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn blue"><i class="icon-check"></i></button>
+                                <div class="page-quick-sidebar-chat-user-form">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Digite uma mensagem">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn blue"><i class="icon-check"></i></button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
                         }
                     </div>
                 </div>
@@ -165,7 +165,7 @@
     };
 
     function buscarMensagens(idUsuarioDestino, pagina, callback) {
-        var chatContainer = wrapperChat.find(".page-quick-sidebar-chat-user-messages");
+        var chatContainer = wrapperChat.find("[data-user-id=" + idUsuarioDestino + "] .page-quick-sidebar-chat-user-messages");
 
         $.get(url.BuscarMensagens, {
             idUsuarioEnvio: usuarioLogado.Id,
@@ -218,11 +218,11 @@
 
     // Criando a função que será chamada pelo Hub para distribuir as mensagens aos clientes.
     // Por convenção as chamadas aos métodos são feitas em "camelCase"
-    chatHub.client.transmitirMensagem = function (usuario, mensagem) {
+    chatHub.client.transmitirMensagem = function (usuario, usuarioDestino, mensagem) {
         var isUsuarioLogado = usuarioLogado.Id == usuario.Id;
 
         // Area do chat
-        var chatContainer = wrapperChat.find(".page-quick-sidebar-chat-user-messages");
+        var chatContainer = wrapperChat.find("[data-user-id=" + usuarioDestino + "] .page-quick-sidebar-chat-user-messages");
         var input = wrapperChat.find('.page-quick-sidebar-chat-user-form:visible .form-control');
 
         // Preparando postagem

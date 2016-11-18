@@ -122,13 +122,13 @@
             QuickSidebar.init();
         });
 
-        function PutNotificacao(notificacao) {
+        function putNotificacao(notificacao) {
             $.post('@Url.Action("Put", "Notificacao")',
                 {
                     Id: notificacao
                 })
                 .done(() => {
-
+                    $("[data-count-notification]").text(!+$("[data-count-notification]:first").text() ? 0 : (+$("[data-count-notification]:first").text() - 1));
                 })
                 .fail((xhr) => {
                     notify.error(xhr.responseText);
