@@ -13,6 +13,7 @@ module.exports = (app) => {
                 .populate("Usuario", { select: ["Id", "Nome", "Sobrenome"] })
                 .exec((err, row) => {
                     comentario.find({ select: ["Id", "Conteudo", "Publicacao", "updatedAt", "Usuario"] })
+                        .sort("updatedAt ASC")
                         .populate("Usuario", { select: ["Id", "Nome", "Sobrenome"] })
                         .exec((erro, rows) => {
                             if (erro)
