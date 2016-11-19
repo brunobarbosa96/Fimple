@@ -48,7 +48,7 @@
                 @*"@Url.Action("GetInfo", "PerfilEditar")";*@
             })
             .fail(function() {
-                $("#divDados").html("<h1>Erro ao editar usuario</h1>");
+                notify.error("Erro ao editar usuario");
             });
     }
 </Script>

@@ -103,8 +103,8 @@
             .done(function(data) {
                 $("#divDados").html(data);
             })
-            .fail(function(xhr) {
-                $("#divDados").html("<h1>Erro ao buscar Usuario</h1>");
+            .fail(function (xhr) {
+                notify.error("Erro ao buscar Usuario");
             });
     }
 </script>

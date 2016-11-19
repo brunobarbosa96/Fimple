@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="page-quick-sidebar-chat-user-messages"></div>
                                 </div>
-                                <div class="page-quick-sidebar-chat-user-form">
+                                <div class="page-quick-sidebar-chat-user-form" data-user-id="@usuario.UsuarioDestino.Id" style="display: none">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="Digite uma mensagem">
                                         <div class="input-group-btn">
@@ -64,12 +64,12 @@
             <a href="javascript:;" class="page-quick-sidebar-back-to-list" onclick="hideChat(this)"><i class="icon-arrow-left"></i>Voltar</a>
         </div>
         <div class="page-quick-sidebar-chat-user-messages"></div>
-        <div class="page-quick-sidebar-chat-user-form">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Digite uma mensagem">
-                <div class="input-group-btn">
-                    <button type="button" class="btn blue"><i class="icon-check"></i></button>
-                </div>
+    </div>
+    <div class="page-quick-sidebar-chat-user-form" data-user-id style="display: none">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Digite uma mensagem">
+            <div class="input-group-btn">
+                <button type="button" class="btn blue"><i class="icon-check"></i></button>
             </div>
         </div>
     </div>
@@ -185,7 +185,7 @@
             initChatSlimScroll();
         })
         .error((xhr) => {
-            chatContainer.append("<h1>Erro ao carregar conversas</h1>");
+            notify.error("Erro ao carregar conversas");
         })
         .complete(() => {
             if (typeof callback == "function")
@@ -196,6 +196,7 @@
     function hideChat(obj) {
         wrapperChat.removeClass("page-quick-sidebar-content-item-shown");
         $(".page-quick-sidebar-chat-user[data-user-id=" + $(obj).closest(".page-quick-sidebar-chat-user").attr("data-user-id") + "]").hide();
+        $(".page-quick-sidebar-chat-user-form[data-user-id=" + $(obj).closest(".page-quick-sidebar-chat-user").attr("data-user-id") + "]").hide();
     };
 
     // Declarando um proxy de referencia ao Hub
@@ -264,6 +265,10 @@
     }
 
     chatHub.client.removerUsuarioChat = function (usuario) {
+        if (wrapperChat
+            .find("[data-user-id=" + idUsuarioDestino + "] .page-quick-sidebar-chat-user-messages")
+            .length) return;
+
         $("[data-user-id=" + usuario.Id + "]").remove();
         setaNumeroConversas();
     }
