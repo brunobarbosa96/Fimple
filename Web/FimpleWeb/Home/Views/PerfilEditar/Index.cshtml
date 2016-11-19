@@ -1,4 +1,12 @@
 ﻿@model Home.Models.Entity.Usuario
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-user"></i>
+            <a href="#">Perfil</a>
+        </li>
+    </ul>
+</div>
 <div class="row margin-top-20">
     <div class="col-md-12">
         <div class="profile-sidebar">
@@ -94,7 +102,7 @@
     </div>
 </div>
 <script>
-    
+    $("#MenuLateral li.start.active.open").removeClass("start active open");
     function openDirectory(element) {
         var id = $(element).attr("id");
         var action = $(".portlet-body").find("#" + id).attr("data-id");
