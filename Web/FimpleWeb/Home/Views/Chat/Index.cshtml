@@ -110,10 +110,10 @@
         chatUsers.attr("data-height", chatUsersHeight);
         Metronic.initSlimScroll(chatUsers);
 
-        var chatMessages = wrapperChat.find('.page-quick-sidebar-chat-user-messages');
+        var chatMessages = wrapperChat.find('.page-quick-sidebar-chat-user-messages:visible');
         var chatMessagesHeight = chatUsersHeight -
-            wrapperChat.find('.page-quick-sidebar-chat-user-form').outerHeight() -
-            wrapperChat.find('.page-quick-sidebar-nav').outerHeight();
+            wrapperChat.find('.page-quick-sidebar-chat-user-form:visible').outerHeight() -
+            wrapperChat.find('.page-quick-sidebar-nav:visible').outerHeight();
 
         // user chat messages
         Metronic.destroySlimScroll(chatMessages);
@@ -144,7 +144,7 @@
 
     // Template adicionado para cada usuário criado no chat referente as mensagens
     var montaChatMensagens = (usuario) => {
-        return $("#divContainerMessage .page-quick-sidebar-chat-user").clone().attr("data-user-id", usuario.Id);
+        return $("#divContainerMessage .page-quick-sidebar-chat-user, #divContainerMessage .page-quick-sidebar-chat-user-form").clone().attr("data-user-id", usuario.Id);
     }
 
     var preparePost = function (dir, time, name, avatar, message) {
@@ -266,7 +266,7 @@
 
     chatHub.client.removerUsuarioChat = function (usuario) {
         if (wrapperChat
-            .find("[data-user-id=" + idUsuarioDestino + "] .page-quick-sidebar-chat-user-messages")
+            .find("[data-user-id=" + usuario.Id + "] .page-quick-sidebar-chat-user-messages")
             .length) return;
 
         $("[data-user-id=" + usuario.Id + "]").remove();
