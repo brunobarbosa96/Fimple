@@ -3,33 +3,34 @@ using Home.Infra;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Web.Mvc;
 
 namespace Home.Controllers.Perfil
 {
-    public class PerfilEditarController : BaseController
+    public class PerfilController : BaseController
     {
         private readonly IUsuarioApp _usuarioApp;
 
-        public PerfilEditarController(IUsuarioApp usuarioApp)
+        public PerfilController(IUsuarioApp usuarioApp)
         {
             _usuarioApp = usuarioApp;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int? idUsuario)
         {
             try
             {
-                var retorno = _usuarioApp.Get(UsuarioLogado.Id);
-                if (!retorno.IsSuccessStatusCode)
-                    return ErrorMessage(retorno.Content.ReadAsStringAsync().Result);
+                ViewBag.IsUsuarioLogado = !idUsuario.HasValue || idUsuario == UsuarioLogado.Id;
 
-                var usuario = JsonConvert.DeserializeObject<Models.Entity.Usuario>(
-                    retorno.Content.ReadAsStringAsync().Result);
+                if (!idUsuario.HasValue || idUsuario == UsuarioLogado.Id)
+                    return View("Index", UsuarioLogado);
 
+                var response = _usuarioApp.Get((int)idUsuario);
+                if (!response.IsSuccessStatusCode)
+                    return ErrorMessage(response.Content.ReadAsStringAsync().Result);
+
+                var usuario = JsonConvert.DeserializeObject<Models.Entity.Usuario>(response.Content.ReadAsStringAsync().Result);
                 return View("Index", usuario);
-
             }
             catch (Exception ex)
             {
@@ -37,19 +38,19 @@ namespace Home.Controllers.Perfil
             }
         }
 
-
         #region --> Abas <--
-        public ActionResult GetInfo()
+        public ActionResult GetInfo(int? idUsuario)
         {
             try
             {
-                var retorno = _usuarioApp.Get(UsuarioLogado.Id);
+                var retorno = _usuarioApp.Get(idUsuario ?? UsuarioLogado.Id);
                 if (!retorno.IsSuccessStatusCode)
                     return ErrorMessage(retorno.Content.ReadAsStringAsync().Result);
 
                 var usuario = JsonConvert.DeserializeObject<Models.Entity.Usuario>(
                     retorno.Content.ReadAsStringAsync().Result);
 
+                ViewBag.IsUsuarioLogado = !idUsuario.HasValue || idUsuario == UsuarioLogado.Id;
                 return View("Abas/_InformacaoPessoal", usuario);
             }
             catch (Exception ex)

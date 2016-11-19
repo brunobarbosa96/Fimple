@@ -7,7 +7,7 @@ namespace Home.Controllers.Mapa
     {
         public ActionResult Index()
         {
-            return View();
+            return View(UsuarioLogado);
         }
     }
 }

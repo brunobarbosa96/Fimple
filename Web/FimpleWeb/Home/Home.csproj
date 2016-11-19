@@ -200,7 +200,7 @@
     <Compile Include="Controllers\Eventos\EventosController.cs" />
     <Compile Include="Controllers\Mapa\MapaController.cs" />
     <Compile Include="Controllers\Notificacao\NotificacaoController.cs" />
-    <Compile Include="Controllers\Perfil\PerfilEditarController.cs" />
+    <Compile Include="Controllers\Perfil\PerfilController.cs" />
     <Compile Include="Controllers\Timeline\TimelineController.cs" />
     <Compile Include="Controllers\Usuario\UsuarioController.cs" />
     <Compile Include="Controllers\Login\LoginController.cs" />
@@ -312,17 +312,16 @@
     <Content Include="Views\Timeline\_Publicacao.cshtml" />
     <Content Include="Views\Timeline\_Comentarios.cshtml" />
     <Content Include="Views\Notificacao\_Index.cshtml" />
-    <Content Include="Views\PerfilEditar\Abas\_MudarAvatar.cshtml" />
-    <Content Include="Views\PerfilEditar\Abas\_InformacaoPessoal.cshtml" />
-    <Content Include="Views\PerfilEditar\Abas\_MudarSenha.cshtml" />
-    <Content Include="Views\PerfilEditar\Abas\_UsuarioBloqueado.cshtml" />
+    <Content Include="Views\Perfil\Abas\_MudarAvatar.cshtml" />
+    <Content Include="Views\Perfil\Abas\_InformacaoPessoal.cshtml" />
+    <Content Include="Views\Perfil\Abas\_MudarSenha.cshtml" />
+    <Content Include="Views\Perfil\Abas\_UsuarioBloqueado.cshtml" />
     <Content Include="Views\Mapa\Index.cshtml" />
-    <Content Include="Views\PerfilEditar\Index.cshtml" />
+    <Content Include="Views\Perfil\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Eventos\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Perfil\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -345,6 +344,8 @@
     <Content Include="Views\Eventos\Index.cshtml" />
     <Content Include="Views\Eventos\_Comentarios.cshtml" />
     <Content Include="Views\Eventos\_Evento.cshtml" />
+    <Content Include="Views\Perfil\_Editar.cshtml" />
+    <Content Include="Views\Perfil\_Visualizar.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

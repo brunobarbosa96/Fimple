@@ -100,7 +100,7 @@
                 callback();
         })
         .fail((xhr) => {
-            $("#divPublicacoes").html("<h1>Erro ao buscar publicações</h1>");
+            notify.error("Erro ao buscar publicações");
         });
 
         return publicacao;
@@ -124,7 +124,7 @@
                 buscarPublicacoes();
             })
             .fail(() => {
-                $("#divPublicacoes").html("<h1>Erro ao salvar publicação</h1>");
+                notify.error("Erro ao salvar publicação");
             });
     });
 
@@ -149,7 +149,7 @@
                });
            })
            .fail(() => {
-               $("#divPublicacoes").html("<h1>Erro ao salvar publicação</h1>");
+                notify.error("Erro ao salvar publicação");
            });
     }
 
@@ -159,7 +159,7 @@
                 id: id
             })
             .fail(() => {
-                $("#divPublicacoes").html("<h1>Erro ao excluir publicação</h1>");
+                notify.error("Erro ao excluir publicação");
             });
     }
 
@@ -177,7 +177,7 @@
                 buscarPublicacoes();
             })
             .fail(() => {
-                $("#divPublicacoes").html("<h1>Erro ao salvar comentário</h1>");
+                notify.error("Erro ao salvar comentário");
             })
             .complete(() => {
                 $(obj).closest("[data-add-coment]").show().next("[data-salvar-coment]").hide();
@@ -191,7 +191,7 @@
                 id: id
             })
             .fail(() => {
-                $("#divPublicacoes").html("<h1>Erro ao excluir comentário</h1>");
+                notify.error("Erro ao excluir comentário");
             });
     }
 
