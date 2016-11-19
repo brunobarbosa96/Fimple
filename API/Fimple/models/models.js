@@ -194,15 +194,7 @@ module.exports = () => {
             Curso: {
                 model: 'curso',
                 foreignKey: true
-            },
-            //Comentarios: {
-            //    collection: 'comentario',
-            //    via: 'Publicacao'
-            //},
-            //Notificacoes: {
-            //    collection: 'notificacao',
-            //    via: 'Publicacao'
-            //}
+            }
         }
     }));
 
@@ -232,28 +224,25 @@ module.exports = () => {
         connection: 'myLocalSql',
         attributes: {
             Id: { type: 'integer', primaryKey: true, autoIncrement: true },
-            Descricao: { type: 'string', required: true },
-            Local: { type: 'string', required: true },
+            Titulo: { type: 'string', required: true },
+            Conteudo: { type: 'string', required: true },
             Data: { type: 'date', required: true },
+            Local: { type: 'string', required: true },
             Usuario: {
                 model: 'usuario',
+                foreignKey: true
+            },
+            Entidade: {
+                model: 'entidade',
+                foreignKey: true
+            },
+            Categoria: {
+                model: 'categoria',
                 foreignKey: true
             },
             Curso: {
                 model: 'curso',
                 foreignKey: true
-            },
-            Participantes: {
-                collection: 'usuario',
-                via: 'Evento'
-            },
-            Comentarios: {
-                collection: 'comentario',
-              via : 'Evento'
-            },
-            Notificacoes: {
-                collection: 'notificacao',
-                via: 'Evento'
             }
         }
     }));
