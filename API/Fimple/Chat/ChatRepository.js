@@ -25,7 +25,10 @@ module.exports = (app) => {
 
                         var conversas = [];
                         for (var i in row)
-                            if (!conversas.filter((x) => x.UsuarioDestino.Id == row[i].UsuarioDestino.Id).length)
+                            if (!conversas.filter((x) => (x.UsuarioDestino.Id == row[i].UsuarioDestino.Id
+                                    && x.UsuarioEnvio.Id == row[i].UsuarioEnvio.Id)
+                                || (x.UsuarioDestino.Id == row[i].UsuarioEnvio.Id
+                                    && x.UsuarioEnvio.Id == row[i].UsuarioDestino.Id)).length)
                                 conversas.push(row[i]);
 
                         return callback(err, conversas);
