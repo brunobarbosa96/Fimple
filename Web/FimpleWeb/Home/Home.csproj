@@ -181,6 +181,8 @@
     <Compile Include="Application\Chat\IChatApp.cs" />
     <Compile Include="Application\Curso\ICursoApp.cs" />
     <Compile Include="Application\Curso\CursoApp.cs" />
+    <Compile Include="Application\Eventos\EventoApp.cs" />
+    <Compile Include="Application\Eventos\IEventoApp.cs" />
     <Compile Include="Application\Notificacao\NotificacaoApp.cs" />
     <Compile Include="Application\Notificacao\INotificacaoApp.cs" />
     <Compile Include="Application\Timeline\IComentarioApp.cs" />
@@ -320,7 +322,6 @@
     <Content Include="Views\Perfil\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Application\Eventos\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

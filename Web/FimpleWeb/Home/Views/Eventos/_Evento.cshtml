@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Home.Models.Entity.Evento>
+@{ Layout = null;}
+
+@if (Model != null && Model.Any())
+{
+    foreach (var evento in Model)
+    {
+        <div class="timeline-badge">
+            <img class="timeline-badge-userpic" src="~/assets/img/placeholder.jpg">
+        </div>
+        <div class="timeline-body">
+            <div class="timeline-body-arrow">
+            </div>
+            <div class="timeline-body-head">
+                <div class="timeline-body-head-caption">
+                    <a href="javascript:;" class="timeline-body-title font-blue-madison">@evento.Usuario.NomeCompleto</a>
+
+                    <span class="timeline-body-time font-grey-cascade">Há algum tempo</span>
+                    @if (evento.Usuario.Id != ViewBag.UsuarioLogado.Id)
+                    {
+                        <a href="javascript:;" onclick="abrirChat('@evento.Usuario.Id')" class="btn btn-xs black">
+                            <span class="md-click-circle md-click-animate" style="height: 65px; width: 65px; top: -22.5px; left: 2.07813px;"></span>
+                            <i class="fa fa-comments-o"></i>
+                        </a>
+                    }
+                </div>
+                <div class="timeline-body-head-actions">
+                    @if (evento.Usuario.Id == ViewBag.UsuarioLogado.Id)
+                    {
+                        <div class="btn-group">
+                            <button class="btn btn-circle green-haze btn-sm dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                Ações <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li><a href="javascript:;" onclick="editarPost('@evento.Id', this)">Editar </a></li>
+
+                                <li class="divider">
+                                </li>
+                                <li><a href="@Url.Action("Index", "Timeline")" onclick="excluirPublicacao('@evento.Id')">Excluir </a></li>
+                            </ul>
+                        </div>
+                    }
+                    <div class="btn-group btn-salvar" style="display: none">
+                        <button class="btn btn-circle green-haze btn-sm" onclick="salvarEdicao('@evento.Id', this)" type="button" data-toggle="dropdown" data-close-others="true">
+                            Salvar <i class="fa fa-floppy-o "></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-body-content">
+                <div class="divPost" data-post="@evento.Id">
+                    @evento.Conteudo
+                </div>
+            </div>
+            <br>
+            <hr>
+            @Html.Partial("_Comentarios", evento)
+        </div>
+    }
+    <script> if ($("[data-nocontent]").length) $("[data-nocontent]").remove();</script>
+}
+else
+{
+    <div class="timeline-body" data-nocontent>
+        <div class="timeline-body-content">
+            <div class="divPost">
+                Nenhum evento encontrado até o momento. Aproveite e faça você o primeiro :)
+            </div>
+        </div>
+        <br>
+        <hr>
+    </div>
+}
