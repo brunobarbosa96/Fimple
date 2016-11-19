@@ -384,6 +384,7 @@
 <script>
     $("#MenuLateral li.start.active.open").removeClass("start active open");
     $("#liMapa").addClass("start active open");
+    $("#liMapa").find("span:not(:first)").addClass("selected");
 
     var mixCompleto = true;
     $(document).ready(function () {
