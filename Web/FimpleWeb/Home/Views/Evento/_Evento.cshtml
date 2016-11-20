@@ -6,16 +6,18 @@
     foreach (var evento in Model)
     {
         <div class="timeline-badge">
-            <img class="timeline-badge-userpic" src="~/assets/img/placeholder.jpg">
+            <a href="@($"Perfil/{evento.Usuario.Id}")">
+                <img class="timeline-badge-userpic" data-toggle="tooltip" src="~/assets/img/placeholder.jpg" title="@evento.Usuario.NomeCompleto">
+            </a>
         </div>
         <div class="timeline-body">
             <div class="timeline-body-arrow">
             </div>
             <div class="timeline-body-head">
                 <div class="timeline-body-head-caption">
-                    <a href="@($"Perfil/{evento.Usuario.Id}")" class="timeline-body-title font-blue-madison">@evento.Usuario.NomeCompleto</a>
-
-                    <span class="timeline-body-time font-grey-cascade">Há algum tempo</span>
+                    <span class="timeline-body-title font-blue-madison">@evento.Titulo &nbsp; </span> 
+                    <i class="timeline-body-title font-grey-cascade fa fa-map-marker"> &nbsp;Onde: @evento.Local &nbsp;</i>
+                    <i class="timeline-body-title font-grey-cascade fa fa-calendar"> &nbsp;Quando: @evento.Data.ToLongDateString() as @evento.Data.ToShortTimeString()</i>
                     @if (evento.Usuario.Id != ViewBag.UsuarioLogado.Id)
                     {
                         <a href="javascript:;" onclick="abrirChat('@evento.Usuario.Id')" class="btn btn-xs black">
@@ -71,3 +73,6 @@ else
         <hr>
     </div>
 }
+<script>
+    $('[data-toggle="tooltip"]').tooltip();
+</script>

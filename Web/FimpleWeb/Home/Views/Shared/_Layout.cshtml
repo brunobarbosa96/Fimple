@@ -26,7 +26,7 @@
 </head>
 <body class="page-md page-header-fixed page-quick-sidebar-over-content page-container-bg-solid">
     <div id="divErrorLayout">@Html.ValidationSummary()</div>
-    <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
+    <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top" style="z-index: -1">
         <div class="page-header-inner">
             <div class="page-logo">
                 <a href="@Url.Action("Index", "Timeline")">
@@ -120,6 +120,7 @@
             Metronic.init();
             Layout.init();
             QuickSidebar.init();
+
         });
 
         function putNotificacao(notificacao) {

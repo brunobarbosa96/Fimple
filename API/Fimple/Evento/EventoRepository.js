@@ -6,7 +6,7 @@ module.exports = (app) => {
 
         get: (req, res, callback) => {
             evento.find({
-                select: ["Id", "Conteudo", "Data", "updatedAt", "Usuario"]
+                select: ["Id", "Conteudo", "Data", "updatedAt", "Usuario", "Titulo", "Local"]
             })
                 .sort("updatedAt DESC")
                 .paginate({ page: req.query.Pagina, limit: 30 })
