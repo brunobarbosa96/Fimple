@@ -86,19 +86,18 @@ namespace Home.Controllers.Perfil
         }
         #endregion
 
-        public ActionResult AtualizaUsuario(Models.Entity.Usuario usuarioEditar)
+        public ActionResult AtualizaUsuario(Models.Entity.Usuario usuario)
         {
             try
             {
-                var retorno = _usuarioApp.Put(usuarioEditar);
-
+                var retorno = _usuarioApp.Put(usuario);
                 if (!retorno.IsSuccessStatusCode)
                     return ErrorMessage(retorno.Content.ReadAsStringAsync().Result);
 
-                var usuario = JsonConvert.DeserializeObject<Models.Entity.Usuario>(
+                UsuarioLogado = JsonConvert.DeserializeObject<Models.Entity.Usuario>(
                     retorno.Content.ReadAsStringAsync().Result);
 
-                return View("Abas/_InformacaoPessoal", usuario);
+                return new EmptyResult();
             }
             catch (Exception ex)
             {

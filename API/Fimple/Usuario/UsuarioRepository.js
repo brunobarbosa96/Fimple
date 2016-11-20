@@ -82,7 +82,7 @@ module.exports = (app) => {
                 Email: req.body.Email,
                 DataNascimento: req.body.DataNascimento,
                 DataUltimoAcesso: new Date()
-            },
+            }/*,
                 {
                     select: [
                         "Id",
@@ -96,7 +96,9 @@ module.exports = (app) => {
                         "Cep",
                         "Curso"
                     ]
-                }).exec((err, row) => {
+                }*/)
+                .populate("Curso", { select: ["Id", "Nome"] })
+                .exec((err, row) => {
                     return callback(err, row);
                 });
         }
