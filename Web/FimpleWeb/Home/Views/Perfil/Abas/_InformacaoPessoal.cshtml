@@ -1,26 +1,26 @@
-﻿@{ Layout = null;}
-@model Home.Models.Entity.Usuario
+﻿@model Home.Models.Entity.Usuario
+@{ Layout = null;}
 
 <form role="form" action="#">
     <div class="form-group">
         <label class="control-label">Nome</label>
-        <input type="text" placeholder="@Model.Nome" class="form-control" id="nome" @(ViewBag.IsUsuarioLogado ? string.Empty : "readonly") />
+        <input type="text" placeholder="@Model.Nome" class="form-control" id="txtNome" @(ViewBag.IsUsuarioLogado ? string.Empty : "readonly") />
     </div>
     <div class="form-group">
         <label class="control-label">Sobrenome</label>
-        <input type="text" placeholder="@Model.Sobrenome" class="form-control" id="sobrenome" @(ViewBag.IsUsuarioLogado ? string.Empty : "readonly") />
+        <input type="text" placeholder="@Model.Sobrenome" class="form-control" id="txtSobrenome" @(ViewBag.IsUsuarioLogado ? string.Empty : "readonly") />
     </div>
     <div class="form-group">
         <label class="control-label">Apelido</label>
-        <input type="text" placeholder="@Model.Apelido" class="form-control" id="apelido" @(ViewBag.IsUsuarioLogado ? string.Empty : "readonly") />
+        <input type="text" placeholder="@Model.Apelido" class="form-control" id="txtApelido" @(ViewBag.IsUsuarioLogado ? string.Empty : "readonly") />
     </div>
     <div class="form-group">
         <label class="control-label">E-mail</label>
-        <input type="text" placeholder="@Model.Email" class="form-control" id="email" @(ViewBag.IsUsuarioLogado ? string.Empty : "readonly") />
+        <input type="text" placeholder="@Model.Email" class="form-control" id="txtEmail" @(ViewBag.IsUsuarioLogado ? string.Empty : "readonly") />
     </div>
     <div class="form-group">
         <label class="control-label">Data de Nascimento</label>
-        <input type="text" placeholder="@Model.NomeDataNascimento" class="form-control date-picker" id="dataNascimento" @(ViewBag.IsUsuarioLogado ? string.Empty : "readonly") />
+        <input type="text" placeholder="@Model.NomeDataNascimento" class="form-control date-picker" id="txtDataNascimento" @(ViewBag.IsUsuarioLogado ? string.Empty : "readonly") />
     </div>
     @if (ViewBag.IsUsuarioLogado)
     {
@@ -34,11 +34,11 @@
             function editarPerfil() {
                 var model = {
                     Id: @Model.Id,
-                    Nome: $("#nome").val() || '@Model.Nome',
-                    Sobrenome: $("#sobrenome").val() || '@Model.Sobrenome',
-                    Apelido: $("#apelido").val() || '@Model.Apelido',
-                    Email: $("#email").val() || '@Model.Email',
-                    DataNascimento: $("#dataNascimento").val() || '@Model.DataNascimento'
+                    Nome: $("#txtNome").val() || '@Model.Nome',
+                    Sobrenome: $("#txtSobrenome").val() || '@Model.Sobrenome',
+                    Apelido: $("#txtApelido").val() || '@Model.Apelido',
+                    Email: $("#txtEmail").val() || '@Model.Email',
+                    DataNascimento: $("#txtDataNascimento").val() || '@Model.DataNascimento'
                 }
 
                 $.post("@Url.Action("AtualizaUsuario", "Perfil")", model)

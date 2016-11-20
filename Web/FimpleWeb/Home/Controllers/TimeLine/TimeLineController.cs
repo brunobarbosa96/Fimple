@@ -23,6 +23,7 @@ namespace Home.Controllers.Timeline
         {
             try
             {
+                ViewBag.NomeUsuario = UsuarioLogado.Nome;
                 return View(UsuarioLogado);
             }
             catch (Exception ex)

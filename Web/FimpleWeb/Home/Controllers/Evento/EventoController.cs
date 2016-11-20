@@ -24,6 +24,7 @@ namespace Home.Controllers.Evento
         {
             try
             {
+                ViewBag.NomeUsuario = UsuarioLogado.Nome;
                 return View(UsuarioLogado);
             }
             catch (Exception ex)
