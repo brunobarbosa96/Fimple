@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
-using Home.Application.Eventos;
+﻿using Home.Application.Evento;
 using Home.Application.Timeline;
 using Home.Infra;
 using Home.Models.Entity;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
-namespace Home.Controllers.Eventos
+namespace Home.Controllers.Evento
 {
-    public class EventosController : BaseController
+    public class EventoController : BaseController
     {
         private readonly IEventoApp _eventoApp;
         private readonly IComentarioApp _comentarioApp;
 
-        public EventosController(IEventoApp eventoApp, IComentarioApp comentarioApp)
+        public EventoController(IEventoApp eventoApp, IComentarioApp comentarioApp)
         {
             _eventoApp = eventoApp;
             _comentarioApp = comentarioApp;
@@ -24,7 +24,6 @@ namespace Home.Controllers.Eventos
         {
             try
             {
-                ViewBag.NomeUsuario = UsuarioLogado.Nome;
                 return View(UsuarioLogado);
             }
             catch (Exception ex)
@@ -41,7 +40,7 @@ namespace Home.Controllers.Eventos
                 if (!response.IsSuccessStatusCode)
                     return ErrorMessage(response.Content.ReadAsStringAsync().Result);
 
-                var eventos = JsonConvert.DeserializeObject<IEnumerable<Evento>>(response.Content.ReadAsStringAsync().Result);
+                var eventos = JsonConvert.DeserializeObject<IEnumerable<Models.Entity.Evento>>(response.Content.ReadAsStringAsync().Result);
                 ViewBag.UsuarioLogado = UsuarioLogado;
                 return View("_Evento", eventos);
             }
@@ -51,7 +50,7 @@ namespace Home.Controllers.Eventos
             }
         }
 
-        public ActionResult Post(Evento evento)
+        public ActionResult Post(Models.Entity.Evento evento)
         {
             try
             {
@@ -67,7 +66,7 @@ namespace Home.Controllers.Eventos
             }
         }
 
-        public ActionResult Put(Evento evento)
+        public ActionResult Put(Models.Entity.Evento evento)
         {
             try
             {

@@ -181,8 +181,8 @@
     <Compile Include="Application\Chat\IChatApp.cs" />
     <Compile Include="Application\Curso\ICursoApp.cs" />
     <Compile Include="Application\Curso\CursoApp.cs" />
-    <Compile Include="Application\Eventos\EventoApp.cs" />
-    <Compile Include="Application\Eventos\IEventoApp.cs" />
+    <Compile Include="Application\Evento\EventoApp.cs" />
+    <Compile Include="Application\Evento\IEventoApp.cs" />
     <Compile Include="Application\Notificacao\NotificacaoApp.cs" />
     <Compile Include="Application\Notificacao\INotificacaoApp.cs" />
     <Compile Include="Application\Timeline\IComentarioApp.cs" />
@@ -199,7 +199,7 @@
     <Compile Include="App_Start\SimpleInjectorContainer.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\Chat\ChatController.cs" />
-    <Compile Include="Controllers\Eventos\EventosController.cs" />
+    <Compile Include="Controllers\Evento\EventoController.cs" />
     <Compile Include="Controllers\Mapa\MapaController.cs" />
     <Compile Include="Controllers\Notificacao\NotificacaoController.cs" />
     <Compile Include="Controllers\Perfil\PerfilController.cs" />
@@ -342,9 +342,9 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Fimple Web.pubxml" />
     <Content Include="Views\Usuario\_Cadastro.cshtml" />
-    <Content Include="Views\Eventos\Index.cshtml" />
-    <Content Include="Views\Eventos\_Comentarios.cshtml" />
-    <Content Include="Views\Eventos\_Evento.cshtml" />
+    <Content Include="Views\Evento\Index.cshtml" />
+    <Content Include="Views\Evento\_Comentarios.cshtml" />
+    <Content Include="Views\Evento\_Evento.cshtml" />
     <Content Include="Views\Perfil\_Editar.cshtml" />
     <Content Include="Views\Perfil\_Visualizar.cshtml" />
   </ItemGroup>

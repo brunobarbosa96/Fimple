@@ -147,13 +147,13 @@
         return $("#divContainerMessage .page-quick-sidebar-chat-user, #divContainerMessage .page-quick-sidebar-chat-user-form").clone().attr("data-user-id", usuario.Id);
     }
 
-    var preparePost = function (dir, time, name, avatar, message) {
+    var preparePost = function (dir, time, name, avatar, message, id) {
         var tpl = '';
         tpl += '<div class="post ' + dir + '">';
         tpl += '<img class="avatar" alt="" src="' + /*Layout.getLayoutImgPath()*/"/assets/img/placeholder.jpg" /*+ avatar + '.jpg*/ + '"/>';
         tpl += '<div class="message">';
         tpl += '<span class="arrow"></span>';
-        tpl += '<a href="#" class="name">' + name + '</a>&nbsp;';
+        tpl += '<a href="/Perfil/' + id + '" class="name">' + name + '</a>&nbsp;';
         tpl += '<span class="datetime">' + time + '</span>';
         tpl += '<span class="body">';
         tpl += message;
@@ -180,7 +180,8 @@
                     conversa.HoraEnvio,
                     conversa.UsuarioEnvio.Nome,
                     'avatar3',
-                    conversa.Conteudo));
+                    conversa.Conteudo,
+                    conversa.UsuarioEnvio.Id));
             });
             initChatSlimScroll();
         })
@@ -228,7 +229,7 @@
 
         // Preparando postagem
         var time = new Date();
-        var message = preparePost(isUsuarioLogado ? 'out' : 'in', (time.getHours() + ':' + time.getMinutes()), usuario.Nome, 'ds', mensagem);
+        var message = preparePost(isUsuarioLogado ? 'out' : 'in', (time.getHours() + ':' + time.getMinutes()), usuario.Nome, 'ds', mensagem, usuario.Id);
         chatContainer.append(message);
 
         var getLastPostPos = function () {

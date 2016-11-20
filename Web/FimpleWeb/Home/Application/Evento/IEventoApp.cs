@@ -1,14 +1,13 @@
 ﻿using System.Net.Http;
-using Home.Models.Entity;
 
-namespace Home.Application.Eventos
+namespace Home.Application.Evento
 {
     public interface IEventoApp
     {
         HttpResponseMessage GetAll(int idUsuario, int pagina);
         HttpResponseMessage Get(int id);
-        HttpResponseMessage Post(Evento evento);
-        HttpResponseMessage Put(Evento evento);
+        HttpResponseMessage Post(Models.Entity.Evento evento);
+        HttpResponseMessage Put(Models.Entity.Evento evento);
         HttpResponseMessage Delete(int id);
     }
 }

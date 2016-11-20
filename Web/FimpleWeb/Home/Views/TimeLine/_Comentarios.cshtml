@@ -17,12 +17,15 @@
                             </a>
                             <div class="media-body">
                                 <h4 class="media-heading font-grey-cascade">
-                                    <a href="javascript:;">@comentario.Usuario.NomeCompleto</a>
+                                    <a href="@($"Perfil/{comentario.Usuario.Id}")">@comentario.Usuario.NomeCompleto</a>
                                     <i>Há algum tempo</i>
-                                    <a href="javascript:;" class="btn btn-xs black">
-                                        <span class="md-click-circle md-click-animate" style="height: 65px; width: 65px; top: -22.5px; left: 2.07813px;"></span>
-                                        <i class="fa fa-comments-o"></i>
-                                    </a>
+                                    @if (comentario.Usuario.Id != ViewBag.UsuarioLogado.Id)
+                                    {
+                                        <a href="javascript:;" onclick="abrirChat('@comentario.Usuario.Id')" class="btn btn-xs black">
+                                            <span class="md-click-circle md-click-animate" style="height: 65px; width: 65px; top: -22.5px; left: 2.07813px;"></span>
+                                            <i class="fa fa-comments-o"></i>
+                                        </a>
+                                    }
                                 </h4>
                                 <div>
                                     @comentario.Conteudo
@@ -67,7 +70,7 @@
 <!-- FIM COMENTARIOS -->
 
 <script>
-    
+
     $("[data-div-coment]")
        .summernote({
            toolbar: false,

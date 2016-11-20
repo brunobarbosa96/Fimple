@@ -13,7 +13,7 @@
             </div>
             <div class="timeline-body-head">
                 <div class="timeline-body-head-caption">
-                    <a href="javascript:;" class="timeline-body-title font-blue-madison">@evento.Usuario.NomeCompleto</a>
+                    <a href="@($"Perfil/{evento.Usuario.Id}")" class="timeline-body-title font-blue-madison">@evento.Usuario.NomeCompleto</a>
 
                     <span class="timeline-body-time font-grey-cascade">Há algum tempo</span>
                     @if (evento.Usuario.Id != ViewBag.UsuarioLogado.Id)

@@ -34,16 +34,16 @@
             function editarPerfil() {
                 var model = {
                     Id: @Model.Id,
-                    Nome: $("#nome").val() != null ? $("#nome").val() : @Model.Nome,
-                    Sobrenome: $("#sobrenome").val() != null ? $("#sobrenome").val() : @Model.Sobrenome,
-                    Apelido: $("#apelido").val() != null ? $("#apelido").val() : @Model.Apelido,
-                    Email: $("#email").val() != null ? $("#email").val() : '@Model.Email',
-                    DataNascimento: $("#dataNascimento").val() != null ? $("#dataNascimento").val(): '@Model.DataNascimento'
+                    Nome: $("#nome").val() || '@Model.Nome',
+                    Sobrenome: $("#sobrenome").val() || '@Model.Sobrenome',
+                    Apelido: $("#apelido").val() || '@Model.Apelido',
+                    Email: $("#email").val() || '@Model.Email',
+                    DataNascimento: $("#dataNascimento").val() || '@Model.DataNascimento'
                 }
 
                 $.post("@Url.Action("AtualizaUsuario", "Perfil")", model)
-                    .done(function(data) {
-
+                    .done(function() {
+                        notify.success("Alterações realizadas com sucesso!");
                     })
                     .fail(function() {
                         notify.error("Erro ao editar usuario");

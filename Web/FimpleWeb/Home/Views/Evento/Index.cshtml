@@ -6,7 +6,7 @@
     <ul class="page-breadcrumb">
         <li>
             <i class="fa fa-users"></i>
-            <a href="@Url.Action("Index", "Eventos")">Eventos</a>
+            <a href="@Url.Action("Index", "Evento")">Eventos</a>
         </li>
     </ul>
     <div class="page-toolbar">  
@@ -90,7 +90,7 @@
 <script>
 
     var buscarPublicacoes = (function publicacao(callback, isUpdate) {
-        $.get('@Url.Action("GetAll", "Timeline")', {
+        $.get('@Url.Action("GetAll", "Evento")', {
             pagina: Math.ceil($(".timeline-body").length / 30)
         })
         .done((data) => {
@@ -102,14 +102,14 @@
                 callback();
         })
         .fail((xhr) => {
-            $("#divPublicacoes").html("<h1>Erro ao buscar publicações</h1>");
+            notify.error("Erro ao buscar publicações");
         });
 
         return publicacao;
     })();
 
     $("#btnSalvarPublicacao").click(() => {
-        $.post('@Url.Action("Post", "Timeline")',
+        $.post('@Url.Action("Post", "Evento")',
             {
                 Titulo: "Título padrão",
                 Conteudo: $(".note-editable.panel-body:first").text().trim(),
@@ -126,12 +126,12 @@
                 buscarPublicacoes();
             })
             .fail(() => {
-                $("#divPublicacoes").html("<h1>Erro ao salvar publicação</h1>");
+                notify.error("Erro ao salvar publicação");
             });
     });
 
     function salvarEdicao(id, obj) {
-        $.post('@Url.Action("Put", "Timeline")',
+        $.post('@Url.Action("Put", "Evento")',
            {
                Id: id,
                Titulo: "Título padrão",
@@ -151,22 +151,22 @@
                });
            })
            .fail(() => {
-               $("#divPublicacoes").html("<h1>Erro ao salvar publicação</h1>");
+               notify.error("Erro ao salvar publicação");
            });
     }
 
     function excluirPublicacao(id) {
-        $.get('@Url.Action("Delete", "Timeline")',
+        $.get('@Url.Action("Delete", "Evento")',
             {
                 id: id
             })
             .fail(() => {
-                $("#divPublicacoes").html("<h1>Erro ao excluir publicação</h1>");
+                notify.error("Erro ao excluir publicação");
             });
     }
 
     function salvarComentario(obj) {
-        $.post('@Url.Action("PostComentario", "Timeline")',
+        $.post('@Url.Action("PostComentario", "Evento")',
             {
                 Publicacao: { Id: $(obj).closest("[data-id-publicacao]").attr("data-id-publicacao") },
                 Conteudo: $(obj).closest(".col-md-12.blog-page").find(".note-editable p").text(),
@@ -179,7 +179,7 @@
                 buscarPublicacoes();
             })
             .fail(() => {
-                $("#divPublicacoes").html("<h1>Erro ao salvar comentário</h1>");
+                notify.error("Erro ao salvar comentário");
             })
             .complete(() => {
                 $(obj).closest("[data-add-coment]").show().next("[data-salvar-coment]").hide();
@@ -188,12 +188,12 @@
     }
 
     function excluirComentario(id) {
-        $.get('@Url.Action("DeleteComentario", "Timeline")',
+        $.get('@Url.Action("DeleteComentario", "Evento")',
             {
                 id: id
             })
             .fail(() => {
-                $("#divPublicacoes").html("<h1>Erro ao excluir comentário</h1>");
+                notify.error("Erro ao excluir comentário");
             });
     }
 

@@ -16,6 +16,9 @@ namespace Home.Controllers.Perfil
             _usuarioApp = usuarioApp;
         }
 
+        [Route("Perfil/{idUsuario}")]
+        [Route("Perfil/")]
+        [HttpGet]
         public ActionResult Index(int? idUsuario)
         {
             try
@@ -96,7 +99,6 @@ namespace Home.Controllers.Perfil
                     retorno.Content.ReadAsStringAsync().Result);
 
                 return View("Abas/_InformacaoPessoal", usuario);
-
             }
             catch (Exception ex)
             {
