@@ -31,3 +31,9 @@
 
     }
 }
+
+String.prototype.toDate = () =>{
+    var from = $(this).val().split("/");
+    var f = new Date(from[2], from[1] - 1, from[0]);
+    return f;
+}
