@@ -3,7 +3,7 @@
         $.toast({
             heading: header,
             text: texto,
-            position: 'top-left',
+            position: 'bottom-left',
             stack: false,
             icon: 'success',
             loader: false
@@ -13,7 +13,7 @@
         $.toast({
             heading: header,
             text: texto,
-            position: 'top-left',
+            position: 'bottom-left',
             stack: false,
             icon: 'error',
             loader: false
@@ -23,7 +23,7 @@
         $.toast({
             heading: header,
             text: texto,
-            position: 'top-left',
+            position: 'bottom-left',
             stack: false,
             icon: 'warning',
             loader: false

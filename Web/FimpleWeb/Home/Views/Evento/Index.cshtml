@@ -76,17 +76,17 @@
                 callback();
         })
         .fail((xhr) => {
-            notify.error("Erro ao buscar publicações");
+            notify.error("Erro ao buscar eventos");
         });
 
-        return publicacao;
+        return evento;
     })();
 
     function addEvento() {
         $.post('@Url.Action("Post", "Evento")',
             {
                 Titulo: $("#TituloAdd").val(),
-                Conteudo: $("#DescricaoAdd").val(),
+                Conteudo: $(".panel-body").text(),
                 Local: $("#LocalAdd").val(),
                 Data: $("#QuandoAdd").val(),
                 Usuario: { Id: '@Model.Id' },
@@ -96,7 +96,7 @@
             }).done(() => {
                 $("#modalAddEvento").modal("hide");
                 $("#modalAdd")[0].reset();
-                $('#DescricaoAdd').summernote("destroy");
+                $('#DescricaoAdd').summernote('code', '');;
                 buscarEventos();
             }).fail(() => {
                 notify.error("Erro ao salvar evento");
