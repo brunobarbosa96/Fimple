@@ -23,6 +23,7 @@ namespace Home.Controllers.Perfil
         {
             try
             {
+                ViewBag.NomeUsuario = UsuarioLogado.Nome;
                 ViewBag.IsUsuarioLogado = !idUsuario.HasValue || idUsuario == UsuarioLogado.Id;
 
                 if (!idUsuario.HasValue || idUsuario == UsuarioLogado.Id)
@@ -42,6 +43,8 @@ namespace Home.Controllers.Perfil
         }
 
         #region --> Abas <--
+        [Route("Perfil/GetInfo/")]
+        [HttpGet]
         public ActionResult GetInfo(int? idUsuario)
         {
             try
@@ -62,16 +65,22 @@ namespace Home.Controllers.Perfil
             }
         }
 
+        [Route("Perfil/GetMudarAvatar/")]
+        [HttpGet]
         public ActionResult GetMudarAvatar()
         {
             return PartialView("Abas/_MudarAvatar");
         }
 
+        [Route("Perfil/GetMudarSenha/")]
+        [HttpGet]
         public ActionResult GetMudarSenha()
         {
             return PartialView("Abas/_MudarSenha");
         }
 
+        [Route("Perfil/GetUsuarioBloqueado/")]
+        [HttpGet]
         public ActionResult GetUsuarioBloqueado()
         {
             var retorno = _usuarioApp.GetUsuarioBloqueado(UsuarioLogado.Id);
@@ -86,6 +95,8 @@ namespace Home.Controllers.Perfil
         }
         #endregion
 
+        [Route("Perfil/AtualizaUsuario/")]
+        [HttpPost]
         public ActionResult AtualizaUsuario(Models.Entity.Usuario usuario)
         {
             try

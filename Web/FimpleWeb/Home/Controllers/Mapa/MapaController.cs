@@ -7,6 +7,7 @@ namespace Home.Controllers.Mapa
     {
         public ActionResult Index()
         {
+            ViewBag.NomeUsuario = UsuarioLogado.Nome;
             return View(UsuarioLogado);
         }
     }

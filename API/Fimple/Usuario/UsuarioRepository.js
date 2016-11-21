@@ -75,6 +75,7 @@ module.exports = (app) => {
         },
 
         put: (req, res, callback) => {
+            console.log(req.body);
             usuario.update({ Id: req.body.Id }, {
                 Nome: req.body.Nome,
                 Sobrenome: req.body.Sobrenome,
