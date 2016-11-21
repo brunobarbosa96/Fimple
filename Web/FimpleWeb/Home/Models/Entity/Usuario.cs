@@ -28,7 +28,7 @@ namespace Home.Models.Entity
 
         public byte? Lembrar { get; set; }
         public IEnumerable<Curso> ComboCurso { get; set; }
-
+        public string SenhaAntiga { get; set; }
         public string NomeCompleto => $"{Nome} {Sobrenome}";
         public string NomeDataNascimento => $"{DataNascimento.ToShortDateString()}";
         public string NomeDataInicioCurso => $"{DataInicioCurso.ToShortDateString()}";

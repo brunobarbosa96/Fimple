@@ -38,6 +38,11 @@ namespace Home.Application.Usuario
             return _request.Put(UriWebApi.Usuario, usuario);
         }
 
+        public HttpResponseMessage PutSenha(Models.Entity.Usuario usuario)
+        {
+            return _request.Put($"{UriWebApi.Usuario}senha/", usuario);
+        }
+
         public HttpResponseMessage Delete(int id)
         {
             return _request.Delete(UriWebApi.Usuario, id.ToString());

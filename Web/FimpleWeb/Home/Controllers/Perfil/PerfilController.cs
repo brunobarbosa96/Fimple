@@ -76,7 +76,7 @@ namespace Home.Controllers.Perfil
         [HttpGet]
         public ActionResult GetMudarSenha()
         {
-            return PartialView("Abas/_MudarSenha");
+            return PartialView("Abas/_MudarSenha", UsuarioLogado);
         }
 
         [Route("Perfil/GetUsuarioBloqueado/")]
@@ -94,26 +94,5 @@ namespace Home.Controllers.Perfil
 
         }
         #endregion
-
-        [Route("Perfil/AtualizaUsuario/")]
-        [HttpPost]
-        public ActionResult AtualizaUsuario(Models.Entity.Usuario usuario)
-        {
-            try
-            {
-                var retorno = _usuarioApp.Put(usuario);
-                if (!retorno.IsSuccessStatusCode)
-                    return ErrorMessage(retorno.Content.ReadAsStringAsync().Result);
-
-                UsuarioLogado = JsonConvert.DeserializeObject<Models.Entity.Usuario>(
-                    retorno.Content.ReadAsStringAsync().Result);
-
-                return new EmptyResult();
-            }
-            catch (Exception ex)
-            {
-                return ErrorMessage(ex.Message);
-            }
-        }
     }
 }

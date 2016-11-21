@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
 
 namespace Home.Controllers.Usuario
@@ -67,6 +66,49 @@ namespace Home.Controllers.Usuario
             }
         }
 
-        
+        public ActionResult Put(Models.Entity.Usuario usuario)
+        {
+            try
+            {
+                // Requisição para atualizar usuário
+                var retorno = _usuarioApp.Put(usuario);
+                if (!retorno.IsSuccessStatusCode)
+                    return ErrorMessage(retorno.Content.ReadAsStringAsync().Result);
+
+                // Atualizando dados da seção de usuário
+                UsuarioLogado.Nome = usuario.Nome;
+                UsuarioLogado.Sobrenome = usuario.Sobrenome;
+                UsuarioLogado.Apelido = usuario.Apelido;
+                UsuarioLogado.Email = usuario.Email;
+                UsuarioLogado.DataNascimento = usuario.DataNascimento;
+
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                return ErrorMessage(ex.Message);
+            }
+        }
+
+        public ActionResult PutSenha(Models.Entity.Usuario usuario)
+        {
+            try
+            {
+                // Criptografando senhas
+                usuario.Senha = Security.Encrypt(usuario.Senha);
+                usuario.SenhaAntiga = Security.Encrypt(usuario.SenhaAntiga);
+
+                // Requisição para atualizar senha
+                var response = _usuarioApp.PutSenha(usuario);
+                if (!response.IsSuccessStatusCode)
+                    return ErrorMessage(response.Content.ReadAsStringAsync().Result);
+
+                return new EmptyResult();
+            }
+            catch (Exception ex)
+            {
+                return ErrorMessage(ex.Message);
+            }
+        }
     }
 }

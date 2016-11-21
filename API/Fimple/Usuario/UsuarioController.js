@@ -1,6 +1,7 @@
 module.exports = (app) => {
 
     var repository = require('./UsuarioRepository')(app);
+    var service = require('./UsuarioService')(app);
     var controller = {
 
         getAll: (req, res) => {
@@ -56,6 +57,19 @@ module.exports = (app) => {
                 });
             } catch (e) {
                 res.status(500).json("Erro ao atualizar usuário");
+            }
+        },
+
+        putSenha: (req, res) => {
+            try {
+                service.putSenha(req, res, (err, row) => {
+                    if (err)
+                        res.status(500).json(err);
+                    else
+                        res.status(200).json(row);
+                });
+            } catch (e) {
+                res.status(500).json("Erro ao atualizar senha");
             }
         }
 

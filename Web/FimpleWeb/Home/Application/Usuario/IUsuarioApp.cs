@@ -9,6 +9,7 @@ namespace Home.Application.Usuario
         HttpResponseMessage GetUsuarioBloqueado(int id);
         HttpResponseMessage Post(Models.Entity.Usuario usuario);
         HttpResponseMessage Put(Models.Entity.Usuario usuario);
+        HttpResponseMessage PutSenha(Models.Entity.Usuario usuario);
         HttpResponseMessage Delete(int id);
     }
 }
