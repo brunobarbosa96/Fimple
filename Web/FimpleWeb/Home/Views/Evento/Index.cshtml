@@ -96,7 +96,7 @@
             }).done(() => {
                 $("#modalAddEvento").modal("hide");
                 $("#modalAdd")[0].reset();
-                $('#DescricaoAdd').summernote('code', '');;
+                $('#DescricaoAdd').summernote('code', '');
                 buscarEventos();
             }).fail(() => {
                 notify.error("Erro ao salvar evento");
