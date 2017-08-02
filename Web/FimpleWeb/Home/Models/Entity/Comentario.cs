@@ -8,6 +8,7 @@ namespace Home.Models.Entity
         public string Conteudo { get; set; }
         public Usuario Usuario { get; set; }
         public Publicacao Publicacao { get; set; }
+        public Evento Evento { get; set; }
 
         public DateTime updatedAt { get; set; }
     }

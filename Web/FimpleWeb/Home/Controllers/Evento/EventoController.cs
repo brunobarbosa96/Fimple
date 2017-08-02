@@ -12,9 +12,9 @@ namespace Home.Controllers.Evento
     public class EventoController : BaseController
     {
         private readonly IEventoApp _eventoApp;
-        private readonly IComentarioApp _comentarioApp;
+        private readonly IComentarioEventoApp _comentarioApp;
 
-        public EventoController(IEventoApp eventoApp, IComentarioApp comentarioApp)
+        public EventoController(IEventoApp eventoApp, IComentarioEventoApp comentarioApp)
         {
             _eventoApp = eventoApp;
             _comentarioApp = comentarioApp;

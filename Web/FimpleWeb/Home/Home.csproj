@@ -181,7 +181,9 @@
     <Compile Include="Application\Chat\IChatApp.cs" />
     <Compile Include="Application\Curso\ICursoApp.cs" />
     <Compile Include="Application\Curso\CursoApp.cs" />
+    <Compile Include="Application\Evento\ComentarioEventoApp.cs" />
     <Compile Include="Application\Evento\EventoApp.cs" />
+    <Compile Include="Application\Evento\IComentarioEventoApp.cs" />
     <Compile Include="Application\Evento\IEventoApp.cs" />
     <Compile Include="Application\Notificacao\NotificacaoApp.cs" />
     <Compile Include="Application\Notificacao\INotificacaoApp.cs" />

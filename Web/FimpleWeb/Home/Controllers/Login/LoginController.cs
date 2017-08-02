@@ -15,7 +15,7 @@ namespace Home.Controllers.Login
         private readonly ILoginApp _loginApp;
 
         public LoginController(ILoginApp loginApp)
-        {
+        {   
             _loginApp = loginApp;
         }
 

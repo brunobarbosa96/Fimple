@@ -18,7 +18,7 @@ module.exports = (app) => {
                         .exec((erro, rows) => {
                             if (erro)
                                 return callback(erro);
-
+                            
                             for (var i in row)
                                 row[i].Comentarios =
                                     rows.filter((x) => x.Publicacao == row[i].Id)

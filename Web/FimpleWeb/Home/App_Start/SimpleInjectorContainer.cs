@@ -28,6 +28,7 @@ namespace Home
             container.Register<IComentarioApp, ComentarioApp>();
             container.Register<INotificacaoApp, NotificacaoApp>();
             container.Register<IEventoApp, EventoApp>();
+            container.Register<IComentarioEventoApp, ComentarioEventoApp>();
 
             container.Verify();
             return container;

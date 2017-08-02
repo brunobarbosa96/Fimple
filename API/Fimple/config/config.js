@@ -33,26 +33,26 @@ module.exports = () => {
    //             port: 5432,
    //             ssl: false
    //          }
-             myLocalSql: {
-                 adapter: 'mySql',
-                 database: 'fimple',
-                 host: '191.6.198.21',
-                 user: 'fimple',
-                 password: 'mudar123fimpleman',
-                 port: 3306,
-                 charset: 'utf8'
-             }
+             //myLocalSql: {
+             //    adapter: 'mySql',
+             //    database: 'fimple',
+             //    host: '191.6.198.21',
+             //    user: 'fimple',
+             //    password: 'mudar123fimpleman',
+             //    port: 3306,
+             //    charset: 'utf8'
+             //}
 
-            ////MySql localhost
-            //myLocalSql: {
-            //    adapter: 'mySql',
-            //    database: 'fimple',
-            //    host: 'localhost',
-            //    user: 'root',
-            //    password: 'root',
-            //    port: 3306,
-            //    timezone: 'utc'
-            //}
+            //MySql localhost
+            myLocalSql: {
+                adapter: 'mySql',
+                database: 'fimple',
+                host: 'localhost',
+                user: 'root',
+                password: 'root',
+                port: 3306,
+                charset: 'utf8'
+            }
         },
 
         defaults: {

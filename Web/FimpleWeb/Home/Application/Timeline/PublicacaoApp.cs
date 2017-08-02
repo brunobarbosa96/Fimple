@@ -16,7 +16,7 @@ namespace Home.Application.Timeline
 
         public HttpResponseMessage GetAll(int idUsuario, int pagina)
         {
-            return _request.Get($"{UriWebApi.Publicacao}idUsuario.ToString()?Pagina={pagina}");
+            return _request.Get($"{UriWebApi.Publicacao}{idUsuario}?Pagina={pagina}");
         }
 
         public HttpResponseMessage Get(int id)

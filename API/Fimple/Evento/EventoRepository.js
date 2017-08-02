@@ -40,7 +40,7 @@ module.exports = (app) => {
         },
 
         getById: (req, res, callback) => {
-            evento.findOne({ Id: req.body.Publicacao.Id }, { select: ["Usuario"] })
+            evento.findOne({ Id: req.body.Evento.Id }, { select: ["Usuario"] })
                 .populate("Usuario", { select: ["Id", "Nome"] })
                 .exec((err, row) => {
                     return callback(err, row);

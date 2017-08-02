@@ -15,7 +15,7 @@ namespace Home.Application.Evento
 
         public HttpResponseMessage GetAll(int idUsuario, int pagina)
         {
-            return _request.Get($"{UriWebApi.Evento}idUsuario.ToString()?Pagina={pagina}");
+            return _request.Get($"{UriWebApi.Evento}{idUsuario}?Pagina={pagina}");
         }
 
         public HttpResponseMessage Get(int id)

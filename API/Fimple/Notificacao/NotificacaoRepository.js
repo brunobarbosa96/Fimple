@@ -14,15 +14,17 @@ module.exports = (app) => {
                 .populate("Usuario", { select: ["Id", "Nome"] })
                 .populate("Publicacao", { select: ["Id", "Usuario"] })
                 .exec((err, row) => {
-                    usuario.find({ select: ["Id", "Nome", "Sobrenome"] }).exec((error, rows) => {
-                        if (error)
-                            return callback(error);
+                    row = row.filter((x) => x.Publicacao);
+                    usuario.find({ select: ["Id", "Nome", "Sobrenome"] })
+                        .exec((error, rows) => {
+                            if (error)
+                                return callback(error);
 
-                        for (var i in row)
-                            row[i].Publicacao.Usuario = rows.filter((x) => x.Id == row[i].Publicacao.Usuario)[0];
+                            for (var i in row)
+                                row[i].Publicacao.Usuario = rows.filter((x) => x.Id == row[i].Publicacao.Usuario)[0];
 
-                        return callback(err, row.filter((x) => x.Publicacao.Usuario.Id == req.params.IdUsuario));
-                    });
+                            return callback(err, row.filter((x) => x.Publicacao.Usuario.Id == req.params.IdUsuario));
+                        });
                 });
         },
 
