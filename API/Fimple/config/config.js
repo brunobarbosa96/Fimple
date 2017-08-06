@@ -23,35 +23,17 @@ module.exports = () => {
             myLocalDisk: {
                 adapter: 'disk'
             },
-			// //Postgres localhost
-   //          myLocalSql: {
-   //             adapter: 'postgres',
-   //             database: 'Fimple',
-   //             host: 'localhost',
-   //             user: 'Admin',
-   //             password: 'Fimple@2016',
-   //             port: 5432,
-   //             ssl: false
-   //          }
-             //myLocalSql: {
-             //    adapter: 'mySql',
-             //    database: 'fimple',
-             //    host: '191.6.198.21',
-             //    user: 'fimple',
-             //    password: 'mudar123fimpleman',
-             //    port: 3306,
-             //    charset: 'utf8'
-             //}
-
-            //MySql localhost
             myLocalSql: {
-                adapter: 'mySql',
+                adapter: 'msSql',
                 database: 'fimple',
-                host: 'localhost',
-                user: 'root',
-                password: 'root',
-                port: 3306,
-                charset: 'utf8'
+                host: 'fimple.database.windows.net',
+                user: 'master',
+                password: 'Fimple@2016',
+                port: 1433,
+                charset: 'utf8',
+                options: {
+                    encrypt: true   // use this for Azure databases
+                }
             }
         },
 

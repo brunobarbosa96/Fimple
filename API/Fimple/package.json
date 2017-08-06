@@ -2,10 +2,10 @@
   "name": "fimple",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -18,13 +18,12 @@
     "body-parser": "^1.15.2",
     "devbox-linq": "^3.0.3",
     "express": "^4.14.0",
-    "express-load": "^1.1.15",
-    "lodash": "^4.16.4",
+    "express-load": "^1.1.16",
     "method-override": "^2.3.6",
     "sails-disk": "^0.10.10",
     "sails-mysql": "0.12.0",
     "sails-postgresql": "^0.11.4",
     "sails-sqlserver": "^0.10.8",
-    "waterline": "^0.12.2"
+    "waterline": "^0.11.11"
   }
 }
